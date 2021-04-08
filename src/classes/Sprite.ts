@@ -1,4 +1,3 @@
-//スプライトの情報(画像の切り取り)
 class Sprite {
 	x: number;
 	y: number;

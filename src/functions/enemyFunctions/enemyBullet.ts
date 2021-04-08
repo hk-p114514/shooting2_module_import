@@ -1,7 +1,7 @@
 //敵の弾発射
-import {enemyShot, player} from "../../init/variables";
-import {rand} from "../random";
-import {EnemyShot} from "../../classes/EnemyShot";
+import { enemyShot, player } from '../../init/variables';
+import { rand } from '../random';
+import { EnemyShot } from '../../classes/EnemyShot';
 
 export const enemyBullet = (object: any, speed: number) => {
 	let angle, vx, vy;
@@ -15,5 +15,5 @@ export const enemyBullet = (object: any, speed: number) => {
 	vy = Math.sin(angle) * speed;
 
 	// @ts-ignore
-	enemyShot.push(new EnemyShot(15, object.x, object.y, vx, vy));
+	enemyShot.push(new EnemyShot(15, object.x, object.y, vx, vy, 0));
 };

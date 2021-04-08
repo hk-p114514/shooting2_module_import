@@ -14,6 +14,10 @@ module.exports = {
 			},
 		],
 	},
+	devServer: {
+		contentBase: './dist',
+		hot: true,
+	},
 	resolve: {
 		extensions: ['.js', '.ts'],
 	},

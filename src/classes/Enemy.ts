@@ -1,11 +1,11 @@
-import {enemyMaster, player} from "../init/variables";
-import {Character} from "./Character";
-import {checkHit} from "../functions/hit";
-import {enemyMovePink} from "../functions/enemyFunctions/enemyMovePink";
-import {enemyMoveYellow} from "../functions/enemyFunctions/enemyMoveYellow";
-import {enemyMoveBoss} from "../functions/enemyFunctions/enemyMoveBoss";
-import {enemyMoveYellowChild} from "../functions/enemyFunctions/enemyMoveYellowChild";
-import {isAttacked} from "../functions/isAtacked";
+import { enemyMaster, player } from '../init/variables';
+import { Character } from './Character';
+import { checkHit } from '../functions/hit';
+import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink';
+import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow';
+import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss';
+import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveYellowChild';
+import { isAttacked } from '../functions/isAtacked';
 
 class Enemy extends Character {
 	eNum: number;

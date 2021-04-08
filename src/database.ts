@@ -2,7 +2,7 @@ import { logoutButton, player, score, scoreSubmit } from './init/variables';
 import { firebase, auth, db, ui } from './config';
 
 export const database = () => {
-	console.log('START Database');
+	console.log('STARTING Database');
 	const uiConfig = {
 		callbacks: {
 			signInSuccessWithAuthResult: function (

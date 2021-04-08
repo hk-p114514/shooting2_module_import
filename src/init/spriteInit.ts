@@ -1,5 +1,5 @@
 //スプライト
-import {Sprite} from "../classes/Sprite";
+import { Sprite } from '../classes/Sprite';
 
 export let sprite = [
 	new Sprite(0, 0, 22, 42), //0　自機　左２

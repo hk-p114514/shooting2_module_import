@@ -108,8 +108,8 @@ export let gameCount = 0;
 //ゲームのウェイブ（段階）
 export let gameWave = 0;
 
-//ゲームのラウンド数（周回の数）
-// export let gameRound = 0;
+//ゲームのラウンド数（ボスを倒した数）
+export let gameRound = 0;
 
 //スコア
 export let score = 0;

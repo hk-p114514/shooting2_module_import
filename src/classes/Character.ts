@@ -1,5 +1,5 @@
-import {field_h, field_w} from "../init/variables";
-import {drawSprite} from "../functions/drawSprite";
+import { field_h, field_w } from '../init/variables';
+import { drawSprite } from '../functions/drawSprite';
 
 class Character {
 	snum: number;

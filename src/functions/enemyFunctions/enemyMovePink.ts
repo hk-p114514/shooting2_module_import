@@ -1,6 +1,6 @@
 //ピンクのヒヨコの行動パターン ####################################################
-import {player} from "../../init/variables";
-import {enemyBullet} from "./enemyBullet";
+import { player } from '../../init/variables';
+import { enemyBullet } from './enemyBullet';
 
 export const enemyMovePink = (object: any) => {
 	if (!object.flag) {

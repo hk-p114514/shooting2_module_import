@@ -1,7 +1,7 @@
 //黄色のヒヨコの行動パターン ####################################################
-import {player} from "../../init/variables";
-import {rand} from "../random";
-import {enemyBullet} from "./enemyBullet";
+import { player } from '../../init/variables';
+import { rand } from '../random';
+import { enemyBullet } from './enemyBullet';
 
 export const enemyMoveYellow = (object: any) => {
 	if (!object.flag) {

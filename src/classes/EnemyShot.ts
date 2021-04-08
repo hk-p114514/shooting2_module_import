@@ -1,7 +1,7 @@
-import {Character} from "./Character";
-import {gameClear, gameOver, player} from "../init/variables";
-import {checkHit} from "../functions/hit";
-import {isAttacked} from "../functions/isAtacked";
+import { Character } from './Character';
+import { gameClear, gameOver, player } from '../init/variables';
+import { checkHit } from '../functions/hit';
+import { isAttacked } from '../functions/isAtacked';
 
 class EnemyShot extends Character {
 	r: number;

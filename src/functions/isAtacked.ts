@@ -1,12 +1,12 @@
 import { gameOver, player } from '../init/variables';
-import { finishGame } from './finishGame';
+import { finishRound } from './finishRound';
 
 export const isAttacked = (object: any) => {
 	player.hp -= 1;
 	if (player.hp <= -1) {
 		// @ts-ignore
 		gameOver = true;
-		finishGame();
+		finishRound();
 	} else {
 		object.hp--;
 		if (object.hp < 0) {

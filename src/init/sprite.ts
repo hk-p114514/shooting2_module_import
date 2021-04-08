@@ -1,6 +1,8 @@
 //ファイルの読み込み
 let spriteImage = new Image();
 spriteImage.src = './sprite.png';
-spriteImage.onerror = () => (spriteImage.src = './sprite.png');
 
-export { spriteImage };
+let heart = new Image();
+heart.src = './heart.png';
+
+export { spriteImage, heart };

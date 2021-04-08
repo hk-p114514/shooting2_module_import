@@ -16,7 +16,7 @@ import {
 } from './variables';
 import { information } from '../functions/gameInfo';
 import { drawAll, updateAll } from '../functions/useObjectProcess';
-import { finishGame } from '../functions/finishGame';
+import { finishRound } from '../functions/finishRound';
 import { Enemy } from '../classes/Enemy';
 import { rand } from '../functions/random';
 import { Star } from '../classes/Star';
@@ -116,7 +116,7 @@ export const gameInit = () => {
 					setTimeout(() => {
 						// @ts-ignore
 						gameClear = true;
-						finishGame();
+						finishRound();
 					}, 8000);
 				}
 			}
