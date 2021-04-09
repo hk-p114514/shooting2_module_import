@@ -44,6 +44,12 @@ class Bullet extends Character {
 						enemy[i].kill = true;
 						// @ts-ignore
 						score += enemy[i].score;
+						
+						//hutao_nekomata's chenges------^
+						if(score%1000==0){
+							player.specialMagazine = player.specialMagazine + 1; 
+						}
+						//------------------------------^
 
 						//スコアを加算していく
 						//スコアをサーバに渡す処理
