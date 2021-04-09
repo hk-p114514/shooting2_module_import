@@ -1,4 +1,4 @@
-import { rand } from './functions/random';
+import { rand } from "./functions/random";
 import {
 	afterGame,
 	canvas,
@@ -14,7 +14,7 @@ import {
 	scoreSubmit,
 	SMOOOTHING,
 	vcanvas,
-} from './init/variables';
+} from "./init/variables";
 
 //キーボードが押された時
 document.onkeydown = (e) => {
@@ -39,32 +39,32 @@ document.onkeyup = (e) => {
 	key[e.keyCode] = false;
 };
 
-import { gameInit } from './init/gameInit';
+import { gameInit } from "./init/gameInit";
 
 if (scoreSubmit !== null) {
-	scoreSubmit.addEventListener('click', () => {
+	scoreSubmit.addEventListener("click", () => {
 		// @ts-ignore
 		inputOnFocus = false;
 	});
-	scoreSubmit.addEventListener('focusout', () => {
+	scoreSubmit.addEventListener("focusout", () => {
 		// @ts-ignore
 		inputOnFocus = true;
 	});
 }
 
 if (afterGame !== null) {
-	afterGame.classList.add('playing');
+	afterGame.classList.add("playing");
 }
 
 const jumpUrl = [
-	'https://student.hamako-ths.ed.jp/~ei2030/games/shooting/index.html',
-	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html',
-	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html',
+	"https://student.hamako-ths.ed.jp/~ei2030/games/shooting/index.html",
+	"https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html",
+	"https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html",
 ];
 //右クリック禁止
 document.oncontextmenu = () => {
 	if (rightClick > 5) {
-		console.log('The page is corrupted.');
+		console.log("The page is corrupted.");
 		location.href = jumpUrl[rand(0, 2)];
 	}
 	// @ts-ignore
@@ -73,7 +73,7 @@ document.oncontextmenu = () => {
 };
 
 if (debug) {
-	console.log('ready OK');
+	console.log("ready OK");
 }
 canvas.width = canvas_w;
 canvas.height = canvas_h;
@@ -90,10 +90,10 @@ vcanvas.height = canvas_h;
 //オンロード時にゲームを開始
 window.onload = function () {
 	//alertは「OK」が押されるまで、次の処理を待機できる。
-	// alert('矢印キーで移動、');
-	// alert('スペースで射撃だ！');
-	// alert('SHIFTキーで減速できるぞ！');
-	// alert('Fキーを押すと...?');
-	// alert('始まるぞ！！！');
+	// alert("矢印キーで移動、");
+	// alert("スペースで射撃だ！");
+	// alert("SHIFTキーで減速できるぞ！");
+	// alert("Fキーを押すと...?");
+	// alert("始まるぞ！！！");
 	gameInit();
 };
