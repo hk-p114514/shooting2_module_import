@@ -45,6 +45,9 @@ class Bullet extends Character {
 						// @ts-ignore
 						score += enemy[i].score;
 						
+						//敵を撃破して、自分のパワーを上昇
+						player.power = player.power + 0.2
+						
 						//hutao_nekomata's chenges------^
 						if(score%1000==0){
 							player.specialMagazine = player.specialMagazine + 1; 
