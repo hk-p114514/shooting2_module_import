@@ -114,6 +114,11 @@ export let gameRound = 0;
 //スコア
 export let score = 0;
 
+//nekomata's_change
+//スコア更新用の記録用変数
+export let sub_score=0;
+//-------------^
+
 //背景の星の速度
 export let starSpeed = 100;
 
