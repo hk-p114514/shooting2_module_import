@@ -42,17 +42,18 @@ class Bullet extends Character {
 					if (enemy[i].hp <= 0 && !(gameClear || gameOver)) {
 						// @ts-ignore
 						enemy[i].kill = true;
+						//set sub_score <= score
+						sub_score = score;
 						// @ts-ignore
 						score += enemy[i].score;
 						
 						//敵を撃破して、自分のパワーを上昇
 						player.power = player.power + 0.2;
 						
-						//hutao_nekomata's chenges------^
-						if(score%1000==0){
+						//スコアが1000の倍数を超えた場合に、スペシャルアッタクの回数を+1
+						if((score/1000)>(sub_score/1000)){
 							player.specialMagazine = player.specialMagazine + 1; 
 						}
-						//------------------------------^
 
 						//スコアを加算していく
 						//スコアをサーバに渡す処理
