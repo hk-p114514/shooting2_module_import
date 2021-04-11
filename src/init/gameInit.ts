@@ -26,9 +26,6 @@ export const gameInit = () => {
 	//ゲームループ
 	const gameLoop = () => {
 		if (!(vars.gameClear || vars.gameOver)) {
-			vars.gameTimer++;
-			vars.gameCount++;
-
 			//段階に分けて、要求する速度を上げて行く（段々速くなる）
 			if (vars.starRequest > vars.starSpeed) {
 				vars.starSpeed++;
@@ -36,66 +33,76 @@ export const gameInit = () => {
 				vars.starRequest--;
 			}
 
-			//敵を出現
-			if (vars.gameWave === 0) {
-				if (rand(0, 30) === 1) {
-					//ピンクのヒヨコのみを出す
-					enemy.push(
-						new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
-					);
-					//試験的にハートを出す
-					item.push(new Item(0, rand(0, field_w) << 8, 0, 0, 600));
-				}
-
-				if (vars.gameCount > 60 * 30) {
-					//２０秒経過したらウェーブを１段階上げる
-					vars.gameWave++;
-					vars.gameCount = 0;
-					vars.starSpeed = 200;
-				}
-			} else if (vars.gameWave === 1) {
-				if (rand(0, 30) === 1) {
-					enemy.push(
-						new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
-					);
-				}
-
-				if (vars.gameCount > 60 * 20) {
-					//２０秒経過したらウェーブを１段階上げる
-					vars.gameWave++;
-					vars.gameCount = 0;
-					vars.starSpeed = 300;
-				}
-			} else if (vars.gameWave === 2) {
-				if (rand(0, 20) === 1) {
-					enemy.push(
-						new Enemy(rand(0, 1), rand(0, field_w) << 8, 0, 0, rand(300, 1200))
-					);
-				}
-
-				if (vars.gameCount > 60 * 30) {
-					//30秒経過したらウェーブを１段階上げる
-					vars.gameWave++;
-					vars.gameCount = 0;
-					vars.starSpeed = 600;
-				}
-			} else if (vars.gameWave === 3) {
+			if (vars.gameStart) {
+				vars.gameTimer++;
 				vars.gameCount++;
+				//敵を出現
+				if (vars.gameWave === 0) {
+					if (rand(0, 30) === 1) {
+						//ピンクのヒヨコのみを出す
+						enemy.push(
+							new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
+						);
+						//試験的にハートを出す
+						item.push(new Item(0, rand(0, field_w) << 8, 0, 0, 600));
+					}
 
-				// ボスキャラ出現
-				if (vars.gameCount === 60 * 5) {
-					enemy.push(new Enemy(2, (field_w / 2) << 8, 0, 0, 200));
-					vars.bossEncount = true;
-				}
+					if (vars.gameCount > 60 * 30) {
+						//２０秒経過したらウェーブを１段階上げる
+						vars.gameWave++;
+						vars.gameCount = 0;
+						vars.starSpeed = 200;
+					}
+				} else if (vars.gameWave === 1) {
+					if (rand(0, 30) === 1) {
+						enemy.push(
+							new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
+						);
+					}
 
-				//敵がいなくなったらループ or ゲームクリア <
-				if (enemy.length === 0 && vars.gameCount > 60 * 6) {
-					//8秒程度経過したらゲームクリアを表示する
-					setTimeout(() => {
-						vars.gameClear = true;
-						finishRound(vars.callData);
-						vars.callData = 1;
-					}, 8000);
+					if (vars.gameCount > 60 * 20) {
+						//２０秒経過したらウェーブを１段階上げる
+						vars.gameWave++;
+						vars.gameCount = 0;
+						vars.starSpeed = 300;
+					}
+				} else if (vars.gameWave === 2) {
+					if (rand(0, 20) === 1) {
+						enemy.push(
+							new Enemy(
+								rand(0, 1),
+								rand(0, field_w) << 8,
+								0,
+								0,
+								rand(300, 1200)
+							)
+						);
+					}
+
+					if (vars.gameCount > 60 * 30) {
+						//30秒経過したらウェーブを１段階上げる
+						vars.gameWave++;
+						vars.gameCount = 0;
+						vars.starSpeed = 600;
+					}
+				} else if (vars.gameWave === 3) {
+					vars.gameCount++;
+
+					// ボスキャラ出現
+					if (vars.gameCount === 60 * 5) {
+						enemy.push(new Enemy(2, (field_w / 2) << 8, 0, 0, 200));
+						vars.bossEncount = true;
+					}
+
+					//敵がいなくなったらループ or ゲームクリア <
+					if (enemy.length === 0 && vars.gameCount > 60 * 6) {
+						//8秒程度経過したらゲームクリアを表示する
+						setTimeout(() => {
+							vars.gameClear = true;
+							finishRound(vars.callData);
+							vars.callData = 1;
+						}, 8000);
+					}
 				}
 			}
 		}

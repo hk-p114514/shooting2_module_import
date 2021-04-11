@@ -13,7 +13,7 @@ class Enemy extends Character {
 	maxHp: number;
 	hp: number;
 	score: number;
-	flag: boolean;
+	flag: boolean | number;
 	direction: number;
 	directionGap: number;
 	reload: number;

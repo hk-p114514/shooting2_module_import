@@ -4,7 +4,7 @@ import { enemy, enemyShot, field_w } from '../../init/variables';
 import { Enemy } from '../../classes/Enemy';
 import { EnemyShot } from '../../classes/EnemyShot';
 
-export const enemyMoveBoss = (object: any) => {
+export const enemyMoveBoss = (object: Enemy) => {
 	if (!object.flag && object.y >> 8 >= 120) {
 		object.flag = 1;
 	}
@@ -37,7 +37,7 @@ export const enemyMoveBoss = (object: any) => {
 	if (object.flag > 1) {
 		let angle, vx, vy, bossR;
 		bossR = 70;
-		//敵キャラから目標への角度
+		//敵キャラから目標への角度(ラジアン)
 		angle = (object.direction * Math.PI) / 180;
 
 		vx = Math.cos(angle) * 300;

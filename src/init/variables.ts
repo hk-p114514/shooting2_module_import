@@ -59,8 +59,27 @@ export const enemyMaster = [
 	new EnemyMaster(3, 15, 5, 10), //ボスヒヨコ（黄色）の子供
 ];
 
+// 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、
+// 以下のインスタンスの配列はvarsに含める必要が無い。
+// (むしろ各配列がvarsの役割を果たしていると言ったほうがニュアンスとしては正しいとも言える)
+
+export const star: any[] = [];
+//キーボードの状態
+export const key: boolean[] = [];
+//銃弾
+export const bullet: any = [];
+//敵キャラ
+export const enemy: Enemy[] = [];
+//アイテム
+export const item: object[] = [];
+//敵の攻撃
+export const enemyShot: EnemyShot[] = [];
+//爆発の情報
+export const explosion: Explosion[] = [];
+
 // ******************************* 変数 *******************************
 
+// 複数箇所で書き換えが行われる変数
 export const vars = {
 	// スコア
 	score: 0,
@@ -72,6 +91,8 @@ export const vars = {
 	// 経過したfps
 	fps: 0,
 	lastTime: Date.now(),
+	// ゲームスタートの合図
+	gameStart: false,
 	//ゲームオーバーフラグ
 	gameOver: false,
 	//ゲームクリアフラグ
@@ -100,17 +121,3 @@ export const vars = {
 	//要求する星の速度
 	starRequest: 100,
 };
-
-export let star: any[] = [];
-//キーボードの状態
-export let key: boolean[] = [];
-//銃弾
-export let bullet: any = [];
-//敵キャラ
-export let enemy: Enemy[] = [];
-//アイテム
-export let item: object[] = [];
-//敵の攻撃
-export let enemyShot: EnemyShot[] = [];
-//爆発の情報
-export let explosion: Explosion[] = [];

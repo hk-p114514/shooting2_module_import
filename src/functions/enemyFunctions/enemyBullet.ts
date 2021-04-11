@@ -2,9 +2,10 @@
 import { enemyShot, player } from '../../init/variables';
 import { rand } from '../random';
 import { EnemyShot } from '../../classes/EnemyShot';
+import { Enemy } from '../../classes/Enemy';
 
 export const enemyBullet = (
-	object: any,
+	object: Enemy,
 	speed: number,
 	start: number,
 	end: number,

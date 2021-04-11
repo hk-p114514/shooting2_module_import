@@ -9,29 +9,62 @@ import {
 	vars,
 } from '../init/variables';
 
+export const countDown = (count: number) => {
+	console.log(count);
+	ctx.font = '300px Verdana';
+	ctx.fillStyle = 'lime';
+
+	let x = canvas_w / String(count).length;
+	let y = canvas_h / 4;
+
+	ctx.fillText(`${count}`, 0, 0);
+};
+
 export const information = () => {
 	ctx.font = '15px Impact';
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-	if (vars.gameOver) {
+	if (!vars.gameStart) {
+		ctx.font = '30px Verdana';
+		ctx.fillStyle = 'lime';
+
+		const message = "PUSH 'SPACE' ";
+		const message2 = 'TO GAME START';
+
+		let x = canvas_w / message.length;
+		let y = canvas_h / 4;
+
+		ctx.fillText(message, x, y);
+
+		x += message.length / 2;
+		y += 40;
+		ctx.fillText(message2, x, y);
+	} else if (vars.gameOver) {
 		// ゲームオーバー時のメッセージ
+
 		ctx.font = '30px Verdana';
 		ctx.fillStyle = 'red';
+
 		let message1 = 'GAME OVER';
 		let message2 = "push 'R' to one more!";
 		let x = canvas_w / 8;
 		let y = canvas_h / 4;
+
 		ctx.fillText(message1, x, y);
+
 		x -= 70;
 		y += 40;
 		ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
 		ctx.fillText(message2, x, y);
+
 		x = canvas_w / 6;
 		ctx.font = 'bold 20px sans-serif';
 		ctx.fillText(`SCORE : ${vars.score}`, x, y + 50);
 	} else if (vars.gameClear) {
 		//ゲームクリア時のメッセージ
+
 		ctx.font = '30px Verdana';
 		ctx.fillStyle = 'Yellow';
+
 		let message1 = 'GAME CLEAR';
 		let x = canvas_w / 8;
 		let y = canvas_h / 4;
@@ -39,6 +72,7 @@ export const information = () => {
 		ctx.fillText(message1, x, y);
 		ctx.font = '15px Verdana';
 		ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+
 		y += 30;
 		let time = (vars.gameTimer / 60).toFixed(2);
 		ctx.fillText(`TIME  : ${time} s`, x, y);
@@ -46,6 +80,7 @@ export const information = () => {
 		ctx.fillText(`HP  : ${player.hp}`, x, y + 40);
 	} else {
 		vars.drawCount++;
+
 		if (vars.lastTime + 1000 <= Date.now()) {
 			vars.fps = vars.drawCount;
 
