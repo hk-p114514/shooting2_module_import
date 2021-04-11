@@ -122,7 +122,6 @@ class Player {
 		} else {
 			if (key[32] && !vars.isPushedSpace) {
 				//ゲームをスタートする
-				console.log('はじまるお');
 				vars.isPushedSpace = true;
 				const intervalId = setInterval(() => {
 					vars.gameStartCount -= 1;

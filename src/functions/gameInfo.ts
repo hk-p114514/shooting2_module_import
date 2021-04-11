@@ -30,7 +30,6 @@ export const information = () => {
 		y += 40;
 		ctx.fillText(message2, x, y);
 	} else if (!vars.gameStart) {
-		console.log(`count : ${vars.gameStartCount}`);
 		ctx.font = '100px Verdana';
 		ctx.fillStyle = 'lime';
 
