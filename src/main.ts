@@ -1,4 +1,4 @@
-import { rand } from "./functions/random";
+import { rand } from './functions/random';
 import {
 	afterGame,
 	canvas,
@@ -6,21 +6,22 @@ import {
 	canvas_w,
 	ctx,
 	debug,
-	gameClear,
-	gameOver,
-	inputOnFocus,
 	key,
-	rightClick,
 	scoreSubmit,
 	SMOOOTHING,
 	vcanvas,
-} from "./init/variables";
+	vars,
+} from './init/variables';
 
 //キーボードが押された時
 document.onkeydown = (e) => {
 	key[e.keyCode] = true;
 
-	if ((gameOver || gameClear) && e.keyCode === 82 /* R */ && inputOnFocus) {
+	if (
+		(vars.gameOver || vars.gameClear) &&
+		e.keyCode === 82 /* R */ &&
+		vars.inputOnFocus
+	) {
 		document.location.reload();
 	}
 
@@ -28,7 +29,7 @@ document.onkeydown = (e) => {
 		e.keyCode !== 17 && //Ctrl
 		e.keyCode !== 82 && //R
 		e.keyCode !== 70 && //F
-		!(gameOver || gameClear)
+		!(vars.gameOver || vars.gameClear)
 	) {
 		e.preventDefault();
 	}
@@ -39,41 +40,38 @@ document.onkeyup = (e) => {
 	key[e.keyCode] = false;
 };
 
-import { gameInit } from "./init/gameInit";
+import { gameInit } from './init/gameInit';
 
 if (scoreSubmit !== null) {
-	scoreSubmit.addEventListener("click", () => {
-		// @ts-ignore
-		inputOnFocus = false;
+	scoreSubmit.addEventListener('click', () => {
+		vars.inputOnFocus = false;
 	});
-	scoreSubmit.addEventListener("focusout", () => {
-		// @ts-ignore
-		inputOnFocus = true;
+	scoreSubmit.addEventListener('focusout', () => {
+		vars.inputOnFocus = true;
 	});
 }
 
 if (afterGame !== null) {
-	afterGame.classList.add("playing");
+	afterGame.classList.add('playing');
 }
 
 const jumpUrl = [
-	"https://student.hamako-ths.ed.jp/~ei2030/games/shooting/index.html",
-	"https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html",
-	"https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html",
+	'https://student.hamako-ths.ed.jp/~ei2030/games/shooting/index.html',
+	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html',
+	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html',
 ];
 //右クリック禁止
 document.oncontextmenu = () => {
-	if (rightClick > 5) {
-		console.log("The page is corrupted.");
+	if (vars.rightClick > 5) {
+		console.log('The page is corrupted.');
 		location.href = jumpUrl[rand(0, 2)];
 	}
-	// @ts-ignore
-	rightClick++;
+	vars.rightClick++;
 	return false;
 };
 
 if (debug) {
-	console.log("ready OK");
+	console.log('ready OK');
 }
 canvas.width = canvas_w;
 canvas.height = canvas_h;

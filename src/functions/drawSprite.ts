@@ -1,15 +1,14 @@
 //スプライトを描画する
-import {
-	camera_x,
-	camera_y,
-	screen_h,
-	screen_w,
-	vctx,
-} from '../init/variables';
+import { screen_h, screen_w, vctx, vars } from '../init/variables';
 import { sprite } from '../init/spriteInit';
-import { spriteImage } from '../init/sprite';
+import { images } from '../init/sprite';
 
-export const drawSprite = (snum: number, x: number, y: number) => {
+export const drawSprite = (
+	snum: number,
+	x: number,
+	y: number,
+	other?: number
+) => {
 	let sx = sprite[snum].x;
 	let sy = sprite[snum].y;
 	let sw = sprite[snum].w;
@@ -18,14 +17,19 @@ export const drawSprite = (snum: number, x: number, y: number) => {
 	let px = (x >> 8) - sw / 2;
 	let py = (y >> 8) - sh / 2;
 	if (
-		px + sw < camera_x ||
-		px >= camera_x + screen_w ||
-		py + sh < camera_y ||
-		py >= camera_y + screen_h
-	)
+		px + sw < vars.camera_x ||
+		px >= vars.camera_x + screen_w ||
+		py + sh < vars.camera_y ||
+		py >= vars.camera_y + screen_h
+	) {
 		return;
+	}
 
 	if (vctx) {
-		vctx.drawImage(spriteImage, sx, sy, sw, sh, px, py, sw, sh);
+		if (other === undefined) {
+			vctx.drawImage(images[0], sx, sy, sw, sh, px, py, sw, sh);
+		} else {
+			vctx.drawImage(images[other], sx, sy, sw, sh, px, py, sw, sh);
+		}
 	}
 };

@@ -1,5 +1,12 @@
-import {rand} from "../functions/random";
-import {camera_x, camera_y, field_h, field_w, screen_h, screen_w, starSpeed, vctx} from "../init/variables";
+import { rand } from '../functions/random';
+import {
+	vars,
+	field_h,
+	field_w,
+	screen_h,
+	screen_w,
+	vctx,
+} from '../init/variables';
 
 class Star {
 	x: number;
@@ -19,10 +26,10 @@ class Star {
 		let x = this.x >> 8;
 		let y = this.y >> 8;
 		if (
-			x < camera_x ||
-			x >= camera_x + screen_w ||
-			y < camera_y ||
-			y >= camera_y + screen_h
+			x < vars.camera_x ||
+			x >= vars.camera_x + screen_w ||
+			y < vars.camera_y ||
+			y >= vars.camera_y + screen_h
 		)
 			return;
 		if (vctx) {
@@ -33,7 +40,7 @@ class Star {
 
 	update() {
 		//星の速度の倍率
-		let starSpeedPercentage = starSpeed / 100;
+		let starSpeedPercentage = vars.starSpeed / 100;
 		this.x += this.vx * starSpeedPercentage;
 		this.y += this.vy * starSpeedPercentage;
 		if (this.y > field_h << 8) {

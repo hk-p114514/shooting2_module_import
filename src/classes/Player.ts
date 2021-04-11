@@ -24,14 +24,14 @@ class Player {
 		this.x = (field_w / 2) << 8;
 		this.y = (field_h - 50) << 8;
 		this.r = 5;
-		this.damage = 0;
+		this.damage = 0; // ダメージエフェクトを出すタイミングを知らせる
 		this.speed = 1024; //256で１フレームに１ピクセル動く
 		this.anime = 0;
 		this.reload = 0;
 		this.magazine = 0;
 		this.stun = 0;
 		this.count = 0;
-		this.maxHp = 10;
+		this.maxHp = 5;
 		//自機HP
 		this.hp = 5;
 

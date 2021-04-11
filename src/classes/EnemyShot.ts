@@ -1,5 +1,5 @@
 import { Character } from './Character';
-import { gameClear, gameOver, player } from '../init/variables';
+import { vars, player } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAtacked';
 
@@ -32,8 +32,8 @@ class EnemyShot extends Character {
 			!player.stun &&
 			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
 		) {
-			if (!(gameOver || gameClear)) {
-				isAttacked(this);
+			if (!(vars.gameOver || vars.gameClear)) {
+				isAttacked();
 			}
 		}
 

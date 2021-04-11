@@ -1,6 +1,6 @@
 //ボスヒヨコ（黄色）の子供
-import {player} from "../../init/variables";
-import {enemyBullet} from "./enemyBullet";
+import { player } from '../../init/variables';
+import { enemyBullet } from './enemyBullet';
 
 export const enemyMoveYellowChild = (object: any) => {
 	//出現直後は一瞬動かない
@@ -19,7 +19,7 @@ export const enemyMoveYellowChild = (object: any) => {
 		//更に少し経ったら弾を発射してくる
 		if (object.count >= 100) {
 			if (!object.reload) {
-				enemyBullet(object, 300);
+				enemyBullet(object, 300, 0, 0);
 				object.reload = 200;
 			}
 		}

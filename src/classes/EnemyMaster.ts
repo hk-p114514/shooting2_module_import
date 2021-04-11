@@ -1,10 +1,10 @@
 class EnemyMaster {
-	eNum: number;
+	enemyNumber: number;
 	r: number;
 	hp: number;
 	score: number;
-	constructor(eNum: number, r: number, hp: number, score: number) {
-		this.eNum = eNum;
+	constructor(enemyNumber: number, r: number, hp: number, score: number) {
+		this.enemyNumber = enemyNumber;
 		this.r = r;
 		this.hp = hp;
 		this.score = score;

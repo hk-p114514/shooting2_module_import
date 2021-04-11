@@ -3,22 +3,17 @@ import {
 	canvas_h,
 	canvas_w,
 	ctx,
-	drawCount,
-	fps,
-	gameClear,
-	gameOver,
-	gameTimer,
-	lastTime,
 	player,
-	score,
 	screen_h,
 	screen_w,
+	vars,
 } from '../init/variables';
 
 export const information = () => {
 	ctx.font = '15px Impact';
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-	if (gameOver) {
+	if (vars.gameOver) {
+		// ゲームオーバー時のメッセージ
 		ctx.font = '30px Verdana';
 		ctx.fillStyle = 'red';
 		let message1 = 'GAME OVER';
@@ -30,10 +25,10 @@ export const information = () => {
 		y += 40;
 		ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
 		ctx.fillText(message2, x, y);
-		ctx.font = '15px Verdana';
-		ctx.fillText(`SCORE : ${score}`, 10, screen_h - 40);
-		ctx.fillText(`HP : ${player.hp}`, 10, screen_h - 60);
-	} else if (gameClear) {
+		x = canvas_w / 6;
+		ctx.font = 'bold 20px sans-serif';
+		ctx.fillText(`SCORE : ${vars.score}`, x, y + 50);
+	} else if (vars.gameClear) {
 		//ゲームクリア時のメッセージ
 		ctx.font = '30px Verdana';
 		ctx.fillStyle = 'Yellow';
@@ -45,31 +40,34 @@ export const information = () => {
 		ctx.font = '15px Verdana';
 		ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
 		y += 30;
-		let time = (gameTimer / 60).toFixed(2);
+		let time = (vars.gameTimer / 60).toFixed(2);
 		ctx.fillText(`TIME  : ${time} s`, x, y);
-		ctx.fillText(`SCORE : ${score}`, x, y + 20);
+		ctx.fillText(`SCORE : ${vars.score}`, x, y + 20);
 		ctx.fillText(`HP  : ${player.hp}`, x, y + 40);
 	} else {
-		// @ts-ignore
-		drawCount++;
-		if (lastTime + 1000 <= Date.now()) {
-			// @ts-ignore
-			fps = drawCount;
-			// @ts-ignore
-			drawCount = 0;
-			// @ts-ignore
-			lastTime = Date.now();
+		vars.drawCount++;
+		if (vars.lastTime + 1000 <= Date.now()) {
+			vars.fps = vars.drawCount;
+
+			vars.drawCount = 0;
+
+			vars.lastTime = Date.now();
 		}
 
+		if (player.hp === player.maxHp) {
+			ctx.fillStyle = 'rgba(0, 255, 0, 0.9)';
+		}
 		ctx.fillText(`HP : ${player.hp}`, 10, screen_h - 20);
-		ctx.fillText(`SCORE : ${score}`, 10, screen_h - 40);
+		ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+
+		ctx.fillText(`SCORE : ${vars.score}`, 10, screen_h - 40);
 
 		//右下にタイマーを表示
-		let time = (gameTimer / 60).toFixed(2);
+		let time = (vars.gameTimer / 60).toFixed(2);
 		ctx.fillText(`TIME : ${time}`, screen_w - 90, screen_h - 20);
 
 		//タイマーの上にラウンド数を表示
-		// ctx.fillText(`Round : ${gameRound}`, screen_w - 86, screen_h - 40);
+		// ctx.fillText(`Round : ${vars.gameRound}`, screen_w - 86, screen_h - 40);
 
 		if (player.special) {
 			//特殊攻撃の残り時間バーのサイズ

@@ -1,18 +1,18 @@
-import { gameOver, player } from '../init/variables';
+import { player, vars } from '../init/variables';
 import { finishRound } from './finishRound';
 
-export const isAttacked = (object: any) => {
-	player.hp -= 1;
-	if (player.hp <= -1) {
-		// @ts-ignore
-		gameOver = true;
-		finishRound();
-	} else {
-		object.hp--;
-		if (object.hp < 0) {
-			object.kill = true;
-		}
-		player.damage = 10;
+export const isAttacked = () => {
+	if (player.hp > 0) {
+		player.hp -= 1;
+		console.log('HIT !!!');
 		player.stun = 60;
+		player.damage = 10;
+	} else {
+		player.hp = -1;
+
+		vars.gameOver = true;
+		finishRound(vars.callData);
+
+		vars.callData = 1;
 	}
 };
