@@ -92,8 +92,12 @@ export const vars = {
 	// 経過したfps
 	fps: 0,
 	lastTime: Date.now(),
-	// ゲームスタートの合図
+	//ゲームスタートのためにユーザがスペースを押したかどうかを感知する
+	isPushedSpace: false,
+	//ゲームスタートフラグ
 	gameStart: false,
+	//ゲームが始まる前のカウント
+	gameStartCount: 3,
 	//ゲームオーバーフラグ
 	gameOver: false,
 	//ゲームクリアフラグ

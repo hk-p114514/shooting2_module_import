@@ -8,22 +8,13 @@ import {
 	screen_w,
 	vars,
 } from '../init/variables';
-
-export const countDown = (count: number) => {
-	console.log(count);
-	ctx.font = '300px Verdana';
-	ctx.fillStyle = 'lime';
-
-	let x = canvas_w / String(count).length;
-	let y = canvas_h / 4;
-
-	ctx.fillText(`${count}`, 0, 0);
-};
+import { rand } from './random';
 
 export const information = () => {
 	ctx.font = '15px Impact';
 	ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-	if (!vars.gameStart) {
+
+	if (!vars.isPushedSpace) {
 		ctx.font = '30px Verdana';
 		ctx.fillStyle = 'lime';
 
@@ -38,6 +29,22 @@ export const information = () => {
 		x += message.length / 2;
 		y += 40;
 		ctx.fillText(message2, x, y);
+	} else if (!vars.gameStart) {
+		console.log(`count : ${vars.gameStartCount}`);
+		ctx.font = '100px Verdana';
+		ctx.fillStyle = 'lime';
+
+		let x = canvas_w / 5;
+		let y = canvas_h / 4;
+		if (vars.gameStartCount === 0) {
+			x = canvas_w / 8;
+		}
+		ctx.fillText(`${vars.gameStartCount || 'GO!'}`, x, y);
+		if (vars.gameStartCount <= 0) {
+			setTimeout(() => {
+				vars.gameStart = true;
+			}, 1000);
+		}
 	} else if (vars.gameOver) {
 		// ゲームオーバー時のメッセージ
 

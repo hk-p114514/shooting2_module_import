@@ -1,7 +1,6 @@
 import { bullet, field_h, field_w, key, vars } from '../init/variables';
 import { Bullet } from './Bullet';
 import { drawSprite } from '../functions/drawSprite';
-import { countDown } from '../functions/gameInfo';
 
 class Player {
 	x: number;
@@ -55,7 +54,7 @@ class Player {
 	//自機の移動
 	update() {
 		this.count++;
-		if (vars.gameStart) {
+		if (vars.isPushedSpace) {
 			// キー操作を伴う処理
 
 			if (key[70] && !this.special && this.specialMagazine) {
@@ -121,15 +120,14 @@ class Player {
 				}
 			}
 		} else {
-			if (key[32]) {
+			if (key[32] && !vars.isPushedSpace) {
 				//ゲームをスタートする
-				let count = 3;
+				console.log('はじまるお');
+				vars.isPushedSpace = true;
 				const intervalId = setInterval(() => {
-					countDown(count);
-					count--;
-					if (count < 0) {
+					vars.gameStartCount -= 1;
+					if (vars.gameStartCount === 0) {
 						clearInterval(intervalId);
-						vars.gameStart = true;
 					}
 				}, 1000);
 			}
