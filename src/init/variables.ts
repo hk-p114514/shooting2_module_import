@@ -4,6 +4,7 @@ import { Player } from '../classes/Player';
 import { ItemMaster } from '../classes/ItemMaster';
 import { Explosion } from '../classes/Explosion';
 import { EnemyShot } from '../classes/EnemyShot';
+import { Item } from '../classes/Item';
 
 // ******************************* 定数 *******************************
 
@@ -46,7 +47,7 @@ export const star_max = 300;
 export const player = new Player();
 
 //アイテムの種類
-export const itemMaster = [new ItemMaster(0, 10)];
+export const itemMaster = [new ItemMaster(0, 10, 1), new ItemMaster(1, 10, 2)];
 
 //ゲームスピード
 export const gameSpeed = 1000 / 60;
@@ -71,7 +72,7 @@ export const bullet: any = [];
 //敵キャラ
 export const enemy: Enemy[] = [];
 //アイテム
-export const item: object[] = [];
+export const item: Item[] = [];
 //敵の攻撃
 export const enemyShot: EnemyShot[] = [];
 //爆発の情報

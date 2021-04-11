@@ -44,7 +44,7 @@ export const gameInit = () => {
 							new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
 						);
 						//試験的にハートを出す
-						item.push(new Item(0, rand(0, field_w) << 8, 0, 0, 600));
+						item.push(new Item(1, rand(0, field_w) << 8, 0, 0, 600));
 					}
 
 					if (vars.gameCount > 60 * 30) {

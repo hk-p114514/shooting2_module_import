@@ -25,7 +25,7 @@ class Item extends Character {
 		super.update();
 
 		//個別のアップデート
-		itemFunctions[this.itemNumber](this);
+		itemFunctions[itemMaster[this.itemNumber].functionNumber](this);
 
 		//	当たり判定
 		if (checkHit(this.x, this.y, this.r, player.x, player.y, player.r)) {
@@ -35,7 +35,7 @@ class Item extends Character {
 	}
 
 	draw() {
-		super.draw(1);
+		super.draw(itemMaster[this.itemNumber].fileNumber);
 	}
 }
 

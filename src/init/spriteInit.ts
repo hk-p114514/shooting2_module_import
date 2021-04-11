@@ -98,5 +98,5 @@ export let sprite = [
 	new Sprite(0, 0, 30, 38), //78	,ハート
 
 	//sticon_set.pngの情報
-	new Sprite(193, 26, 22, 20),
+	new Sprite(193, 26, 22, 20), //79	,赤いハート（ドット）
 ];
