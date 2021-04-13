@@ -23,6 +23,8 @@ export const gameInit = () => {
 		star[i].draw();
 	}
 
+	let healCount = 2;
+
 	//ゲームループ
 	const gameLoop = () => {
 		if (!(vars.gameClear || vars.gameOver)) {
@@ -43,18 +45,17 @@ export const gameInit = () => {
 						enemy.push(
 							new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
 						);
-						//試験的にハートを出す
-						item.push(new Item(1, rand(0, field_w) << 8, 0, 0, 600));
 					}
 
 					if (vars.gameCount > 60 * 30) {
-						//２０秒経過したらウェーブを１段階上げる
+						//3０秒経過したらウェーブを１段階上げる
 						vars.gameWave++;
 						vars.gameCount = 0;
 						vars.starSpeed = 200;
 					}
 				} else if (vars.gameWave === 1) {
 					if (rand(0, 30) === 1) {
+						// 黄色のヒヨコのみを出す
 						enemy.push(
 							new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
 						);
@@ -68,6 +69,7 @@ export const gameInit = () => {
 					}
 				} else if (vars.gameWave === 2) {
 					if (rand(0, 20) === 1) {
+						// 黄色とピンクのヒヨコをランダムで出す
 						enemy.push(
 							new Enemy(
 								rand(0, 1),
@@ -77,6 +79,17 @@ export const gameInit = () => {
 								rand(300, 1200)
 							)
 						);
+					}
+					if (
+						rand(1, 100) === 1 &&
+						healCount == 2 &&
+						vars.gameCount > 60 * 20
+					) {
+						// 20秒経過したら回復アイテムを出す
+						item.push(
+							new Item(1, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
+						);
+						healCount = 1;
 					}
 
 					if (vars.gameCount > 60 * 30) {
@@ -92,6 +105,15 @@ export const gameInit = () => {
 					if (vars.gameCount === 60 * 5) {
 						enemy.push(new Enemy(2, (field_w / 2) << 8, 0, 0, 200));
 						vars.bossEncount = true;
+					} else if (
+						vars.gameCount >= 60 * 90 &&
+						healCount == 1 &&
+						rand(1, 100) === 1
+					) {
+						item.push(
+							new Item(1, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
+						);
+						healCount--;
 					}
 
 					//敵がいなくなったらループ or ゲームクリア <
