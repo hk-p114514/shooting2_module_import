@@ -41,7 +41,7 @@ class Bullet extends Character {
 							player.specialMagazine = player.specialMagazine + 1; 
 						}
             
-						vars.score += enemy[i].score;
+ 						//vars.score += enemy[i].score;
 
 						//スコアを加算していく
 						//スコアをサーバに渡す処理
