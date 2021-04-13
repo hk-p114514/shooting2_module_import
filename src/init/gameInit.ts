@@ -7,14 +7,14 @@ import {
 	star_max,
 	item,
 	vars,
-} from './variables';
-import { information } from '../functions/gameInfo';
-import { drawAll, updateAll } from '../functions/useObjectProcess';
-import { finishRound } from '../functions/finishRound';
-import { Enemy } from '../classes/Enemy';
-import { rand } from '../functions/random';
-import { Star } from '../classes/Star';
-import { Item } from '../classes/Item';
+} from "./variables";
+import { information } from "../functions/gameInfo";
+import { drawAll, updateAll } from "../functions/useObjectProcess";
+import { finishRound } from "../functions/finishRound";
+import { Enemy } from "../classes/Enemy";
+import { rand } from "../functions/random";
+import { Star } from "../classes/Star";
+import { Item } from "../classes/Item";
 
 export const gameInit = () => {
 	//Starクラスのインスタンスを作成
@@ -41,10 +41,16 @@ export const gameInit = () => {
 					if (rand(0, 30) === 1) {
 						//ピンクのヒヨコのみを出す
 						enemy.push(
-							new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
+							new Enemy(
+								0,
+								rand(0, field_w) << 8,
+								0,
+								0,
+								rand(300, 1200)
+							)
 						);
 						//試験的にハートを出す
-						item.push(new Item(1, rand(0, field_w) << 8, 0, 0, 600));
+						// item.push(new Item(1, rand(0, field_w) << 8, 0, 0, 600));
 					}
 
 					if (vars.gameCount > 60 * 30) {
@@ -56,7 +62,13 @@ export const gameInit = () => {
 				} else if (vars.gameWave === 1) {
 					if (rand(0, 30) === 1) {
 						enemy.push(
-							new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
+							new Enemy(
+								1,
+								rand(0, field_w) << 8,
+								0,
+								0,
+								rand(300, 1200)
+							)
 						);
 					}
 

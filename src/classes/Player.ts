@@ -1,6 +1,6 @@
-import { bullet, field_h, field_w, key, vars } from '../init/variables';
-import { Bullet } from './Bullet';
-import { drawSprite } from '../functions/drawSprite';
+import { bullet, field_h, field_w, key, vars } from "../init/variables";
+import { Bullet } from "./Bullet";
+import { drawSprite } from "../functions/drawSprite";
 
 class Player {
 	x: number;
