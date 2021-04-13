@@ -8,6 +8,7 @@ import {
 	gameOver,
 	player,
 	score,
+	sub_score,
 } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { Explosion } from './Explosion';
