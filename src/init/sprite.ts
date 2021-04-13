@@ -1,8 +1,13 @@
 //ファイルの読み込み
-let spriteImage = new Image();
+const spriteImage = new Image();
 spriteImage.src = './sprite.png';
 
-let heart = new Image();
+const heart = new Image();
 heart.src = './heart.png';
 
-export { spriteImage, heart };
+const stdItems = new Image();
+stdItems.src = './itemSprites/sticon_set.png';
+
+const images = [spriteImage, heart, stdItems];
+
+export { images };

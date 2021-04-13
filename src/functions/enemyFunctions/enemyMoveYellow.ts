@@ -23,7 +23,7 @@ export const enemyMoveYellow = (object: any) => {
 		if (rand(0, 4) === 1) {
 			object.flag = true;
 		}
-		enemyBullet(object, 1000);
+		enemyBullet(object, 1000, -10, 10);
 	}
 
 	const ptn = [33, 34, 33, 35];

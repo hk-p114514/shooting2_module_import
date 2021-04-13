@@ -1,4 +1,4 @@
-import { logoutButton, player, score, scoreSubmit } from './init/variables';
+import { logoutButton, player, vars, scoreSubmit } from './init/variables';
 import { firebase, auth, db, ui } from './config';
 
 export const database = () => {
@@ -14,8 +14,10 @@ export const database = () => {
 				return true;
 			},
 			uiShown: function () {
-				// @ts-ignore
-				document.getElementById('loader').style.display = 'none';
+				const loader: HTMLElement | null = document.getElementById('loader');
+				if (loader !== null) {
+					loader.style.display = 'none';
+				}
 			},
 		},
 		signInFlow: 'popup',
@@ -51,123 +53,131 @@ export const database = () => {
 	auth.onAuthStateChanged((user) => {
 		if (user) {
 			//ログインしている時
-			// @ts-ignore
-			document.getElementById('isLogout').style.display = 'none';
-			// @ts-ignore
-			isLogin.style.display = 'flex';
+			const isLogout = document.getElementById('isLogout');
+
+			if (isLogout !== null) {
+				isLogout.style.display = 'none';
+			}
+
+			if (isLogin !== null) {
+				isLogin.style.display = 'flex';
+			}
+
 			// @ts-ignore
 			const docUser = db.collection('profiles').doc(`${auth.currentUser.uid}`);
-			const inputUserName = document.getElementById('userName');
+			console.log(`docUser : ${docUser}`);
+
+			const inputUserName = document.getElementById(
+				'userName'
+			) as HTMLInputElement;
 			const loginText = document.getElementById('login-text');
 
 			docUser
 				.get()
 				.then((doc) => {
 					if (doc.exists) {
+						const data = doc.data();
 						//既にアカウントが存在する
-						// @ts-ignore
-						loginText.innerHTML = `ようこそ、${doc.data().name}さん`;
+						if (loginText !== null && data !== undefined) {
+							loginText.innerHTML = `ようこそ、${data.name}さん`;
+						}
 
 						console.log('ログインしています');
 						console.log('データの取得に成功しました');
-						console.log(doc.data());
+						console.log(docUser);
 
 						//既存のユーザ名を取得する
-						let oldUserName: string | undefined;
+						let oldUserName: string | '';
 						let oldScore: number;
 						let oldLife: number;
 						docUser
 							.get()
 							.then((doc) => {
 								if (doc.exists) {
-									// @ts-ignore
-									oldUserName = doc.data().name;
-									// @ts-ignore
-									oldScore = doc.data().score;
-									// @ts-ignore
-									oldLife = doc.data().life;
-									// @ts-ignore
-									inputUserName.value = oldUserName;
+									if (data !== undefined) {
+										oldUserName = data.name;
+										oldScore = data.score;
+										oldLife = data.life;
+									}
+									if (inputUserName !== undefined && inputUserName !== null) {
+										inputUserName.value = oldUserName;
+									}
 								} else {
-									oldUserName = undefined;
+									oldUserName = '';
 									oldScore = 0;
-									// @ts-ignore
 									inputUserName.value = '';
 								}
 							})
 							.catch((err) => {
 								console.error('エラーだお', err);
-								oldUserName = undefined;
+								oldUserName = '';
 								oldScore = 0;
-								// @ts-ignore
 								inputUserName.value = '';
 							});
 
 						//スコアの投稿処理
-						// @ts-ignore
-						scoreSubmit.addEventListener('submit', () => {
-							if (player.hp > oldLife) {
-								docUser
-									.set(
-										{
-											score: score,
-											life: player.hp,
-										},
-										{ merge: true }
-									)
-									.then(() => {
-										alert('スコアを投稿しました');
-										// @ts-ignore
-										inputUserName.value = '';
-									})
-									.catch((err) => {
-										console.error('データの書き換え失敗しました', err);
-									});
-							} else if (score > oldScore) {
-								if (
-									window.confirm(`ランキングの順位が下がる可能性があります。
-							データを送信してもよろしいですか？`)
-								) {
+						if (scoreSubmit !== null) {
+							scoreSubmit.addEventListener('submit', () => {
+								if (player.hp > oldLife) {
 									docUser
 										.set(
 											{
-												score: score,
+												score: vars.score,
 												life: player.hp,
 											},
 											{ merge: true }
 										)
-										.then((r) => r);
+										.then(() => {
+											alert('スコアを投稿しました');
+											inputUserName.value = '';
+										})
+										.catch((err) => {
+											console.error('データの書き換え失敗しました', err);
+										});
+								} else if (vars.score > oldScore) {
+									if (
+										window.confirm(
+											`ランキングの順位が下がる可能性があります。データを送信してもよろしいですか？`
+										)
+									) {
+										docUser
+											.set(
+												{
+													score: vars.score,
+													life: player.hp,
+												},
+												{ merge: true }
+											)
+											.then((r) => r);
+									}
+								} else {
+									alert('通信に成功しました');
+									console.log('スコアの書き換えを行いませんでした');
 								}
-							} else {
-								alert('通信に成功しました');
-								console.log('スコアの書き換えを行いませんでした');
-							}
 
-							// @ts-ignore
-							if (oldUserName !== inputUserName.value) {
-								docUser
-									.set(
-										{
-											// @ts-ignore
-											name: inputUserName.value,
-										},
-										{ merge: true }
-									)
-									.then(() => {
-										alert('スコアを投稿しました');
-										// @ts-ignore
-										const loginText_inner = `ようこそ、${inputUserName.value}さん`;
-										// @ts-ignore
-										inputUserName.value = '';
-										// @ts-ignore
-										loginText.innerHTML = loginText_inner;
-									})
-									.catch((err) => {
-										alert('データの送信に失敗しました');
-										console.error('エラー', err);
-									});
-							}
-						});
+								if (oldUserName !== inputUserName.value) {
+									docUser
+										.set(
+											{
+												name: inputUserName.value,
+											},
+											{ merge: true }
+										)
+										.then(() => {
+											alert('スコアを投稿しました');
+											const loginText_inner = `ようこそ、${inputUserName.value}さん`;
+											inputUserName.value = '';
+											if (loginText !== null) {
+												loginText.innerHTML = loginText_inner;
+											}
+										})
+										.catch((err) => {
+											alert('データの送信に失敗しました');
+											console.error('エラー', err);
+										});
+								}
+							});
+						}
 					} else {
 						//アカウントのデータが存在しない
 						console.log('初ログイン');
@@ -176,26 +186,29 @@ export const database = () => {
 						);
 
 						//スコアを投稿する際に名前をセットする。
-						// @ts-ignore
-						scoreSubmit.addEventListener('submit', () => {
-							db.collection('profiles')
-								.doc(user.uid)
-								.set({
-									// @ts-ignore
-									name: document.getElementById('userName').value,
-									score: score,
-									life: player.hp,
-								})
-								.then(() => {
-									alert('スコアを投稿しました');
-									// @ts-ignore
-									inputUserName.value = '';
-								})
-								.catch((err: Error) => {
-									alert('データの送信に失敗しました');
-									console.error('エラー', err);
-								});
-						});
+						if (scoreSubmit !== null) {
+							scoreSubmit.addEventListener('submit', () => {
+								const newUserName = document.getElementById(
+									'userName'
+								) as HTMLInputElement;
+
+								db.collection('profiles')
+									.doc(user.uid)
+									.set({
+										name: newUserName.value,
+										score: vars.score,
+										life: player.hp,
+									})
+									.then(() => {
+										alert('スコアを投稿しました');
+										inputUserName.value = '';
+									})
+									.catch((err: Error) => {
+										alert('データの送信に失敗しました');
+										console.error('エラー', err);
+									});
+							});
+						}
 					}
 				})
 				.catch((error) => {
@@ -203,10 +216,11 @@ export const database = () => {
 				});
 		} else {
 			//ログアウトしている時
-			// @ts-ignore
-			isLogin.style.display = 'none';
+			if (isLogin !== null) {
+				isLogin.style.display = 'none';
+			}
 			ui.start('#firebase-ui-container', uiConfig);
-			console.log(`score : ${score}`);
+			console.log(`score : ${vars.score}`);
 		}
 	});
 };

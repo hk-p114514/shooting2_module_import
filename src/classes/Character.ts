@@ -34,8 +34,8 @@ class Character {
 		}
 	}
 
-	draw() {
-		drawSprite(this.snum, this.x, this.y);
+	draw(other?: number) {
+		drawSprite(this.snum, this.x, this.y, other);
 	}
 }
 

@@ -13,18 +13,18 @@ class Enemy extends Character {
 	maxHp: number;
 	hp: number;
 	score: number;
-	flag: boolean;
+	flag: boolean | number;
 	direction: number;
 	directionGap: number;
 	reload: number;
 	constructor(enemy: number, x: number, y: number, vx: number, vy: number) {
 		super(0, x, y, vx, vy);
-		this.eNum = enemyMaster[enemy].eNum;
+		this.eNum = enemyMaster[enemy].enemyNumber;
 		this.r = enemyMaster[enemy].r;
 		this.maxHp = enemyMaster[enemy].hp;
 		this.hp = this.maxHp;
 		this.score = enemyMaster[enemy].score;
-		this.flag = false;
+		this.flag = false; //trueになると攻撃する
 
 		//弾の発射角度
 		this.direction = 90; //右側が０度なので、下方向は９０度となる
@@ -49,7 +49,7 @@ class Enemy extends Character {
 			!player.stun &&
 			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
 		) {
-			isAttacked(this);
+			isAttacked();
 		}
 	}
 }

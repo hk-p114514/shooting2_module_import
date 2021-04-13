@@ -1,15 +1,5 @@
 import { Character } from './Character';
-import {
-	bossHp,
-	bossMhp,
-	enemy,
-	explosion,
-	gameClear,
-	gameOver,
-	player,
-	score,
-	sub_score,
-} from '../init/variables';
+import { enemy, explosion, player, vars } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { Explosion } from './Explosion';
 import { moreExplosion } from '../functions/moreExplosion';
@@ -25,62 +15,52 @@ class Bullet extends Character {
 		super.update();
 
 		for (let i = 0; i < enemy.length; i++) {
-			// @ts-ignore
 			if (!enemy[i].kill) {
 				if (
-					// @ts-ignore
 					checkHit(this.x, this.y, this.r, enemy[i].x, enemy[i].y, enemy[i].r)
 				) {
 					//もし敵にあたっていたら、自機の弾を消す
 					this.kill = true;
 
 					//敵の hp を減らす
-					// @ts-ignore
 					enemy[i].hp -= player.power;
 
 					//もし敵の hp が０以下ならば、死亡判定をする
-					// @ts-ignore
-					if (enemy[i].hp <= 0 && !(gameClear || gameOver)) {
-						// @ts-ignore
+					if (enemy[i].hp <= 0 && !(vars.gameClear || vars.gameOver)) {
 						enemy[i].kill = true;
 						//set sub_score <= score
-						sub_score = score;
+						vars.sub_score = score;
 						// @ts-ignore
-						score += enemy[i].score;
+						vars.score += enemy[i].score;
 						
 						//敵を撃破して、自分のパワーを上昇
 						player.power = player.power + 0.2;
 						
 						//スコアが1000の倍数を超えた場合に、スペシャルアッタクの回数を+1
-						if((score/1000)>(sub_score/1000)){
+						if((vars.score/1000)>(vars.sub_score/1000)){
 							player.specialMagazine = player.specialMagazine + 1; 
 						}
+            
+						vars.score += enemy[i].score;
 
 						//スコアを加算していく
 						//スコアをサーバに渡す処理
 
 						//爆発エフェクト
 						moreExplosion(
-							// @ts-ignore
 							enemy[i].x,
-							// @ts-ignore
 							enemy[i].y,
-							// @ts-ignore
 							enemy[i].vx >> 3,
-							// @ts-ignore
 							enemy[i].vy >> 3
 						);
 					} else {
-						// @ts-ignore
 						explosion.push(new Explosion(0, this.x, this.y, 0, 0));
 					}
 
-					// @ts-ignore
 					if (enemy[i].maxHp >= 1000) {
-						// @ts-ignore
-						bossHp = enemy[i].hp;
-						// @ts-ignore
-						bossMhp = enemy[i].maxHp;
+						vars.bossHp = enemy[i].hp;
+
+						vars.bossMhp = enemy[i].maxHp;
 					}
 					break;
 				}
