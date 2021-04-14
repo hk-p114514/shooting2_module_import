@@ -1,8 +1,10 @@
 //ピンクのヒヨコの行動パターン ####################################################
-import { player } from '../../init/variables';
-import { enemyBullet } from './enemyBullet';
+import { Enemy } from "../../classes/Enemy";
+import { player } from "../../init/variables";
+import { rand } from "../random";
+import { enemyBullet } from "./enemyBullet";
 
-export const enemyMovePink = (object: any) => {
+export const enemyMovePink = (object: Enemy) => {
 	if (!object.flag) {
 		//一度攻撃する前の処理
 		if (object.x < player.x && object.vx < 120) {
@@ -26,8 +28,11 @@ export const enemyMovePink = (object: any) => {
 		}
 	}
 
-	if (Math.abs(player.y - object.y) < 190 << 8 && !object.flag) {
-		object.flag = true;
+	if (Math.abs(player.y - object.y) < 300 << 8 && !object.flag) {
+		if (!rand(0, 2)) {
+			//連射率を操作
+			object.flag = true;
+		}
 
 		//enemyBulletを呼び出した回数分、攻撃する
 		enemyBullet(object, 1000, -10, 10);
