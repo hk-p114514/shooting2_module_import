@@ -84,6 +84,7 @@ export const information = () => {
 		ctx.fillText(`TIME  : ${time} s`, x, y);
 		ctx.fillText(`SCORE : ${vars.score}`, x, y + 20);
 		ctx.fillText(`HP  : ${player.hp}`, x, y + 40);
+		ctx.fillText(`SPECIAL : ${player.specialMagazine}`, x, y + 60);
 	} else {
 		vars.drawCount++;
 
@@ -109,7 +110,7 @@ export const information = () => {
 
 		//タイマーの上にラウンド数を表示
 		// ctx.fillText(`Round : ${vars.gameRound}`, screen_w - 86, screen_h - 40);
-
+		
 		if (player.special) {
 			//特殊攻撃の残り時間バーのサイズ
 			let size = ((screen_w / 4) * player.specialTime) / player.specialMaxTime;
@@ -124,5 +125,10 @@ export const information = () => {
 		} else if (!player.special) {
 			ctx.fillText(`SPECIAL : ${player.specialMagazine}`, 10, screen_h - 60);
 		}
+		//POWERの表示
+		ctx.fillText(`POWER : ${player.power}`, 10, screen_h - 80);
+		let zettaiti = Math.abs(255-player.power*20);
+		ctx.fileStyle = 'rgba(255,255,${zettaiti},0.8)';
+		
 	}
 };
