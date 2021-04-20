@@ -7,14 +7,6 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
 	},
-	plugins: [
-		new Obfuscator(
-			{
-				rotateUnicode: true,
-			},
-			[]
-		),
-	],
 	module: {
 		rules: [
 			{
@@ -24,10 +16,18 @@ module.exports = {
 		],
 	},
 	devServer: {
-		contentBase: './dist',
+		contentBase: './dist/public',
 		hot: true,
 	},
 	resolve: {
 		extensions: ['.js', '.ts'],
 	},
+	plugins: [
+		new Obfuscator(
+			{
+				rotateUnicode: true,
+			},
+			[]
+		),
+	],
 };

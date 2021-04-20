@@ -1,7 +1,7 @@
 //黄色のヒヨコの行動パターン ####################################################
-import { player } from "../../init/variables";
-import { rand } from "../random";
-import { enemyBullet } from "./enemyBullet";
+import { player } from '../../init/variables';
+import { rand } from '../random';
+import { enemyBullet } from './enemyBullet';
 
 export const enemyMoveYellow = (object: any) => {
 	if (!object.flag) {
@@ -19,8 +19,10 @@ export const enemyMoveYellow = (object: any) => {
 	}
 
 	if (!object.flag) {
-		for (let i = 0; i < 20; i++) {
-			enemyBullet(object, 1000, -20, 20);
+		// forループの数だけ弾を発射する
+		for (let i = 0; i < 6; i++) {
+			// 球のスピード、プレイヤーを狙う弾（自機狙い）を0とした時の弾の広がる範囲
+			enemyBullet(object, 1000, -12, 12);
 		}
 		object.flag = true;
 	}

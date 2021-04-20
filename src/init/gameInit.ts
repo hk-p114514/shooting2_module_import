@@ -7,14 +7,14 @@ import {
 	star_max,
 	item,
 	vars,
-} from "./variables";
-import { information } from "../functions/gameInfo";
-import { drawAll, updateAll } from "../functions/useObjectProcess";
-import { finishRound } from "../functions/finishRound";
-import { Enemy } from "../classes/Enemy";
-import { rand } from "../functions/random";
-import { Star } from "../classes/Star";
-import { Item } from "../classes/Item";
+} from './variables';
+import { information } from '../functions/gameInfo';
+import { drawAll, updateAll } from '../functions/useObjectProcess';
+import { finishRound } from '../functions/finishRound';
+import { Enemy } from '../classes/Enemy';
+import { rand } from '../functions/random';
+import { Star } from '../classes/Star';
+import { Item } from '../classes/Item';
 
 export const gameInit = () => {
 	//Starクラスのインスタンスを作成
@@ -27,6 +27,7 @@ export const gameInit = () => {
 
 	//ゲームループ
 	const gameLoop = () => {
+		vars.gameWave = 1;
 		if (!(vars.gameClear || vars.gameOver)) {
 			//段階に分けて、要求する速度を上げて行く（段々速くなる）
 			if (vars.starRequest > vars.starSpeed) {
@@ -43,15 +44,8 @@ export const gameInit = () => {
 					if (rand(0, 30) === 1) {
 						//ピンクのヒヨコのみを出す
 						enemy.push(
-							new Enemy(
-								0,
-								rand(0, field_w) << 8,
-								0,
-								0,
-								rand(300, 1200)
-							)
+							new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
 						);
-
 					}
 
 					if (vars.gameCount > 60 * 30) {
@@ -64,13 +58,7 @@ export const gameInit = () => {
 					if (rand(0, 30) === 1) {
 						// 黄色のヒヨコのみを出す
 						enemy.push(
-							new Enemy(
-								1,
-								rand(0, field_w) << 8,
-								0,
-								0,
-								rand(300, 1200)
-							)
+							new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
 						);
 					}
 

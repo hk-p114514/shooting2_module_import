@@ -47,7 +47,7 @@ export const star_max = 300;
 export const player = new Player();
 
 //アイテムの種類
-export const itemMaster = [new ItemMaster(0, 10, 1), new ItemMaster(1, 10, 2)];
+export const itemMaster = [new ItemMaster(1, 15, 2)];
 
 //ゲームスピード
 export const gameSpeed = 1000 / 60;

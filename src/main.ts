@@ -41,6 +41,7 @@ document.onkeyup = (e) => {
 };
 
 import { gameInit } from './init/gameInit';
+import { introduction } from './functions/introduction';
 
 if (scoreSubmit !== null) {
 	scoreSubmit.addEventListener('click', () => {
@@ -87,11 +88,6 @@ vcanvas.height = canvas_h;
 
 //オンロード時にゲームを開始
 window.onload = function () {
-	//alertは「OK」が押されるまで、次の処理を待機できる。
-	alert(`矢印キーで移動できるぞ！
-※このメッセージはEnterでも飛ばせます`);
-	alert('スペースで射撃だ！');
-	alert('SHIFTキーで減速できるぞ！');
-	alert('Fキーを押すと...?');
+	// introduction();
 	gameInit();
 };
