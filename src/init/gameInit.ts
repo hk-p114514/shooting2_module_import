@@ -17,6 +17,7 @@ import { Star } from '../classes/Star';
 import { Item } from '../classes/Item';
 
 export const gameInit = () => {
+	vars.gameWave = 1;
 	//Starクラスのインスタンスを作成
 	for (let i = 0; i < star_max; i++) {
 		star[i] = new Star();
@@ -27,7 +28,6 @@ export const gameInit = () => {
 
 	//ゲームループ
 	const gameLoop = () => {
-		vars.gameWave = 1;
 		if (!(vars.gameClear || vars.gameOver)) {
 			//段階に分けて、要求する速度を上げて行く（段々速くなる）
 			if (vars.starRequest > vars.starSpeed) {

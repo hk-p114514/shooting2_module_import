@@ -1,8 +1,8 @@
 import { enemyMaster, player } from '../init/variables';
 import { Character } from './Character';
 import { checkHit } from '../functions/hit';
-import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink';
-import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow';
+import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
+import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
 import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss';
 import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveYellowChild';
 import { isAttacked } from '../functions/isAtacked';

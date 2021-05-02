@@ -1,10 +1,9 @@
-//ピンクのヒヨコの行動パターン ####################################################
-import { Enemy } from "../../classes/Enemy";
-import { player } from "../../init/variables";
-import { rand } from "../random";
-import { enemyBullet } from "./enemyBullet";
+import { Enemy } from '../../../classes/Enemy';
+import { player } from '../../../init/variables';
+import { rand } from '../../random';
+import { enemyBullet } from '../enemyBullet';
 
-export const enemyMovePink = (object: Enemy) => {
+export const lvl1 = (object: Enemy) => {
 	if (!object.flag) {
 		//一度攻撃する前の処理
 		if (object.x < player.x && object.vx < 120) {
