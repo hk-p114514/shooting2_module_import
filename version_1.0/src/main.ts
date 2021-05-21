@@ -88,6 +88,6 @@ vcanvas.height = canvas_h;
 
 //オンロード時にゲームを開始
 window.onload = function () {
-	// introduction();
+  introduction();
 	gameInit();
 };
