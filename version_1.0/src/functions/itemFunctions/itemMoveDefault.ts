@@ -1,6 +1,10 @@
-export const itemMoveDefault = (object: any) => {
-	//ゆっくりと下に落ちるだけの処理
+import { Item } from "../../classes/Item";
 
-	//スプライトの変更、パターン（アニメーションがある場合）
-	object.snum = 79;
+const itemMoveDefault = (object: Item) => {
+  //ゆっくりと下に落ちるだけの処理
+
+  //スプライトの変更、パターン（アニメーションがある場合）
+  object.snum = 79;
 };
+
+export { itemMoveDefault };

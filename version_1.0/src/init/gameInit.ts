@@ -1,21 +1,12 @@
 //ゲームの初期化
-import {
-  enemy,
-  field_w,
-  gameSpeed,
-  star,
-  star_max,
-  item,
-  vars,
-} from "./variables";
+import { enemy, gameSpeed, star, star_max, item, vars } from "./variables";
 import { information } from "../functions/gameInfo";
 import { drawAll, updateAll } from "../functions/useObjectProcess";
 import { finishRound } from "../functions/finishRound";
-import { Enemy } from "../classes/Enemy";
 import { rand } from "../functions/random";
 import { Star } from "../classes/Star";
-import { Item } from "../classes/Item";
-import { makeItemAppear } from "../functions/itemFunctions/makeItemAppear";
+import { makeItem } from "../functions/itemFunctions/makeItem";
+import { makeEnemy } from "../classes/instance/makeEnemy";
 
 export const gameInit = () => {
   //Starクラスのインスタンスを作成
@@ -43,9 +34,7 @@ export const gameInit = () => {
         if (vars.gameWave === 0) {
           if (!rand(0, 30)) {
             //ピンクのヒヨコのみを出す
-            enemy.push(
-              new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
-            );
+            enemy.push(makeEnemy(0, []));
           }
 
           if (vars.gameCount > 60 * 30) {
@@ -57,9 +46,7 @@ export const gameInit = () => {
         } else if (vars.gameWave === 1) {
           if (!rand(0, 30)) {
             // 黄色のヒヨコのみを出す
-            enemy.push(
-              new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
-            );
+            enemy.push(makeEnemy(1, []));
           }
 
           if (vars.gameCount > 60 * 20) {
@@ -71,15 +58,7 @@ export const gameInit = () => {
         } else if (vars.gameWave === 2) {
           if (rand(0, 20) === 1) {
             // 黄色とピンクのヒヨコをランダムで出す
-            enemy.push(
-              new Enemy(
-                rand(0, 1),
-                rand(0, field_w) << 8,
-                0,
-                0,
-                rand(300, 1200)
-              )
-            );
+            enemy.push(makeEnemy(rand(0, 1), []));
           }
           if (
             rand(1, 100) === 1 &&
@@ -87,7 +66,7 @@ export const gameInit = () => {
             vars.gameCount > 60 * 20
           ) {
             // 20秒経過したら回復アイテムを出す
-            makeItemAppear(0, 0, 400);
+            makeItem(0, 0, 400);
             healCount = 1;
           }
 
@@ -102,16 +81,14 @@ export const gameInit = () => {
 
           // ボスキャラ出現
           if (vars.gameCount === 60 * 5) {
-            enemy.push(new Enemy(2, (field_w / 2) << 8, 0, 0, 200));
+            enemy.push(makeEnemy(2, [, , , 200]));
             vars.bossEncount = true;
           } else if (
             vars.gameCount >= 60 * 90 &&
             healCount == 1 &&
             rand(1, 100) === 1
           ) {
-            item.push(
-              new Item(0, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
-            );
+            item.push(makeItem(0));
             healCount--;
           }
 

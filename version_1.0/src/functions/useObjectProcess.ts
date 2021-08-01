@@ -1,5 +1,4 @@
 //******************************** 移動の処理 ********************************
-import { drawObject, updateObject } from "./objectProcess";
 import {
   bullet,
   ctx,
@@ -17,9 +16,11 @@ import {
   vctx,
   vars,
 } from "../init/variables";
+import { drawObject, updateObject } from "./objectProcess";
+import { drawStars, updateStars } from "./starProcess";
 
 const updateAll = () => {
-  updateObject(star);
+  updateStars(star);
   updateObject(item);
   updateObject(bullet);
   updateObject(enemyShot);
@@ -38,7 +39,7 @@ const drawAll = () => {
     vctx.fillRect(vars.camera_x - 10, vars.camera_y - 10, field_w, field_h);
   }
 
-  drawObject(star);
+  drawStars(star);
 
   //ゲームオーバー時に表示を消す
   if (!vars.gameOver && !vars.gameClear) {
@@ -78,17 +79,19 @@ const drawAll = () => {
   }
 
   //仮想画面から実際の画面にコピー
-  ctx.drawImage(
-    vcanvas,
-    vars.camera_x,
-    vars.camera_y,
-    screen_w,
-    screen_h,
-    0,
-    0,
-    screen_w,
-    screen_h
-  );
+  if (ctx) {
+    ctx.drawImage(
+      vcanvas,
+      vars.camera_x,
+      vars.camera_y,
+      screen_w,
+      screen_h,
+      0,
+      0,
+      screen_w,
+      screen_h
+    );
+  }
 };
 
 export { updateAll, drawAll };

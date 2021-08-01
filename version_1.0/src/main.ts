@@ -8,9 +8,7 @@ import {
   canvas,
   canvas_h,
   canvas_w,
-  ctx,
   scoreSubmit,
-  SMOOTHING as SMOOTHING,
   vcanvas,
   vars,
 } from "./init/variables";
@@ -50,13 +48,6 @@ document.oncontextmenu = () => {
 
 canvas.width = canvas_w;
 canvas.height = canvas_h;
-
-//画像の引き伸ばし（ぼやけ）を回避
-ctx.mozimageSmoothingEnabled = SMOOTHING;
-ctx.webkitSmoothingEnabled = SMOOTHING;
-ctx.msimageSmoothingEnabled = SMOOTHING;
-ctx.msimageSmoothingEnabled = SMOOTHING;
-
 vcanvas.width = canvas_w;
 vcanvas.height = canvas_h;
 

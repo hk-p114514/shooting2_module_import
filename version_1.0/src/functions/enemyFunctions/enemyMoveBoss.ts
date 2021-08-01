@@ -2,7 +2,8 @@
 import { rand } from "../random";
 import { enemy, enemyShot, field_w } from "../../init/variables";
 import { Enemy } from "../../classes/Enemy";
-import { EnemyShot } from "../../classes/EnemyShot";
+import { makeEnemy } from "../../classes/instance/makeEnemy";
+import { makeEnemyShot } from "../../classes/instance/makeEnemyShot";
 
 export const enemyMoveBoss = (object: Enemy) => {
   if (!object.flag && object.y >> 8 >= 120) {
@@ -45,7 +46,7 @@ export const enemyMoveBoss = (object: Enemy) => {
     let xGap = (Math.cos(angle) * bossR) << 8;
     let yGap = (Math.sin(angle) * bossR) << 8;
     enemyShot.push(
-      new EnemyShot(15, object.x + xGap, object.y + yGap, vx, vy, 30)
+      makeEnemyShot(15, object.x + xGap, object.y + yGap, vx, vy, 30)
     );
     object.direction += object.directionGap;
 
@@ -71,7 +72,7 @@ export const enemyMoveBoss = (object: Enemy) => {
       vy = Math.sin(angle) * 300;
       let xGap = (Math.cos(angle) * bossR) << 8;
       let yGap = (Math.sin(angle) * bossR) << 8;
-      enemy.push(new Enemy(3, object.x + xGap, object.y + yGap, vx, vy));
+      enemy.push(makeEnemy(3, [object.x + xGap, object.y + yGap, vx, vy]));
     }
   }
 

@@ -1,6 +1,6 @@
 import { bullet, field_h, field_w, key, vars } from "../init/variables";
-import { Bullet } from "./Bullet";
 import { drawSprite } from "../functions/drawSprite";
+import { makeBullet } from "./instance/makeBullet";
 
 class Player {
   x: number;
@@ -73,16 +73,16 @@ class Player {
 
       // space
       if (key.space && this.reload === 0) {
-        bullet.push(new Bullet(this.x + (4 << 8), this.y, 0, -2000));
-        bullet.push(new Bullet(this.x - (4 << 8), this.y, 0, -2000));
+        bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, -2000));
+        bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, -2000));
 
         if (this.special) {
           //斜めに発射
-          bullet.push(new Bullet(this.x, this.y, 500, -1900));
-          bullet.push(new Bullet(this.x, this.y, -500, -1900));
+          bullet.push(makeBullet(this.x, this.y, 500, -1900));
+          bullet.push(makeBullet(this.x, this.y, -500, -1900));
 
-          bullet.push(new Bullet(this.x, this.y, 200, -2000));
-          bullet.push(new Bullet(this.x, this.y, -200, -2000));
+          bullet.push(makeBullet(this.x, this.y, 200, -2000));
+          bullet.push(makeBullet(this.x, this.y, -200, -2000));
         }
 
         //60で約１秒間に一回発射できる
@@ -100,7 +100,9 @@ class Player {
         if (this.anime > -8) {
           this.anime--;
         }
-      } else if (key.ArrowRight) {
+      }
+
+      if (key.ArrowRight) {
         // 右
         this.x += this.speed;
 
@@ -108,6 +110,7 @@ class Player {
           this.anime++;
         }
       }
+
       if (this.anime > 0) {
         this.anime--;
       }

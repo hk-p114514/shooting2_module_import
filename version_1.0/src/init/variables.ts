@@ -5,6 +5,8 @@ import { ItemMaster } from "../classes/ItemMaster";
 import { Explosion } from "../classes/Explosion";
 import { EnemyShot } from "../classes/EnemyShot";
 import { Item } from "../classes/Item";
+import { Star } from "../classes/Star";
+import { Bullet } from "../classes/Bullet";
 
 // ******************************* 定数 *******************************
 
@@ -30,7 +32,7 @@ export const field_w = screen_w + 120;
 export const field_h = screen_h + 120;
 
 //キャンバス
-export const canvas: any = document.getElementById("canvas");
+export const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 export const ctx = canvas.getContext("2d");
 
 //フィールド（仮想画面）
@@ -61,7 +63,6 @@ export const enemyMaster = [
 // 以下のインスタンスの配列はvarsに含める必要が無い。
 // (むしろ各配列がvarsの役割を果たしていると言ったほうがニュアンスとしては正しいとも言える)
 
-export const star: any[] = [];
 //キーボードの状態
 export const key = {
   ArrowUp: false,
@@ -72,8 +73,11 @@ export const key = {
   space: false,
   f: false,
 };
+
+//背景の星
+export const star: Star[] = [];
 //銃弾
-export const bullet: any = [];
+export const bullet: Bullet[] = [];
 //敵キャラ
 export const enemy: Enemy[] = [];
 //アイテム
