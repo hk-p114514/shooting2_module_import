@@ -10,12 +10,13 @@ import {
 } from "../init/variables";
 
 export const information = () => {
+  const fontFamily: string = "'M PLUS Rounded 1c', sans-serif";
   if (ctx) {
-    ctx.font = "15px Impact";
+    ctx.font = `15px ${fontFamily}`;
     ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
 
     if (!vars.isPushedSpace) {
-      ctx.font = "30px Verdana";
+      ctx.font = `30px ${fontFamily}`;
       ctx.fillStyle = "lime";
 
       const message = "PUSH 'SPACE' ";
@@ -30,7 +31,7 @@ export const information = () => {
       y += 40;
       ctx.fillText(message2, x, y);
     } else if (!vars.gameStart) {
-      ctx.font = "100px Verdana";
+      ctx.font = `100px ${fontFamily}`;
       ctx.fillStyle = "lime";
 
       let x = canvas_w / 5;
@@ -47,7 +48,7 @@ export const information = () => {
     } else if (vars.gameOver) {
       // ゲームオーバー時のメッセージ
 
-      ctx.font = "30px Verdana";
+      ctx.font = `30px ${fontFamily}`;
       ctx.fillStyle = "red";
 
       let message1 = "GAME OVER";
@@ -68,7 +69,7 @@ export const information = () => {
     } else if (vars.gameClear) {
       //ゲームクリア時のメッセージ
 
-      ctx.font = "30px Verdana";
+      ctx.font = `30px ${fontFamily}`;
       ctx.fillStyle = "Yellow";
 
       let message1 = "GAME CLEAR";
@@ -76,7 +77,7 @@ export const information = () => {
       let y = canvas_h / 4;
 
       ctx.fillText(message1, x, y);
-      ctx.font = "15px Verdana";
+      ctx.font = `15px ${fontFamily}`;
       ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
 
       y += 30;
