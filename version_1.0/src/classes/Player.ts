@@ -53,64 +53,57 @@ class Player {
 
   //自機の移動
   update() {
+    // キャラクターの生存フレームを数える
     this.count++;
+
+    // 各値をへらす
+    this.subtractionOfPlayerValues();
+
+    // キー操作を伴う処理
+    this.keyOperation();
+
+    //範囲チェック
+    this.limitRangeOfMovement();
+  }
+
+  //描画
+  draw = () => {
+    if (this.stun && this.count & 1) {
+      return;
+    }
+    drawSprite(2 + (this.anime >> 2), this.x, this.y);
+    drawSprite(9 + (this.anime >> 2), this.x, this.y + (24 << 8));
+    //(this.anime >> 2)は this.anime / 4 と同じだが、小数点が出ない
+  };
+
+  private limitRangeOfMovement = () => {
+    if (this.x <= 1) {
+      this.x = 20;
+    }
+
+    if (this.x >= field_w << 8) {
+      this.x = (field_w << 8) - 1;
+    }
+
+    if (this.y < 0) {
+      this.y = 0;
+    }
+
+    if (this.y >= (field_h << 8) - 1) {
+      this.y = (field_h << 8) - 1;
+    }
+  };
+
+  private keyOperation = () => {
     if (vars.isPushedSpace) {
-      // キー操作を伴う処理
+      this.useSpecialAttack();
 
-      if (key.f && !this.special && this.specialMagazine) {
-        //特殊攻撃（広範囲弾）は１５秒まで
-        this.special = true;
-        this.specialTime = this.specialMaxTime;
-        this.specialMagazine--;
-      }
+      this.slowSpeedPlayer();
 
-      //   shift key
-      if (key.shift) {
-        this.speed = 256;
-      } else if (this.speed !== 1024) {
-        this.speed = 1024;
-      }
+      this.attack();
+      this.playerMove();
 
-      // space
-      if (key.space && this.reload === 0) {
-        bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, -2000));
-        bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, -2000));
-
-        if (this.special) {
-          //斜めに発射
-          bullet.push(makeBullet(this.x, this.y, 500, -1900));
-          bullet.push(makeBullet(this.x, this.y, -500, -1900));
-
-          bullet.push(makeBullet(this.x, this.y, 200, -2000));
-          bullet.push(makeBullet(this.x, this.y, -200, -2000));
-        }
-
-        //60で約１秒間に一回発射できる
-        this.reload = 5;
-        this.magazine++;
-        if (this.magazine >= 4) {
-          this.reload = 20;
-          this.magazine = 0;
-        }
-      }
-
-      if (key.ArrowLeft) {
-        // 左
-        this.x -= this.speed;
-        if (this.anime > -8) {
-          this.anime--;
-        }
-      }
-
-      if (key.ArrowRight) {
-        // 右
-        this.x += this.speed;
-
-        if (this.anime < 8) {
-          this.anime++;
-        }
-      }
-
+      // プレイヤーのアニメーション変更
       if (this.anime > 0) {
         this.anime--;
       }
@@ -118,30 +111,12 @@ class Player {
       if (this.anime < 0) {
         this.anime++;
       }
-
-      if (key.ArrowUp) {
-        // 上
-        this.y -= this.speed;
-      }
-
-      if (key.ArrowDown) {
-        // 下
-        this.y += this.speed;
-      }
     } else {
-      if (key.space && !vars.isPushedSpace) {
-        // スペース
-        //ゲームをスタートする
-        vars.isPushedSpace = true;
-        const intervalId = setInterval(() => {
-          vars.gameStartCount -= 1;
-          if (vars.gameStartCount === 0) {
-            clearInterval(intervalId);
-          }
-        }, 1000);
-      }
+      this.gameStart();
     }
+  };
 
+  private subtractionOfPlayerValues = () => {
     if (this.specialTime) {
       this.specialTime--;
     } else {
@@ -160,34 +135,92 @@ class Player {
     if (this.reload > 0) {
       this.reload--;
     }
+  };
 
-    //範囲チェック
-    if (this.x <= 1) {
-      this.x = 20;
+  private useSpecialAttack = () => {
+    if (key.f && !this.special && this.specialMagazine) {
+      //特殊攻撃（広範囲弾）は１５秒まで
+      this.special = true;
+      this.specialTime = this.specialMaxTime;
+      this.specialMagazine--;
+    }
+  };
+
+  private slowSpeedPlayer = () => {
+    // shift
+    if (key.shift) {
+      this.speed = 256;
+    } else if (this.speed !== 1024) {
+      this.speed = 1024;
+    }
+  };
+
+  private attack = () => {
+    // space
+    if (key.space && this.reload === 0) {
+      bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, -2000));
+      bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, -2000));
+
+      if (this.special) {
+        //斜めに発射
+        bullet.push(makeBullet(this.x, this.y, 500, -1900));
+        bullet.push(makeBullet(this.x, this.y, -500, -1900));
+
+        bullet.push(makeBullet(this.x, this.y, 200, -2000));
+        bullet.push(makeBullet(this.x, this.y, -200, -2000));
+      }
+
+      //60で約１秒間に一回発射できる
+      this.reload = 5;
+      this.magazine++;
+      if (this.magazine >= 4) {
+        this.reload = 20;
+        this.magazine = 0;
+      }
+    }
+  };
+
+  private playerMove = () => {
+    // 上
+    if (key.ArrowUp) {
+      this.y -= this.speed;
     }
 
-    if (this.x >= field_w << 8) {
-      this.x = (field_w << 8) - 1;
+    // 下
+    if (key.ArrowDown) {
+      this.y += this.speed;
     }
 
-    if (this.y < 0) {
-      this.y = 0;
+    // 左
+    if (key.ArrowLeft) {
+      this.x -= this.speed;
+      if (this.anime > -8) {
+        this.anime--;
+      }
     }
 
-    if (this.y >= (field_h << 8) - 1) {
-      this.y = (field_h << 8) - 1;
+    // 右
+    if (key.ArrowRight) {
+      this.x += this.speed;
+      if (this.anime < 8) {
+        this.anime++;
+      }
     }
-  }
+  };
 
-  //描画
-  draw() {
-    if (this.stun && this.count & 1) {
-      return;
+  private gameStart = () => {
+    if (key.space && !vars.isPushedSpace) {
+      // スペース
+      //ゲームをスタートする
+      vars.isPushedSpace = true;
+      const intervalId = setInterval(() => {
+        vars.gameStartCount -= 1;
+        if (vars.gameStartCount === 0) {
+          clearInterval(intervalId);
+        }
+      }, 1000);
     }
-    drawSprite(2 + (this.anime >> 2), this.x, this.y);
-    drawSprite(9 + (this.anime >> 2), this.x, this.y + (24 << 8));
-    //(this.anime >> 2)は this.anime / 4 と同じだが、小数点が出ない
-  }
+  };
 }
 
 export { Player };

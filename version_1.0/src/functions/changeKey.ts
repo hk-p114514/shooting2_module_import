@@ -3,6 +3,12 @@
 import { key } from "../init/variables";
 
 const changeKey = (pushedKey: string, isPushed: boolean): void => {
+  console.log(`key : ${pushedKey}`);
+
+  if (pushedKey === " ") {
+    key.space = isPushed;
+  }
+
   if (pushedKey === "ArrowUp") {
     key.ArrowUp = isPushed;
   }
@@ -17,10 +23,6 @@ const changeKey = (pushedKey: string, isPushed: boolean): void => {
 
   if (pushedKey === "ArrowRight") {
     key.ArrowRight = isPushed;
-  }
-
-  if (pushedKey === " ") {
-    key.space = isPushed;
   }
 
   if (pushedKey === "Shift") {
