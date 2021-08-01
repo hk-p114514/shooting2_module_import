@@ -15,6 +15,7 @@ import { Enemy } from "../classes/Enemy";
 import { rand } from "../functions/random";
 import { Star } from "../classes/Star";
 import { Item } from "../classes/Item";
+import { makeItemAppear } from "../functions/itemFunctions/makeItemAppear";
 
 export const gameInit = () => {
   //Starクラスのインスタンスを作成
@@ -40,7 +41,7 @@ export const gameInit = () => {
         vars.gameCount++;
         //敵を出現
         if (vars.gameWave === 0) {
-          if (rand(0, 30) === 1) {
+          if (!rand(0, 30)) {
             //ピンクのヒヨコのみを出す
             enemy.push(
               new Enemy(0, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
@@ -54,7 +55,7 @@ export const gameInit = () => {
             vars.starSpeed = 200;
           }
         } else if (vars.gameWave === 1) {
-          if (rand(0, 30) === 1) {
+          if (!rand(0, 30)) {
             // 黄色のヒヨコのみを出す
             enemy.push(
               new Enemy(1, rand(0, field_w) << 8, 0, 0, rand(300, 1200))
@@ -86,9 +87,7 @@ export const gameInit = () => {
             vars.gameCount > 60 * 20
           ) {
             // 20秒経過したら回復アイテムを出す
-            item.push(
-              new Item(1, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
-            );
+            makeItemAppear(0, 0, 400);
             healCount = 1;
           }
 
@@ -111,7 +110,7 @@ export const gameInit = () => {
             rand(1, 100) === 1
           ) {
             item.push(
-              new Item(1, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
+              new Item(0, rand(field_w / 3, field_w / 1.5) << 8, 0, 0, 400)
             );
             healCount--;
           }

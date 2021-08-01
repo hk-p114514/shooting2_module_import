@@ -1,0 +1,18 @@
+new Enemy {
+	gameInit.ts
+	enemyMove*.ts
+}
+
+new EnemyShot {
+	enemyBullet.ts
+	enemyMoveBoss.ts
+}
+
+new Explosion {
+	moreExplosion.ts
+	Bullet.ts
+}
+
+new Bullet {
+	Player.ts
+}

@@ -1,5 +1,4 @@
 const path = require("path");
-const Obfuscator = require("webpack-obfuscator");
 
 module.exports = {
   entry: path.resolve(__dirname, "src/main.ts"),
@@ -22,12 +21,4 @@ module.exports = {
   resolve: {
     extensions: [".js", ".ts"],
   },
-  plugins: [
-    new Obfuscator(
-      {
-        rotateUnicode: true,
-      },
-      []
-    ),
-  ],
 };
