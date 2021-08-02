@@ -1,5 +1,14 @@
 //ゲームの初期化
-import { enemy, gameSpeed, star, star_max, item, vars } from "./variables";
+import {
+  enemy,
+  gameSpeed,
+  star,
+  star_max,
+  item,
+  vars,
+  field_w,
+  canvas_w,
+} from "./variables";
 import { information } from "../functions/gameInfo";
 import { drawAll, updateAll } from "../functions/useObjectProcess";
 import { finishRound } from "../functions/finishRound";
@@ -66,7 +75,7 @@ export const gameInit = () => {
             vars.gameCount > 60 * 20
           ) {
             // 20秒経過したら回復アイテムを出す
-            makeItem(0, 0, 400);
+            item.push(makeItem(0, 0, 400));
             healCount = 1;
           }
 
