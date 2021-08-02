@@ -1,7 +1,7 @@
 import { rand } from "./functions/random";
 import { gameInit } from "./init/gameInit";
 import { introduction } from "./functions/introduction";
-import { keyControl } from "./functions/keyControl";
+import { keyControl } from "./functions/key/keyControl";
 
 import {
   afterGame,
@@ -13,7 +13,7 @@ import {
   vars,
 } from "./init/variables";
 
-const DEBUG: boolean = false;
+const DEBUG: boolean = true;
 
 // キーを操作したとき
 keyControl();

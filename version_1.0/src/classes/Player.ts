@@ -96,12 +96,10 @@ class Player {
 
   private keyOperation = () => {
     if (vars.isPushedSpace) {
-      this.useSpecialAttack();
-
       this.slowSpeedPlayer();
-
-      this.attack();
+      this.playerAttack();
       this.playerMove();
+      this.useSpecialAttack();
 
       // プレイヤーのアニメーション変更
       if (this.anime > 0) {
@@ -138,7 +136,7 @@ class Player {
   };
 
   private useSpecialAttack = () => {
-    if (key.f && !this.special && this.specialMagazine) {
+    if (key.special && !this.special && this.specialMagazine) {
       //特殊攻撃（広範囲弾）は１５秒まで
       this.special = true;
       this.specialTime = this.specialMaxTime;
@@ -155,7 +153,7 @@ class Player {
     }
   };
 
-  private attack = () => {
+  private playerAttack = () => {
     // space
     if (key.space && this.reload === 0) {
       bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, -2000));
@@ -180,17 +178,7 @@ class Player {
     }
   };
 
-  private playerMove = () => {
-    // 上
-    if (key.ArrowUp) {
-      this.y -= this.speed;
-    }
-
-    // 下
-    if (key.ArrowDown) {
-      this.y += this.speed;
-    }
-
+  private playerMove = (): void => {
     // 左
     if (key.ArrowLeft) {
       this.x -= this.speed;
@@ -206,9 +194,18 @@ class Player {
         this.anime++;
       }
     }
+    // 上
+    if (key.ArrowUp) {
+      this.y -= this.speed;
+    }
+
+    // 下
+    if (key.ArrowDown) {
+      this.y += this.speed;
+    }
   };
 
-  private gameStart = () => {
+  private gameStart = (): void => {
     if (key.space && !vars.isPushedSpace) {
       // スペース
       //ゲームをスタートする

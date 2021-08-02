@@ -1,6 +1,6 @@
 "use strict";
 
-import { key, vars } from "../init/variables";
+import { vars } from "../../init/variables";
 import { changeKey } from "./changeKey";
 
 const keyControl = (): void => {

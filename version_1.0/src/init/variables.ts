@@ -71,7 +71,7 @@ export const key = {
   ArrowRight: false,
   shift: false,
   space: false,
-  f: false,
+  special: false,
 };
 
 //背景の星
