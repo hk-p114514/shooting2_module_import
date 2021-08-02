@@ -13,7 +13,7 @@ import {
   vars,
 } from "./init/variables";
 
-const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
 // キーを操作したとき
 keyControl();
