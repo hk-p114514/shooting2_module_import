@@ -5,30 +5,37 @@ import { key } from "../../init/variables";
 const changeKey = (pushedKey: string, isPushed: boolean): void => {
   console.log(`key : ${pushedKey}`);
 
+  // 特殊攻撃開始
   if (pushedKey === "f") {
     key.special = isPushed;
   }
 
+  // 攻撃(スペース)
   if (pushedKey === " ") {
     key.space = isPushed;
   }
 
+  // 上
   if (pushedKey === "ArrowUp" || pushedKey === "i" || pushedKey === "I") {
     key.ArrowUp = isPushed;
   }
 
+  // 右
   if (pushedKey === "ArrowRight" || pushedKey === "l" || pushedKey === "L") {
     key.ArrowRight = isPushed;
   }
 
+  // 下
   if (pushedKey === "ArrowDown" || pushedKey === "k" || pushedKey === "K") {
     key.ArrowDown = isPushed;
   }
 
+  // 左
   if (pushedKey === "ArrowLeft" || pushedKey === "j" || pushedKey === "J") {
     key.ArrowLeft = isPushed;
   }
 
+  // 減速(Shift)
   if (pushedKey === "Shift" || pushedKey === "d") {
     key.shift = isPushed;
   }
