@@ -1,46 +1,37 @@
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
-import { rand } from '../../random';
+import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
 
-export const lvl1 = (object: Enemy) => {
-	if (!object.flag) {
-		//一度攻撃する前の処理
-		if (object.x < player.x && object.vx < 120) {
-			// プレイヤーより左にいる、かつ、x軸のベクトル量が120以内なら
-			// 右に進む（プレイヤーのいる方に進む）
-			object.vx += 4;
-		} else if (object.vx > -120) {
-			// プレイヤーより右にいる、かつ、x軸のベクトル量が-120以上なら
-			// 左に進む（プレイヤーのいる方に進む）
-			object.vx -= 4;
-		}
+export const lvl1 = (enemy: Enemy) => {
+	if (!enemy.flag) {
+		enemyBeforeAttack(enemy, player, 4, 120);
 	} else {
 		// 攻撃した後の処理
-		if (player.x < object.x && object.vx < 400) {
+		if (player.x < enemy.x && enemy.vx < 400) {
 			// player <- objectの配置なら
 			// <- object <- player のようにplayerを通過して場外へ逃げる
-			object.vx -= 30;
-		} else if (object.vx > -400) {
+			enemy.accelerationX(-30);
+		} else if (enemy.vx > -400) {
 			//反対
-			object.vx += 30;
+			enemy.accelerationX(30);
 		}
 	}
 
-	if (Math.abs(player.y - object.y) < 300 << 8 && !object.flag) {
-		object.flag = true;
+	if (Math.abs(player.y - enemy.y) < 300 << 8 && !enemy.flag) {
+		enemy.flag = true;
 
 		//enemyBulletを呼び出した回数分、攻撃する
-		enemyBullet(object, 1000, -10, 10);
+		enemyBullet(enemy, 1000, -10, 10);
 	}
 
-	if (object.flag && object.vy > -500) {
-		object.vy -= 30;
+	if (enemy.flag && enemy.vy > -500) {
+		enemy.accelerationY(-30);
 	}
 
 	//スプライトの変更
 	//スプライトのパターン（アニメーションを表現）
 	const ptn = [39, 40, 39, 41];
 	// const ptn = [78, 78, 78, 78];
-	object.snum = ptn[(object.count >> 3) & 3];
+	enemy.snum = ptn[(enemy.count >> 3) & 3];
 };

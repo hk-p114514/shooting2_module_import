@@ -5,15 +5,15 @@ import { enemyBullet } from '../enemyBullet';
 export const lvl1 = (object: Enemy) => {
 	if (!object.flag) {
 		if (player.x > object.x && object.vx < 300) {
-			object.vx += 30;
+			object.accelerationX(30);
 		} else if (object.vx > -600) {
-			object.vx -= 30;
+			object.accelerationX(-30);
 		}
 	} else {
 		if (player.x < object.x && object.vx < 300) {
-			object.vy += 30;
+			object.accelerationY(30);
 		} else if (object.vx > -600) {
-			object.vx += 50;
+			object.accelerationY(50);
 		}
 	}
 
