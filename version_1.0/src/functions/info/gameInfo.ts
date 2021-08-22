@@ -8,6 +8,10 @@ import {
 	screen_w,
 	vars,
 } from '../../init/variables';
+import { DEBUG } from '../../main';
+import { beforeStart } from './beforeStart';
+import { countDown } from './countDown';
+import { gameOver } from './gameOver';
 import { printInfo } from './printInfo';
 import { printSpecialBar } from './printSpecialBar';
 
@@ -19,60 +23,21 @@ const information = () => {
 		ctx.fillStyle = defaultColor;
 		const fontSize = 30;
 
-		if (!vars.isPushedSpace) {
-			// ゲーム開始前の表示
-			ctx.font = `${fontSize}px ${fontFamily}`;
-			ctx.fillStyle = 'lime';
-
-			const message = "PUSH 'SPACE' ";
-			const message2 = 'TO GAME START';
-
-			let x = canvas_w / message.length;
-			let y = canvas_h / 4;
-
-			ctx.fillText(message, x, y);
-
-			x += message.length / 2;
-			y += 40;
-			ctx.fillText(message2, x, y);
-		} else if (!vars.gameStart) {
-			// ゲーム開始直前のカウントダウン処理
-			ctx.font = `100px ${fontFamily}`;
-			ctx.fillStyle = 'lime';
-
-			let x = canvas_w / 5;
-			let y = canvas_h / 4;
-			if (vars.gameStartCount === 0) {
-				x = canvas_w / 8;
-			}
-			ctx.fillText(`${vars.gameStartCount || 'GO!'}`, x, y);
-
-			if (vars.gameStartCount <= 0) {
-				setTimeout(() => {
-					vars.gameStart = true;
-				}, 1000);
-			}
+		if (!vars.isPushedSpace && !DEBUG) {
+			beforeStart(ctx, fontSize, fontFamily, 40, canvas_w, canvas_h);
+		} else if (!vars.gameStart && !DEBUG) {
+			countDown(ctx, fontFamily, canvas_w, canvas_h);
 		} else if (vars.gameOver) {
-			// ========== ゲームオーバー時のメッセージ ==========
-
-			ctx.font = `${fontSize}px ${fontFamily}`;
-			ctx.fillStyle = 'red';
-
-			let message1 = 'GAME OVER';
-			let message2 = "push 'R' to one more!";
-			let x = canvas_w / 8;
-			let y = canvas_h / 4;
-
-			ctx.fillText(message1, x, y);
-
-			x -= 70;
-			y += 40;
-			ctx.fillStyle = defaultColor;
-			ctx.fillText(message2, x, y);
-
-			x = canvas_w / 6;
-			ctx.font = 'bold 20px sans-serif';
-			ctx.fillText(`SCORE : ${vars.score}`, x, y + 50);
+			gameOver(
+				ctx,
+				fontSize,
+				fontFamily,
+				defaultColor,
+				canvas_w,
+				canvas_h,
+				40,
+				vars.score,
+			);
 		} else if (vars.gameClear) {
 			// ========== ゲームクリア時のメッセージ ==========
 

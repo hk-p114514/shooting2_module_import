@@ -1,14 +1,5 @@
 //ゲームの初期化
-import {
-	enemy,
-	gameSpeed,
-	star,
-	star_max,
-	item,
-	vars,
-	field_w,
-	canvas_w,
-} from './variables';
+import { enemy, gameSpeed, star, star_max, item, vars } from './variables';
 import { information } from '../functions/info/gameInfo';
 import { drawAll, updateAll } from '../functions/useObjectProcess';
 import { finishRound } from '../functions/finishRound';
