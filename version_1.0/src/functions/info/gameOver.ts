@@ -15,7 +15,7 @@ const gameOver = (
 	ctx.fillStyle = 'red';
 
 	const message1 = 'GAME OVER';
-	const message2 = "push 'R' to one more!";
+	const message2 = "push 'R' to Play Again!";
 	const message3 = `SCORE : ${score}`;
 
 	const message1Width = ctx.measureText(message1).width;

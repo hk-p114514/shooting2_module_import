@@ -12,8 +12,9 @@ import {
 	vcanvas,
 	vars,
 } from './init/variables';
+import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
 if (DEBUG) {
 	vars.gameOver = true;
@@ -56,11 +57,6 @@ vcanvas.width = canvas_w;
 vcanvas.height = canvas_h;
 
 //オンロード時にゲームを開始
-window.onload = function () {
-	if (!DEBUG) {
-		introduction();
-	}
-	gameInit();
-};
+window.onload = gameStart;
 
 export { DEBUG };
