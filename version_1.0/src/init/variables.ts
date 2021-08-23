@@ -108,7 +108,7 @@ export const vars = {
 	//ゲームが始まる前のカウント
 	gameStartCount: 3,
 	//ゲームオーバーフラグ
-	gameOver: true,
+	gameOver: false,
 	//ゲームクリアフラグ
 	gameClear: false,
 	//データベースの呼び出し回数
