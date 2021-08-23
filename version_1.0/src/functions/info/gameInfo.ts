@@ -8,7 +8,6 @@ import {
 	screen_w,
 	vars,
 } from '../../init/variables';
-import { DEBUG } from '../../main';
 import { beforeStart } from './beforeStart';
 import { countDown } from './countDown';
 import { gameOver } from './gameOver';
@@ -23,18 +22,17 @@ const information = () => {
 		ctx.fillStyle = defaultColor;
 		const fontSize = 30;
 
-		if (!vars.isPushedSpace && !DEBUG) {
-			beforeStart(ctx, fontSize, fontFamily, 40, canvas_w, canvas_h);
-		} else if (!vars.gameStart && !DEBUG) {
-			countDown(ctx, fontFamily, canvas_w, canvas_h);
+		if (!vars.isPushedSpace) {
+			beforeStart(ctx, fontFamily, 40, screen_w, screen_h);
+		} else if (!vars.gameStart) {
+			countDown(ctx, fontFamily, screen_w, screen_h);
 		} else if (vars.gameOver) {
 			gameOver(
 				ctx,
-				fontSize,
 				fontFamily,
 				defaultColor,
-				canvas_w,
-				canvas_h,
+				screen_w,
+				screen_h,
 				40,
 				vars.score,
 			);

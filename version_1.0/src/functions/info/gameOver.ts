@@ -1,32 +1,40 @@
+import { printInfo } from './printInfo';
+
 const gameOver = (
 	ctx: CanvasRenderingContext2D,
-	fontSize: number,
 	fontFamily: string,
 	color: string,
-	canvas_w: number,
-	canvas_h: number,
+	screen_w: number,
+	screen_h: number,
 	heightGap: number,
 	score: number,
 ) => {
 	// ========== ゲームオーバー時のメッセージ ==========
 
-	ctx.font = `${fontSize}px ${fontFamily}`;
+	ctx.font = `200% ${fontFamily}`;
 	ctx.fillStyle = 'red';
 
-	let message1 = 'GAME OVER';
-	let message2 = "push 'R' to one more!";
-	let x = canvas_w / 8;
-	let y = canvas_h / 4;
+	const message1 = 'GAME OVER';
+	const message2 = "push 'R' to one more!";
+	const message3 = `SCORE : ${score}`;
 
-	ctx.fillText(message1, x, y);
+	const message1Width = ctx.measureText(message1).width;
+	// let x = screen_w / 2 - message1Width / 2;
+	let y = screen_h / 2;
 
-	// x -= 70;
-	y += heightGap;
-	ctx.fillStyle = color;
-	ctx.fillText(message2, x, y);
+	const data = [message1, message2, message3];
 
-	x = canvas_w / 6;
-	ctx.fillText(`SCORE : ${score}`, x, y + heightGap);
+	data.forEach((info, i) => {
+		if (i == 1) {
+			ctx.fillStyle = color;
+		} else {
+			ctx.fillStyle = '';
+		}
+		const width = ctx.measureText(info).width;
+		const x = screen_w / 2 - width / 2;
+		ctx.fillText(info, x, y);
+		y += heightGap;
+	});
 };
 
 export { gameOver };

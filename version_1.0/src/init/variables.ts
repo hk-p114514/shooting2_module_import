@@ -20,7 +20,7 @@ export const afterGame = document.getElementById('after-game');
 export const SMOOTHING = false;
 
 //画面サイズ
-export const screen_w = 360;
+export const screen_w = 500;
 export const screen_h = 500;
 
 //キャンバスのサイズ

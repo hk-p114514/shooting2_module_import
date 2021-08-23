@@ -1,12 +1,12 @@
 //ゲームの初期化
 import { enemy, gameSpeed, star, star_max, item, vars } from './variables';
-import { information } from '../functions/info/gameInfo';
 import { drawAll, updateAll } from '../functions/useObjectProcess';
 import { finishRound } from '../functions/finishRound';
 import { rand } from '../functions/random';
 import { Star } from '../classes/Star';
 import { makeItem } from '../functions/itemFunctions/makeItem';
 import { makeEnemy } from '../classes/instance/makeEnemy';
+import { information } from '../functions/info/gameInfo';
 
 export const gameInit = () => {
 	//Starクラスのインスタンスを作成

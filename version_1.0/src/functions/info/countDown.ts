@@ -3,25 +3,28 @@ import { vars } from '../../init/variables';
 const countDown = (
 	ctx: CanvasRenderingContext2D,
 	fontFamily: string,
-	canvas_w: number,
-	canvas_h: number,
+	screen_w: number,
+	screen_h: number,
 ) => {
+	ctx.beginPath();
 	// ゲーム開始直前のカウントダウン処理
-	ctx.font = `100px ${fontFamily}`;
+	ctx.font = `500% ${fontFamily}`;
 	ctx.fillStyle = 'lime';
 
-	let x = canvas_w / 5;
-	let y = canvas_h / 4;
-	if (vars.gameStartCount === 0) {
-		x = canvas_w / 8;
-	}
-	ctx.fillText(`${vars.gameStartCount || 'GO!'}`, x, y);
+	const message: string | number = vars.gameStartCount || 'GO!';
+	const messageWidth = ctx.measureText(message.toString()).width;
+
+	let x = screen_w / 2 - messageWidth / 2;
+	let y = screen_h / 2;
+
+	ctx.fillText(message.toString(), x, y);
 
 	if (vars.gameStartCount <= 0) {
 		setTimeout(() => {
 			vars.gameStart = true;
 		}, 1000);
 	}
+	ctx.closePath();
 };
 
 export { countDown };

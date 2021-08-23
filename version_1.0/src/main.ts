@@ -14,6 +14,7 @@ import {
 } from './init/variables';
 
 const DEBUG: boolean = true;
+
 if (DEBUG) {
 	vars.gameOver = true;
 }
