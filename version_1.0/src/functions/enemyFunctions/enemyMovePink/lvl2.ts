@@ -9,21 +9,21 @@ export const lvl1 = (object: Enemy) => {
 		if (object.x < player.x && object.vx < 120) {
 			// プレイヤーより左にいる、かつ、x軸のベクトル量が120以内なら
 			// 右に進む（プレイヤーのいる方に進む）
-			object.vx += 4;
+			object.accelerationX(4);
 		} else if (object.vx > -120) {
 			// プレイヤーより右にいる、かつ、x軸のベクトル量が-120以上なら
 			// 左に進む（プレイヤーのいる方に進む）
-			object.vx -= 4;
+			object.accelerationX(-4);
 		}
 	} else {
 		// 攻撃した後の処理
 		if (player.x < object.x && object.vx < 400) {
 			// player <- objectの配置なら
 			// <- object <- player のようにplayerを通過して場外へ逃げる
-			object.vx -= 30;
+			object.accelerationX(-30);
 		} else if (object.vx > -400) {
 			//反対
-			object.vx += 30;
+			object.accelerationX(30);
 		}
 	}
 
@@ -38,7 +38,7 @@ export const lvl1 = (object: Enemy) => {
 	}
 
 	if (object.flag && object.vy > -500) {
-		object.vy -= 30;
+		object.accelerationY(-30);
 	}
 
 	//スプライトの変更

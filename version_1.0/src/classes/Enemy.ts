@@ -3,9 +3,9 @@ import { Character } from './Character';
 import { checkHit } from '../functions/hit';
 import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
 import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
-import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss';
-import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveYellowChild';
-import { isAttacked } from '../functions/isAtacked';
+import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
+import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveYellowChild';
+import { isAttacked } from '../functions/isAttacked';
 
 class Enemy extends Character {
 	eNum: number;
