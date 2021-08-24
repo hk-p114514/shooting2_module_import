@@ -110,8 +110,6 @@ export const gameInit = () => {
 		information();
 	};
 
-	const width = document.body.clientWidth;
-	scrollBy(width / 4, 0);
 	//ゲームループ呼び出し
 	setInterval(gameLoop, gameSpeed);
 };

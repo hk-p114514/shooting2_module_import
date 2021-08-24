@@ -12,10 +12,9 @@ import {
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = false;
+const DEBUG: boolean = true;
 
 if (DEBUG) {
-	vars.gameOver = true;
 }
 
 // キーを操作したとき
@@ -40,14 +39,16 @@ const jumpUrl = [
 	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html',
 ];
 //右クリック禁止
-document.oncontextmenu = () => {
-	if (vars.rightClick > 5) {
-		console.log('The page is corrupted.');
-		location.href = jumpUrl[rand(0, 2)];
-	}
-	vars.rightClick++;
-	return false;
-};
+if (!DEBUG) {
+	document.oncontextmenu = () => {
+		if (vars.rightClick > 5) {
+			console.log('The page is corrupted.');
+			location.href = jumpUrl[rand(0, 2)];
+		}
+		vars.rightClick++;
+		return false;
+	};
+}
 
 canvas.width = canvas_w;
 canvas.height = canvas_h;
