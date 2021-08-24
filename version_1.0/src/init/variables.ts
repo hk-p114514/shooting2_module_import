@@ -20,7 +20,7 @@ export const afterGame = document.getElementById('after-game');
 export const SMOOTHING = false;
 
 //画面サイズ
-const side: number = 600;
+const side: number = 650;
 export const screen_w = side;
 export const screen_h = side;
 
@@ -94,45 +94,70 @@ export const explosion: Explosion[] = [];
 export const vars = {
 	// スコア
 	score: 0,
+
 	// ボスのHP
 	bossHp: 0,
+
 	// ボスのHPのマックス値
 	bossMhp: 0,
+
 	drawCount: 0,
+
 	// 経過したfps
 	fps: 0,
+
 	lastTime: Date.now(),
+
 	//ゲームスタートのためにユーザがスペースを押したかどうかを感知する
 	isPushedSpace: false,
+
 	//ゲームスタートフラグ
 	gameStart: false,
+
 	//ゲームが始まる前のカウント
 	gameStartCount: 3,
+
 	//ゲームオーバーフラグ
 	gameOver: false,
+
 	//ゲームクリアフラグ
 	gameClear: false,
+
 	//データベースの呼び出し回数
 	callData: 0,
+
 	//カメラの座標
 	camera_x: 0,
+
 	camera_y: 0,
+
 	//入力欄にフォーカスがあるときは、Rでのリロードをキャンセルする
 	inputOnFocus: true,
+
 	//右クリックの回数を数える
 	rightClick: 0,
+
 	//ボスの出現フラグ
-	bossEncount: false,
+	bossEncounter: false,
+
 	//ゲーム全体の経過フレーム
 	gameTimer: 0,
+
 	//ゲームのカウント（経過フレームをウェイブ毎に持つ）
 	gameCount: 0,
+
 	//ゲームのウェイブ（段階）
 	gameWave: 0,
+
 	//ゲームのラウンド数（ボスを倒した数）
 	gameRound: 0,
+
+	// ラウンドの最大数
+	maxRound: 1,
+
 	//背景の星の速度
 	starSpeed: 100,
+
 	//要求する星の速度
 	starRequest: 100,
 };

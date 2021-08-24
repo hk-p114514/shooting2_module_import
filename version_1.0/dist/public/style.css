@@ -1,5 +1,5 @@
 body {
-	background-color: #555555;
+	background-color: #444444;
 }
 
 main {
@@ -9,9 +9,9 @@ main {
 	grid-template-columns: 1fr 1fr 1fr;
 }
 
-#canvas {
+.canvas {
 	margin-top: 10%;
-	/* margin-left: 25%; */
+	margin-left: 25%;
 	z-index: 2;
 }
 
@@ -19,12 +19,19 @@ main {
 
 #after-game {
 	z-index: 1;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 50px;
+	margin: 5%;
 }
 
 #after-game aside {
 	margin: 0 auto;
+	padding: 50px;
+}
+
+#isLogin {
+	display: flex;
 	flex-direction: column;
-	width: 100%;
 }
 
 #isLogout {
@@ -36,16 +43,12 @@ main {
 	margin: 0 auto;
 }
 
-#firebase-ui-container {
-	width: 100%;
-}
-
 .login-text {
 	color: white;
 }
 
 #isLogin p {
-	color: rgba(255, 255, 255, 0.7);
+	color: #000;
 }
 
 .shadow-button {
@@ -66,7 +69,7 @@ main {
 	background-color: rgba(59, 168, 241, 0.8);
 	box-shadow: 0 0 10px rgba(59, 168, 241, 0.8);
 	color: white;
-	width: 30%;
+	width: 50%;
 	margin-left: auto;
 }
 
@@ -78,18 +81,25 @@ main {
 	margin: 10% auto;
 }
 
+/* formタグ */
+#score-submit {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
+}
+
 #userName {
 	display: block;
-	width: 13em;
-	line-height: 1.5em;
-	text-align: center;
-	outline: none;
 	color: white;
 	background-color: black;
-	border-radius: 30px;
+	outline: none;
 	border: 2px solid yellow;
-	transition-duration: 0.3s;
+	width: 90%;
+	line-height: 1.5em;
+	text-align: center;
+	border-radius: 30px;
 	box-sizing: border-box;
+	transition-duration: 0.3s;
 }
 
 #userName:focus {
@@ -102,7 +112,8 @@ main {
 
 #score-submit-button {
 	color: white;
-	margin: 1em 0 0 45%;
+	padding: 10px;
+	margin-top: 10%;
 	background-color: rgba(233, 124, 73, 0.8);
 	box-shadow: 0 0 10px rgba(233, 124, 73, 0.8);
 }
@@ -117,4 +128,8 @@ main {
 	opacity: 0;
 	user-select: none;
 	pointer-events: none;
+}
+
+#firebase-ui-container {
+	width: 100%;
 }

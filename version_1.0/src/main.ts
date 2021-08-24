@@ -9,13 +9,14 @@ import {
 	scoreSubmit,
 	vcanvas,
 	vars,
+	player,
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
 const DEBUG: boolean = true;
 
 if (DEBUG) {
-	vars.gameOver = true;
+	player.hp = 0;
 }
 
 // キーを操作したとき
@@ -31,6 +32,7 @@ if (scoreSubmit !== null) {
 }
 
 if (afterGame !== null) {
+	// スコア投稿エリアを非表示
 	afterGame.classList.add('playing');
 }
 

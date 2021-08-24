@@ -8,6 +8,7 @@ import {
 	screen_w,
 	vars,
 } from '../../init/variables';
+import { DEBUG } from '../../main';
 import { beforeStart } from './beforeStart';
 import { countDown } from './countDown';
 import { gameOver } from './gameOver';
