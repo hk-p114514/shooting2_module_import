@@ -1,6 +1,4 @@
 import { rand } from './functions/random';
-import { gameInit } from './init/gameInit';
-import { introduction } from './functions/introduction';
 import { keyControl } from './functions/key/keyControl';
 
 import {
