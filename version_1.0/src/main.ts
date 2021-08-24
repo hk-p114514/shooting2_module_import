@@ -15,6 +15,7 @@ import { gameStart } from './init/gameStart';
 const DEBUG: boolean = true;
 
 if (DEBUG) {
+	vars.gameOver = true;
 }
 
 // キーを操作したとき
