@@ -72,7 +72,7 @@ export const database = () => {
 						const data = doc.data();
 						//既にアカウントが存在する
 						if (loginText !== null && data !== undefined) {
-							loginText.innerHTML = `ようこそ、${data.name}さん`;
+							loginText.innerHTML = `${data.name}さん`;
 						}
 
 						console.log('データの取得に成功しました');
@@ -154,7 +154,7 @@ export const database = () => {
 										)
 										.then(() => {
 											alert('スコアを投稿しました');
-											const loginText_inner = `ようこそ、${inputUserName.value}さん`;
+											const loginText_inner = `${inputUserName.value}さん`;
 											inputUserName.value = '';
 											if (loginText !== null) {
 												loginText.innerHTML = loginText_inner;
