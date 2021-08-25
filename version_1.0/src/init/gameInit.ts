@@ -18,7 +18,7 @@ import { makeStars } from '../classes/instance/makeStars';
 
 export const gameInit = () => {
 	// Starクラスのインスタンスを作成
-	makeStars(star, star_max);
+	// makeStars(star, star_max);
 	let healCount = 2;
 	const tenSeconds = 60;
 	// ゲームループ

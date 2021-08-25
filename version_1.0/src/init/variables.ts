@@ -41,7 +41,7 @@ export const vcanvas = document.createElement('canvas');
 export const vctx = vcanvas.getContext('2d');
 
 //星の数
-export const star_max = 300;
+export const star_max = 20;
 
 //自機の情報
 export const player = new Player();
