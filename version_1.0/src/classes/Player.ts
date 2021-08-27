@@ -77,8 +77,10 @@ class Player {
 			this.x,
 			this.y,
 		);
+
+		const injection = 9;
 		drawSprite(
-			9 + (this.anime >> playerSpriteCenter),
+			injection + (this.anime >> playerSpriteCenter),
 			this.x,
 			this.y + (24 << 8),
 		);
