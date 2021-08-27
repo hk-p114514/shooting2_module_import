@@ -1,5 +1,6 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
+import { DEBUG } from '../../main';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { finishRound } from '../system/finishRound';
@@ -7,8 +8,8 @@ import { increaseWave } from './increaseWave';
 import { levelUp } from './levelUp';
 
 const tenSeconds = 60;
-const oneWave = 30;
 const debugTime = 5;
+const oneWave: number = DEBUG ? 30 : debugTime;
 
 const lvl1Waves: Function[] = [
 	// 0
@@ -18,7 +19,7 @@ const lvl1Waves: Function[] = [
 			enemy.push(makeEnemy(0, []));
 		}
 		// 3０秒経過したらウェーブを１段階上げる
-		increaseWave(debugTime);
+		increaseWave(oneWave);
 	},
 
 	// 1
@@ -28,7 +29,7 @@ const lvl1Waves: Function[] = [
 			enemy.push(makeEnemy(1, []));
 		}
 		// ２０秒経過したらウェーブを１段階上げる
-		increaseWave(debugTime);
+		increaseWave(oneWave);
 	},
 
 	// 2
@@ -47,13 +48,12 @@ const lvl1Waves: Function[] = [
 			vars.healCount = 1;
 		}
 		// 30秒経過したらウェーブを１段階上げる
-		increaseWave(debugTime);
+		increaseWave(oneWave);
 	},
 
 	// 3
 	(): void => {
 		//  ボスキャラ出現
-		vars.gameCount++;
 		if (vars.gameCount === tenSeconds * 5) {
 			enemy.push(makeEnemy(2, [, , , 200]));
 			vars.bossEncounter = true;
@@ -65,20 +65,15 @@ const lvl1Waves: Function[] = [
 			item.push(makeItem(0));
 			vars.healCount--;
 		}
-		// 敵がいなくなったらループ or ゲームクリア <
+		// 敵がいなくなったらループ or ゲームクリア
 		if (enemy.length === 0 && vars.gameCount > tenSeconds * 6) {
 			//  8秒程度経過 && 最終ラウンドまでクリアしたらゲームクリアを表示する
-			setTimeout(() => {
-				levelUp();
-
-				if (vars.gameRound >= vars.maxRound) {
-					vars.gameClear = true;
-					finishRound(vars.callData);
-					vars.callData = 1;
-				}
-			}, 8000);
+			// setTimeout(() => {
+			levelUp();
+			return;
+			// }, 8000);
 		}
 	},
 ];
 
-export { lvl1Waves };
+export { lvl1Waves, tenSeconds, oneWave, debugTime };

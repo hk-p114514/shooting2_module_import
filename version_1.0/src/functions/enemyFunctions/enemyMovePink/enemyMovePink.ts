@@ -1,10 +1,15 @@
 //ピンクのヒヨコの行動パターン ####################################################
 import { Enemy } from '../../../classes/Enemy';
-import { player, vars } from '../../../init/variables';
+import { vars } from '../../../init/variables';
 import { lvl1 } from '../enemyMovePink/lvl1';
+import { lvl2 } from './lvl2';
 
-export const enemyMovePink = (object: Enemy) => {
-	if (vars.gameRound == 0) {
-		lvl1(object);
+export const enemyMovePink = (enemy: Enemy) => {
+	switch (vars.gameRound) {
+		case 0:
+			lvl1(enemy);
+			break;
+		case 1:
+			lvl2(enemy);
 	}
 };

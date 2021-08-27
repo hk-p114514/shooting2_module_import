@@ -8,7 +8,7 @@ import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveBoss/
 import { isAttacked } from '../functions/isAttacked';
 
 class Enemy extends Character {
-	eNum: number;
+	enemyNumber: number;
 	r: number;
 	maxHp: number;
 	hp: number;
@@ -17,13 +17,13 @@ class Enemy extends Character {
 	direction: number;
 	directionGap: number;
 	reload: number;
-	constructor(enemy: number, x: number, y: number, vx: number, vy: number) {
+	constructor(id: number, x: number, y: number, vx: number, vy: number) {
 		super(0, x, y, vx, vy);
-		this.eNum = enemyMaster[enemy].enemyNumber;
-		this.r = enemyMaster[enemy].r;
-		this.maxHp = enemyMaster[enemy].hp;
+		this.enemyNumber = enemyMaster[id].enemyNumber;
+		this.r = enemyMaster[id].r;
+		this.maxHp = enemyMaster[id].hp;
+		this.score = enemyMaster[id].score;
 		this.hp = this.maxHp;
-		this.score = enemyMaster[enemy].score;
 		this.flag = false; //trueになると攻撃する
 
 		//弾の発射角度
@@ -42,7 +42,7 @@ class Enemy extends Character {
 		}
 
 		//個別のアップデート
-		enemyFunctions[this.eNum](this);
+		enemyFunctions[this.enemyNumber](this);
 
 		//当たり判定
 		if (

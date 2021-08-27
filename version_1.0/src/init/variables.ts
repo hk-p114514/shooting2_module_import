@@ -155,11 +155,11 @@ export const vars = {
 	// ラウンドの最大数
 	maxRound: 2,
 
+	// レベルアップフラグ
+	isLevelUp: false,
+
 	//背景の星の速度
 	starSpeed: 100,
-
-	//要求する星の速度
-	starRequest: 100,
 
 	// 回復アイテムの出現回数
 	healCount: 2,

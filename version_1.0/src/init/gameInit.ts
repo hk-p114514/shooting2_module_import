@@ -10,19 +10,11 @@ export const gameInit = () => {
 	// makeStars(star, star_max);
 	// ゲームループ
 	const gameLoop = (): void => {
-		if (!(vars.gameClear || vars.gameOver)) {
-			// 段階に分けて、要求する速度を上げて行く（段々速くなる）
-			if (vars.starRequest > vars.starSpeed) {
-				vars.starSpeed++;
-			} else if (vars.starRequest < vars.starSpeed) {
-				vars.starRequest--;
-			}
-
-			if (vars.gameStart) {
-				vars.gameTimer++;
-				vars.gameCount++;
-				waves[vars.gameRound][vars.gameWave]();
-			}
+		if (!(vars.gameClear || vars.gameOver) && vars.gameStart) {
+			console.log(`waves[${vars.gameRound}][${vars.gameWave}]`);
+			waves[vars.gameRound][vars.gameWave]();
+			vars.gameTimer++;
+			vars.gameCount++;
 		}
 		updateAll();
 		drawAll();

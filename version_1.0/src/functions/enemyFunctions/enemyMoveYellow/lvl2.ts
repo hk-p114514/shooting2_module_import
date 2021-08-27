@@ -2,7 +2,7 @@ import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
 import { enemyBullet } from '../enemyBullet';
 
-export const lvl1 = (object: Enemy) => {
+const lvl2 = (object: Enemy) => {
 	if (!object.flag) {
 		if (player.x > object.x && object.vx < 300) {
 			object.accelerationX(30);
@@ -29,3 +29,5 @@ export const lvl1 = (object: Enemy) => {
 	const ptn = [33, 34, 33, 35];
 	object.snum = ptn[(object.count >> 3) & 3];
 };
+
+export { lvl2 };
