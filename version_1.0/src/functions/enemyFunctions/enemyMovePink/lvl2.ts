@@ -3,7 +3,7 @@ import { player } from '../../../init/variables';
 import { rand } from '../../random';
 import { enemyBullet } from '../enemyBullet';
 
-export const lvl1 = (object: Enemy) => {
+const lvl2 = (object: Enemy): void => {
 	if (!object.flag) {
 		//一度攻撃する前の処理
 		if (object.x < player.x && object.vx < 120) {
@@ -47,3 +47,5 @@ export const lvl1 = (object: Enemy) => {
 	// const ptn = [78, 78, 78, 78];
 	object.snum = ptn[(object.count >> 3) & 3];
 };
+
+export { lvl2 };

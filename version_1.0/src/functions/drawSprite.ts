@@ -7,7 +7,7 @@ export const drawSprite = (
 	snum: number,
 	x: number,
 	y: number,
-	other?: number
+	other?: number,
 ) => {
 	let sx = sprite[snum].x;
 	let sy = sprite[snum].y;

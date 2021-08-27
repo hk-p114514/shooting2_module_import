@@ -29,9 +29,8 @@ export const lvl1 = (enemy: Enemy) => {
 		enemy.accelerationY(-30);
 	}
 
-	//スプライトの変更
-	//スプライトのパターン（アニメーションを表現）
+	// スプライトの変更
+	// スプライトのパターン（アニメーションを表現）
 	const ptn = [39, 40, 39, 41];
-	// const ptn = [78, 78, 78, 78];
 	enemy.snum = ptn[(enemy.count >> 3) & 3];
 };
