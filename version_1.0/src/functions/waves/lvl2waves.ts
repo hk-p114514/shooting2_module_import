@@ -1,11 +1,11 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
+import { oneWave, tenSeconds } from '../../main';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { finishRound } from '../system/finishRound';
 import { increaseWave } from './increaseWave';
 import { levelUp } from './levelUp';
-import { oneWave, tenSeconds } from './lvl1Waves';
 
 const lvl2Waves: Function[] = [
 	// 0

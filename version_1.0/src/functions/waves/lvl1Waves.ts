@@ -1,15 +1,10 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
-import { DEBUG } from '../../main';
+import { DEBUG, oneWave, tenSeconds } from '../../main';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
-import { finishRound } from '../system/finishRound';
 import { increaseWave } from './increaseWave';
 import { levelUp } from './levelUp';
-
-const tenSeconds = 60;
-const debugTime = 5;
-const oneWave: number = DEBUG ? 30 : debugTime;
 
 const lvl1Waves: Function[] = [
 	// 0
@@ -65,15 +60,14 @@ const lvl1Waves: Function[] = [
 			item.push(makeItem(0));
 			vars.healCount--;
 		}
+
 		// 敵がいなくなったらループ or ゲームクリア
 		if (enemy.length === 0 && vars.gameCount > tenSeconds * 6) {
 			//  8秒程度経過 && 最終ラウンドまでクリアしたらゲームクリアを表示する
-			// setTimeout(() => {
 			levelUp();
 			return;
-			// }, 8000);
 		}
 	},
 ];
 
-export { lvl1Waves, tenSeconds, oneWave, debugTime };
+export { lvl1Waves };

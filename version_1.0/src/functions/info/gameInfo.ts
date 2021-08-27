@@ -11,6 +11,7 @@ import {
 import { DEBUG } from '../../main';
 import { beforeStart } from './beforeStart';
 import { countDown } from './countDown';
+import { gameClear } from './gameClear';
 import { gameOver } from './gameOver';
 import { printInfo } from './printInfo';
 import { printSpecialBar } from './printSpecialBar';
@@ -28,39 +29,9 @@ const information = () => {
 		} else if (!vars.gameStart) {
 			countDown(ctx, fontFamily, screen_w, screen_h);
 		} else if (vars.gameOver) {
-			gameOver(
-				ctx,
-				fontFamily,
-				defaultColor,
-				screen_w,
-				screen_h,
-				40,
-				vars.score,
-			);
+			gameOver(ctx, fontFamily, defaultColor, screen_w, screen_h, vars.score);
 		} else if (vars.gameClear) {
-			// ========== ゲームクリア時のメッセージ ==========
-
-			ctx.font = `${fontSize}px ${fontFamily}`;
-			ctx.fillStyle = 'Yellow';
-
-			const message1 = 'GAME CLEAR';
-			const x = canvas_w / 8;
-			let y = canvas_h / 4;
-
-			ctx.fillText(message1, x, y);
-			ctx.font = `15px ${fontFamily}`;
-			ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-
-			y += fontSize;
-			const time = (vars.gameTimer / 60).toFixed(1);
-			const heightGap = 20;
-			const data: string[] = [
-				`TIME  : ${time} s`,
-				`SCORE : ${vars.score}`,
-				`HP  : ${player.hp}`,
-			];
-
-			printInfo(data, x, y, heightGap, ctx);
+			gameClear(ctx, fontSize, fontFamily);
 		} else {
 			// ゲームプレイ中のメインとなる処理
 			vars.drawCount++;

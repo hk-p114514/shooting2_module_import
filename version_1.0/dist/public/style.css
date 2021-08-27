@@ -94,7 +94,7 @@ main {
 	background-color: black;
 	outline: none;
 	border: 2px solid yellow;
-	width: 90%;
+	width: 80%;
 	line-height: 1.5em;
 	text-align: center;
 	border-radius: 30px;
@@ -104,8 +104,8 @@ main {
 
 #userName:focus {
 	border: 2px solid rgba(59, 168, 241, 0.8);
-	width: 20em;
 	padding: 0.7em 0;
+	width: 90%;
 	background-color: white;
 	color: black;
 }

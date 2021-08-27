@@ -13,12 +13,16 @@ import {
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
 if (DEBUG) {
 	player.hp = 500;
 	player.power = 50;
 }
+
+const tenSeconds = 60;
+const debugTime = 1;
+const oneWave = DEBUG ? debugTime : 30;
 
 // キーを操作したとき
 keyControl();
@@ -62,4 +66,4 @@ vcanvas.height = canvas_h;
 //オンロード時にゲームを開始
 window.onload = gameStart;
 
-export { DEBUG };
+export { DEBUG, tenSeconds, debugTime, oneWave };

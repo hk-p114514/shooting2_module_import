@@ -6,7 +6,6 @@ const gameOver = (
 	color: string,
 	screen_w: number,
 	screen_h: number,
-	heightGap: number,
 	score: number,
 ) => {
 	// ========== ゲームオーバー時のメッセージ ==========
@@ -25,15 +24,19 @@ const gameOver = (
 	const data = [message1, message2, message3];
 
 	data.forEach((info, i) => {
-		if (i == 1) {
+		if (i === 1) {
 			ctx.fillStyle = color;
 		} else {
 			ctx.fillStyle = '';
 		}
-		const width = ctx.measureText(info).width;
+		const measure = ctx.measureText(info);
+		const width = measure.width;
 		const x = screen_w / 2 - width / 2;
 		ctx.fillText(info, x, y);
-		y += heightGap;
+
+		const height =
+			measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent;
+		y += height * 1.5;
 	});
 };
 
