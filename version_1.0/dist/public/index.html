@@ -10,6 +10,17 @@
 			href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&display=swap"
 			rel="stylesheet"
 		/>
+
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+		/>
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 		<link type="text/css" rel="stylesheet" href="./style.css" />
 		<title>shooting2</title>
 	</head>
@@ -33,10 +44,17 @@
 					<button
 						type="submit"
 						id="logout-button"
-						class="logout-button shadow-button"
+						class="
+							logout-button
+							shadow-button
+							mdl-button mdl-js-button
+							mdl-button--raised
+							mdl-js-ripple-effect
+						"
 					>
 						サインアウト
 					</button>
+
 					<section class="score-container">
 						<p>ようこそ</p>
 						<p id="login-text"></p>
@@ -51,7 +69,12 @@
 							<button
 								type="submit"
 								id="score-submit-button"
-								class="shadow-button"
+								class="
+									shadow-button
+									mdl-button mdl-js-button
+									mdl-button--raised
+									mdl-js-ripple-effect
+								"
 							>
 								スコアを投稿
 							</button>
