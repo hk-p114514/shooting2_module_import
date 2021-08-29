@@ -11,7 +11,6 @@ export const gameInit = () => {
 	// ゲームループ
 	const gameLoop = (): void => {
 		if (!(vars.gameClear || vars.gameOver) && vars.gameStart) {
-			console.log(`waves[${vars.gameRound}][${vars.gameWave}]`);
 			waves[vars.gameRound][vars.gameWave]();
 			vars.gameTimer++;
 			vars.gameCount++;

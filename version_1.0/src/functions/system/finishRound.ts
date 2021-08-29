@@ -1,4 +1,4 @@
-import { database } from '../../database';
+import { database } from './database/database';
 import { canvas } from '../../init/variables';
 import { deleteCanvas } from './deleteCanvas';
 

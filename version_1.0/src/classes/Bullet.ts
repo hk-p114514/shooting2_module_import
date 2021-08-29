@@ -1,5 +1,5 @@
 import { Character } from './Character';
-import { enemy, explosion, player, vars } from '../init/variables';
+import { enemy, explosion, isPlaying, player, vars } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { moreExplosion } from '../functions/moreExplosion';
 import { makeExplosion } from './instance/makeExplosion';
@@ -14,7 +14,7 @@ class Bullet extends Character {
 	update() {
 		super.update();
 		for (let i = 0; i < enemy.length; i++) {
-			if (!enemy[i].kill) {
+			if (!enemy[i].kill && isPlaying) {
 				if (
 					checkHit(this.x, this.y, this.r, enemy[i].x, enemy[i].y, enemy[i].r)
 				) {

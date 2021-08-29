@@ -1,97 +1,78 @@
 //******************************** 移動の処理 ********************************
 import {
-  bullet,
-  ctx,
-  enemy,
-  enemyShot,
-  explosion,
-  field_h,
-  field_w,
-  item,
-  player,
-  screen_h,
-  screen_w,
-  star,
-  vcanvas,
-  vctx,
-  vars,
-} from "../init/variables";
-import { drawObject, updateObject } from "./objectProcess";
-import { drawStars, updateStars } from "./starProcess";
+	bullet,
+	ctx,
+	enemy,
+	enemyShot,
+	explosion,
+	field_h,
+	field_w,
+	item,
+	player,
+	screen_h,
+	screen_w,
+	star,
+	vcanvas,
+	vctx,
+	vars,
+	background,
+} from '../init/variables';
+import { bossInfo } from './enemyFunctions/enemyMoveBoss/bossInfo';
+import { drawObject, updateObject } from './objectProcess';
+import { drawStars, updateStars } from './starProcess';
+import { copyCanvas } from './system/copyCanvas';
 
 const updateAll = () => {
-  updateStars(star);
-  updateObject(item);
-  updateObject(bullet);
-  updateObject(enemyShot);
-  updateObject(enemy);
-  updateObject(explosion);
+	updateStars(star);
+	updateObject(item);
+	updateObject(bullet);
+	updateObject(enemyShot);
+	updateObject(enemy);
+	updateObject(explosion);
 
-  //自機の移動
-  player.update();
+	//自機の移動
+	player.update();
+
+	// 背景の移動
+	background.update();
 };
 
 //******************************** 描画の処理 ********************************
 const drawAll = () => {
-  //呼び出す度にフィールドを黒く塗りつぶす = フィールドをクリアする
-  if (vctx !== null) {
-    vctx.fillStyle = player.damage ? "red" : "black";
-    vctx.fillRect(vars.camera_x - 10, vars.camera_y - 10, field_w, field_h);
-  }
+	const gap = 10;
+	if (vctx) {
+		// ここで背景画像を表示
+		background.draw(vctx);
+		if (player.damage) {
+			vctx.fillStyle = 'rgba(255, 0, 0, 0.7)';
+		} else {
+			vctx.fillStyle = 'rgba(50, 50, 50, 0.2)';
+		}
+		vctx.fillRect(vars.camera_x - gap, vars.camera_y - gap, field_w, field_h);
+	}
 
-  drawStars(star);
+	drawStars(star);
 
-  //ゲームオーバー時に表示を消す
-  if (!vars.gameOver && !vars.gameClear) {
-    drawObject(explosion);
-    drawObject(item);
-    drawObject(enemyShot);
-    drawObject(bullet);
-    player.draw();
-  }
-  drawObject(enemy);
+	//ゲームオーバー時に表示を消す
+	if (!vars.gameOver && !vars.gameClear) {
+		drawObject(explosion);
+		drawObject(item);
+		drawObject(enemyShot);
+		drawObject(bullet);
+		player.draw();
+	}
+	drawObject(enemy);
 
-  //　自機の範囲  0 ~ field_w
-  //カメラの範囲  0 ~ (field_w - screen_w)
+	//　自機の範囲  0 ~ field_w
+	//カメラの範囲  0 ~ (field_w - screen_w)
+	vars.camera_x = ((player.x >> 8) / field_w) * (field_w - screen_w);
+	vars.camera_y = ((player.y >> 8) / field_h) * (field_h - screen_h);
 
-  vars.camera_x = ((player.x >> 8) / field_w) * (field_w - screen_w);
+	// ボス出現時、ボスのHP情報を表示する
+	bossInfo(vctx, gap);
 
-  vars.camera_y = ((player.y >> 8) / field_h) * (field_h - screen_h);
-
-  //ボスのHPを表示
-  if (vars.bossHp > 0) {
-    //HPバーのサイズ
-    let size = ((screen_w - 20) * vars.bossHp) / vars.bossMhp;
-    let maxSize = screen_w - 20;
-
-    if (vctx !== null) {
-      //残りHPを表示
-      vctx.fillStyle = "rgba(255, 0, 0, 0.8)";
-      vctx.fillRect(vars.camera_x + 10, vars.camera_y + 10, size, 10);
-
-      //バーの枠を表示
-      vctx.strokeStyle = "yellow";
-      vctx.strokeRect(vars.camera_x + 10, vars.camera_y + 10, size, 10);
-
-      //最大HPを示す枠
-      vctx.strokeRect(vars.camera_x + 10, vars.camera_y + 10, maxSize, 10);
-    }
-  }
-
-  //仮想画面から実際の画面にコピー
-  if (ctx) {
-    ctx.drawImage(
-      vcanvas,
-      vars.camera_x,
-      vars.camera_y,
-      screen_w,
-      screen_h,
-      0,
-      0,
-      screen_w,
-      screen_h
-    );
-  }
+	// 実際のキャンバスに描画結果をコピーして表示
+	copyCanvas(ctx, vcanvas);
 };
 
 export { updateAll, drawAll };

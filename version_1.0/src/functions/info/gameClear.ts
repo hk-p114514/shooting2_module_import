@@ -21,9 +21,9 @@ const gameClear = (
 	const time = (vars.gameTimer / 60).toFixed(1);
 	const data: string[] = [
 		'GAME CLEAR',
-		`TIME  : ${time} s`,
-		`SCORE : ${vars.score}`,
-		`HP  : ${player.hp}`,
+		`HP   : ${player.hp}`,
+		`SCORE: ${vars.score}`,
+		`TIME : ${time} s`,
 	];
 
 	let y = screen_h / 2;
@@ -33,6 +33,7 @@ const gameClear = (
 			ctx.fillStyle = 'yellow';
 		} else {
 			ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+			ctx.font = `150% ${fontFamily}`;
 		}
 		const measure = ctx.measureText(info);
 		const width = measure.width;

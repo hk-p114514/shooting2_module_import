@@ -136,15 +136,6 @@ class Player {
 			this.playerAttack();
 			this.playerMove();
 			this.useSpecialAttack();
-
-			// プレイヤーのアニメーション変更
-			if (this.anime > 0) {
-				this.anime--;
-			}
-
-			if (this.anime < 0) {
-				this.anime++;
-			}
 		} else {
 			this.gameStart();
 		}
@@ -215,9 +206,12 @@ class Player {
 	};
 
 	private playerMove = (): void => {
+		let isPushed: boolean = false;
+
 		// 左
 		if (key.ArrowLeft) {
 			this.x -= this.speed;
+			isPushed = true;
 			if (this.anime > -8) {
 				this.anime--;
 			}
@@ -226,6 +220,7 @@ class Player {
 		// 右
 		if (key.ArrowRight) {
 			this.x += this.speed;
+			isPushed = true;
 			if (this.anime < 8) {
 				this.anime++;
 			}
@@ -233,11 +228,24 @@ class Player {
 		// 上
 		if (key.ArrowUp) {
 			this.y -= this.speed;
+			isPushed = true;
 		}
 
 		// 下
 		if (key.ArrowDown) {
 			this.y += this.speed;
+			isPushed = true;
+		}
+
+		if (!isPushed) {
+			// プレイヤーのアニメーション変更
+			if (this.anime > 0) {
+				this.anime--;
+			}
+
+			if (this.anime < 0) {
+				this.anime++;
+			}
 		}
 	};
 

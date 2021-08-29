@@ -7,6 +7,7 @@ import { EnemyShot } from '../classes/EnemyShot';
 import { Item } from '../classes/Item';
 import { Star } from '../classes/Star';
 import { Bullet } from '../classes/Bullet';
+import { Background } from '../classes/Background';
 
 // ******************************* 定数 *******************************
 
@@ -45,6 +46,9 @@ export const star_max = 20;
 
 //自機の情報
 export const player = new Player();
+
+// 背景の情報
+export const background = new Background('./images/hamako_double.png');
 
 //アイテムの種類
 export const itemMaster: ItemMaster[] = [new ItemMaster(0, 15, 1)];
@@ -164,3 +168,5 @@ export const vars = {
 	// 回復アイテムの出現回数
 	healCount: 2,
 };
+
+export const isPlaying: boolean = !vars.gameClear || !vars.gameOver;
