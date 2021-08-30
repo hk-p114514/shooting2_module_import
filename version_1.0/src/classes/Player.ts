@@ -5,6 +5,10 @@ import { makeBullet } from './instance/makeBullet';
 class Player {
 	x: number;
 	y: number;
+	vx: number;
+	vy: number;
+	vectorMax: number = 500;
+	brake: number = 250;
 	r: number;
 	damage: number;
 	speed: number;
@@ -23,9 +27,11 @@ class Player {
 	constructor() {
 		this.x = (field_w / 2) << 8;
 		this.y = (field_h - 50) << 8;
+		this.vx = 0;
+		this.vy = 0;
 		this.r = 5;
 		this.damage = 0; // ダメージエフェクトを出すタイミングを知らせる
-		this.speed = 1024; //256で１フレームに１ピクセル動く
+		this.speed = 1; //256で１フレームに１ピクセル動く
 		this.anime = 0;
 		this.reload = 0;
 		this.magazine = 0;
@@ -52,7 +58,7 @@ class Player {
 	}
 
 	//自機の移動
-	update() {
+	update = (): void => {
 		// キャラクターの生存フレームを数える
 		this.count++;
 
@@ -64,10 +70,10 @@ class Player {
 
 		//範囲チェック
 		this.limitRangeOfMovement();
-	}
+	};
 
 	//描画
-	draw = () => {
+	draw = (): void => {
 		if (this.stun && this.count & 1) {
 			return;
 		}
@@ -88,7 +94,7 @@ class Player {
 
 	// 各種値との比較関数
 	// playerの持つ値のほうが大きかった時、trueを返す
-	compareValues(target: 'x' | 'y' | 'r', value: number): boolean {
+	compareValues = (target: 'x' | 'y' | 'r', value: number): boolean => {
 		let playerValue: number = 0;
 		let result: boolean = false;
 
@@ -109,10 +115,10 @@ class Player {
 		}
 
 		return result;
-	}
+	};
 
 	// 移動範囲の判定
-	private limitRangeOfMovement = () => {
+	private limitRangeOfMovement = (): void => {
 		if (this.x <= 1) {
 			this.x = 20;
 		}
@@ -130,7 +136,7 @@ class Player {
 		}
 	};
 
-	private keyOperation = () => {
+	private keyOperation = (): void => {
 		if (vars.isPushedSpace) {
 			this.slowSpeedPlayer();
 			this.playerAttack();
@@ -141,7 +147,7 @@ class Player {
 		}
 	};
 
-	private subtractionOfPlayerValues = () => {
+	private subtractionOfPlayerValues = (): void => {
 		if (this.specialTime) {
 			this.specialTime--;
 		} else {
@@ -162,7 +168,7 @@ class Player {
 		}
 	};
 
-	private useSpecialAttack = () => {
+	private useSpecialAttack = (): void => {
 		if (key.special && !this.special && this.specialMagazine) {
 			//特殊攻撃（広範囲弾）は１５秒まで
 			this.special = true;
@@ -171,28 +177,31 @@ class Player {
 		}
 	};
 
-	private slowSpeedPlayer = () => {
+	private slowSpeedPlayer = (): void => {
+		const onePixel = 256;
+		const fourPixel = onePixel * 4;
 		// shift
 		if (key.shift) {
-			this.speed = 256;
-		} else if (this.speed !== 1024) {
-			this.speed = 1024;
+			this.speed = onePixel;
+		} else if (this.speed !== fourPixel) {
+			this.speed = fourPixel;
 		}
 	};
 
-	private playerAttack = () => {
+	private playerAttack = (): void => {
 		// space
+		const bulletSpeed = -2000;
 		if (key.space && this.reload === 0) {
-			bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, -2000));
-			bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, -2000));
+			bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, bulletSpeed));
+			bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, bulletSpeed));
 
 			if (this.special) {
 				//斜めに発射
-				bullet.push(makeBullet(this.x, this.y, 500, -1900));
-				bullet.push(makeBullet(this.x, this.y, -500, -1900));
+				bullet.push(makeBullet(this.x, this.y, 500, bulletSpeed + 100));
+				bullet.push(makeBullet(this.x, this.y, -500, bulletSpeed + 100));
 
-				bullet.push(makeBullet(this.x, this.y, 200, -2000));
-				bullet.push(makeBullet(this.x, this.y, -200, -2000));
+				bullet.push(makeBullet(this.x, this.y, 200, bulletSpeed));
+				bullet.push(makeBullet(this.x, this.y, -200, bulletSpeed));
 			}
 
 			//60で約１秒間に一回発射できる
@@ -210,42 +219,70 @@ class Player {
 
 		// 左
 		if (key.ArrowLeft) {
-			this.x -= this.speed;
-			isPushed = true;
-			if (this.anime > -8) {
-				this.anime--;
+			if (this.vx > -this.vectorMax) {
+				this.vx -= this.speed;
 			}
+			isPushed = true;
+			this.changeAnime(-8, -1, '>');
 		}
 
 		// 右
 		if (key.ArrowRight) {
-			this.x += this.speed;
-			isPushed = true;
-			if (this.anime < 8) {
-				this.anime++;
+			if (this.vx < this.vectorMax) {
+				this.vx += this.speed;
 			}
+			isPushed = true;
+			this.changeAnime(8, 1, '<');
 		}
+
 		// 上
 		if (key.ArrowUp) {
-			this.y -= this.speed;
+			if (this.vy > -this.vectorMax) {
+				this.vy -= this.speed;
+			}
 			isPushed = true;
 		}
 
 		// 下
 		if (key.ArrowDown) {
-			this.y += this.speed;
+			if (this.vy < this.vectorMax) {
+				this.vy += this.speed;
+			}
 			isPushed = true;
 		}
 
 		if (!isPushed) {
-			// プレイヤーのアニメーション変更
-			if (this.anime > 0) {
-				this.anime--;
-			}
+			this.unPushedKey();
+		}
 
-			if (this.anime < 0) {
-				this.anime++;
-			}
+		this.x += this.vx;
+		this.y += this.vy;
+		console.log(`vx : ${this.vx}, vy : ${this.vy}`);
+	};
+
+	private unPushedKey = (): void => {
+		// プレイヤーのアニメーション変更
+		if (this.anime > 0) {
+			this.anime--;
+		} else if (this.anime < 0) {
+			this.anime++;
+		}
+
+		// キーを押していないときは、ベクトル量を0に近付ける
+		this.brakePlayer();
+	};
+
+	private brakePlayer = (): void => {};
+
+	private changeAnime = (
+		border: number,
+		change: number,
+		unequalSign: '>' | '<',
+	): void => {
+		if (this.anime > border && unequalSign === '>') {
+			this.anime += change;
+		} else if (this.anime < border && unequalSign === '<') {
+			this.anime += change;
 		}
 	};
 

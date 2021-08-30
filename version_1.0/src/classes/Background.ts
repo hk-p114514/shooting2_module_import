@@ -25,7 +25,7 @@ class Background {
 			width,
 			height,
 		);
-		console.log(`this.y : ${this.y}`);
+		// console.log(`this.y : ${this.y}`);
 	}
 
 	update() {
