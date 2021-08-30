@@ -8,6 +8,7 @@
 		"msimage",
 		"snum",
 		"snumptime",
+		"vcanvas",
 		"vctx"
 	]
 }
