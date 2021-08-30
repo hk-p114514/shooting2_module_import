@@ -17,6 +17,7 @@ const DEBUG: boolean = true;
 
 if (DEBUG) {
 	player.hp = 500;
+	// player.hp = 0;
 	player.power = 50;
 }
 
