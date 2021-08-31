@@ -5,10 +5,12 @@ class Background {
 	private width: number = canvas_w;
 	private height: number = canvas_h;
 	private x: number = this.image.width / 2;
-	private y: number = this.image.height;
+	private y: number = -screen_h;
 	private count: number = 0;
+
 	constructor(src: string) {
 		this.image.setAttribute('src', src);
+		console.log(`this.image.height : ${this.image.height}`);
 	}
 
 	draw(ctx: CanvasRenderingContext2D) {
@@ -16,24 +18,24 @@ class Background {
 		const height = this.height;
 		ctx.drawImage(
 			this.image,
+			0,
+			0,
+			width,
+			height,
 			this.x,
 			this.y,
 			width,
 			height,
-			0,
-			0,
-			width,
-			height,
 		);
-		// console.log(`this.y : ${this.y}`);
 	}
 
 	update() {
 		this.count++;
 
+		console.log(`y : ${this.y}`);
 		if (this.count % 5 === 0) {
 			this.count = 0;
-			this.y--;
+			this.y++;
 		}
 	}
 }

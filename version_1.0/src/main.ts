@@ -47,6 +47,7 @@ const jumpUrl = [
 	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html',
 	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html',
 ];
+
 //右クリック禁止
 if (!DEBUG) {
 	document.oncontextmenu = () => {
