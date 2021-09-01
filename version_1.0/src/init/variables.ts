@@ -48,7 +48,10 @@ export const star_max = 20;
 export const player = new Player();
 
 // 背景の情報
-export const background = new Background('./images/hamako.png');
+export const background = new Background(
+	'./images/hamako_bottom.png',
+	'./images/hamako_top.png',
+);
 
 //アイテムの種類
 export const itemMaster: ItemMaster[] = [new ItemMaster(0, 15, 1)];
