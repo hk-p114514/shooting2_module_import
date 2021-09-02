@@ -3,3 +3,4 @@ version_1.0/yarn.lock
 version_1.0/yarn-error.log
 .DS_Store
 version_1.0/dist/public/.DS_Store
+.DS_Store

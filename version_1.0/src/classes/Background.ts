@@ -1,12 +1,13 @@
 import { canvas_h, canvas_w, screen_h, screen_w } from '../init/variables';
 
+type Point = { x: number; y: number };
+
 class Background {
 	private imageBottom = new Image();
 	private imageTop = new Image();
 	private width: number = canvas_w;
 	private height: number = canvas_w + screen_h;
-	private x: number = this.imageBottom.width / 2;
-	private y: number = canvas_h;
+	private bottom: Point = { x: this.imageBottom.width / 2, y: 0 };
 	private count: number = 0;
 
 	constructor(srcBottom: string, srcTop: string) {
@@ -19,8 +20,8 @@ class Background {
 		const height = this.height;
 		ctx.drawImage(
 			this.imageBottom,
-			this.x,
-			this.y,
+			this.bottom.x,
+			this.bottom.y,
 			width,
 			height,
 			0,
@@ -33,17 +34,16 @@ class Background {
 	update() {
 		this.count++;
 
-		console.log(`y : ${this.y}`);
+		console.log(`y : ${this.bottom.y}`);
+		this.scroll(this.bottom);
+	}
+
+	scroll = (img: Point) => {
 		if (this.count % 5 === 0) {
 			this.count = 0;
-			this.y--;
+			img.y--;
 		}
-
-		if (this.y >= canvas_h) {
-			this.y = 0;
-		}
-		console.log(`y : ${this.y}`);
-	}
+	};
 }
 
 export { Background };
