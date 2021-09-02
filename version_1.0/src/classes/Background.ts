@@ -4,15 +4,14 @@ class Background {
 	private imageBottom = new Image();
 	private imageTop = new Image();
 	private width: number = canvas_w;
-	private height: number = canvas_h;
+	private height: number = canvas_w + screen_h;
 	private x: number = this.imageBottom.width / 2;
-	private y: number = -screen_h;
+	private y: number = canvas_h - screen_h;
 	private count: number = 0;
 
 	constructor(srcBottom: string, srcTop: string) {
 		this.imageBottom.setAttribute('src', srcBottom);
 		this.imageTop.setAttribute('src', srcTop);
-		console.log(`this.image.height : ${this.imageBottom.height}`);
 	}
 
 	draw(ctx: CanvasRenderingContext2D) {
@@ -20,12 +19,12 @@ class Background {
 		const height = this.height;
 		ctx.drawImage(
 			this.imageBottom,
-			0,
-			0,
-			width,
-			height,
 			this.x,
 			this.y,
+			width,
+			height,
+			0,
+			0,
 			width,
 			height,
 		);
@@ -37,8 +36,9 @@ class Background {
 		console.log(`y : ${this.y}`);
 		if (this.count % 5 === 0) {
 			this.count = 0;
-			this.y++;
+			this.y--;
 		}
+		console.log(`y : ${this.y}`);
 	}
 }
 
