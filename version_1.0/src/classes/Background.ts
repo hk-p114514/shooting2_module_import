@@ -6,7 +6,7 @@ class Background {
 	private width: number = canvas_w;
 	private height: number = canvas_w + screen_h;
 	private x: number = this.imageBottom.width / 2;
-	private y: number = canvas_h - screen_h;
+	private y: number = canvas_h;
 	private count: number = 0;
 
 	constructor(srcBottom: string, srcTop: string) {
@@ -37,6 +37,10 @@ class Background {
 		if (this.count % 5 === 0) {
 			this.count = 0;
 			this.y--;
+		}
+
+		if (this.y >= canvas_h) {
+			this.y = 0;
 		}
 		console.log(`y : ${this.y}`);
 	}
