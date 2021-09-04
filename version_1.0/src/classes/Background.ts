@@ -12,13 +12,12 @@ type Point = { x: number; y: number; sx: number; sy: number; height: number };
 class Background {
 	private imageBottom = new Image();
 	private imageTop = new Image();
-	private count: number = 0;
 
-	private bottomStart = { x: this.imageBottom.width / 2, y: 0 };
 	private topStart = {
-		x: this.imageTop.width / 2,
+		x: 0,
 		y: -(screen_h + field_increase * 2),
 	};
+	private bottomStart = { x: 0, y: 0 };
 
 	private bottom: Point = {
 		...this.bottomStart,
@@ -44,11 +43,8 @@ class Background {
 	}
 
 	update() {
-		this.count++;
-
 		this.scroll(this.bottom);
 		this.scroll(this.top);
-		// console.log(`top     : ${this.top.y}\n`, `bottom : ${this.bottom.y}\n`);
 	}
 
 	drawBg = (
@@ -71,10 +67,7 @@ class Background {
 	};
 
 	scroll = (img: Point) => {
-		// if (this.count % 5 === 0) {
-		this.count = 0;
 		img.y++;
-		// }
 
 		if (img.y > field_h) {
 			img.y = -(screen_h + field_increase * 2);
