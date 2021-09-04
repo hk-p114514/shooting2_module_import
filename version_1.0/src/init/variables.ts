@@ -30,8 +30,9 @@ export const canvas_w = screen_w * 2;
 export const canvas_h = screen_h * 2;
 
 //フィールドのサイズ
-export const field_w = screen_w + 120;
-export const field_h = screen_h + 120;
+export const field_increase = 120;
+export const field_w = screen_w + field_increase;
+export const field_h = screen_h + field_increase;
 
 //キャンバス
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;

@@ -2,26 +2,35 @@ import {
 	canvas_h,
 	canvas_w,
 	field_h,
-	player,
+	field_increase,
 	screen_h,
 	screen_w,
 } from '../init/variables';
 
-type Point = { x: number; y: number };
+type Point = { x: number; y: number; sx: number; sy: number; height: number };
 
 class Background {
 	private imageBottom = new Image();
 	private imageTop = new Image();
 	private count: number = 0;
 
-	private bottom: Point = {
-		x: this.imageBottom.width / 2,
-		y: 0,
+	private bottomStart = { x: this.imageBottom.width / 2, y: 0 };
+	private topStart = {
+		x: this.imageTop.width / 2,
+		y: -(screen_h + field_increase * 2),
 	};
 
+	private bottom: Point = {
+		...this.bottomStart,
+		sx: this.bottomStart.x,
+		sy: this.bottomStart.y,
+		height: this.imageBottom.height,
+	};
 	private top: Point = {
-		x: this.imageTop.width / 2,
-		y: -screen_h,
+		...this.topStart,
+		sx: this.topStart.x,
+		sy: this.topStart.y,
+		height: this.imageTop.height,
 	};
 
 	constructor(srcBottom: string, srcTop: string) {
@@ -39,6 +48,7 @@ class Background {
 
 		this.scroll(this.bottom);
 		this.scroll(this.top);
+		// console.log(`top     : ${this.top.y}\n`, `bottom : ${this.bottom.y}\n`);
 	}
 
 	drawBg = (
@@ -66,8 +76,8 @@ class Background {
 		img.y++;
 		// }
 
-		if (img.y > canvas_h) {
-			img.y = screen_h;
+		if (img.y > field_h) {
+			img.y = -(screen_h + field_increase * 2);
 		}
 	};
 }
