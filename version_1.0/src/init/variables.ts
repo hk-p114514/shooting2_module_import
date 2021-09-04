@@ -117,7 +117,7 @@ export const vars = {
 	lastTime: Date.now(),
 
 	//ゲームスタートのためにユーザがスペースを押したかどうかを感知する
-	isPushedSpace: false,
+	afterPushedSpace: false,
 
 	//ゲームスタートフラグ
 	gameStart: false,
