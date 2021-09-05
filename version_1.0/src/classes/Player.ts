@@ -91,22 +91,12 @@ class Player {
 		// キー操作を伴う処理
 		this.keyOperation();
 
+		this.slowSpeed();
+
 		//範囲チェック
 		this.limitRangeOfMovement();
 
-		// 実際の数値変更
-
-		if (this.vx > 0) {
-			this.x += key.shift ? onePixel : this.vx;
-		} else {
-			this.x += key.shift ? -onePixel : this.vx;
-		}
-
-		if (this.vy > 0) {
-			this.y += key.shift ? onePixel : this.vy;
-		} else {
-			this.y += key.shift ? -onePixel : this.vy;
-		}
+		console.log(`vx : ${this.vx}\nvy : ${this.vy}`);
 	};
 
 	private keyOperation = (): void => {
@@ -152,24 +142,66 @@ class Player {
 
 		if (!isPushed) {
 			this.unPushedKey();
-		}
+		} else {
+			if (Math.abs(vx) <= this.vectorMax * onePixel) {
+				this.vx = vx;
+			}
 
-		if (Math.abs(vx) <= this.vectorMax * onePixel) {
-			this.vx = vx;
-		}
-
-		if (Math.abs(vy) <= this.vectorMax * onePixel) {
-			this.vy = vy;
+			if (Math.abs(vy) <= this.vectorMax * onePixel) {
+				this.vy = vy;
+			}
 		}
 	};
 
-	private brakePlayer = (): void => {};
+	private airResistance = (): void => {
+		const resistance = 10;
+		this.vx = this.calcResistance(resistance, this.vx);
+		this.vy = this.calcResistance(resistance, this.vy);
+	};
 
-	/***********************************************************************
-	 *																	   *
-	// ============================== SYSTEMS ==============================
-	 *																	   *
+	private slowSpeed = (): void => {
+		if (key.shift) {
+			/*
+				シフトキーを押していたら、
+				_速度を遅くする
+				_ベクトル量を0に戻す
+			*/
+			let slowSpeedX: number = this.vx ? onePixel : 0;
+			let slowSpeedY: number = this.vy ? onePixel : 0;
+			if (this.vx < 0) {
+				slowSpeedX = -slowSpeedX;
+			}
+			if (this.vy < 0) {
+				slowSpeedY = -slowSpeedY;
+			}
+			this.x += slowSpeedX;
+			this.y += slowSpeedY;
+			console.log('SHIFT');
+			this.vx = 0;
+			this.vy = 0;
+		} else {
+			this.x += this.vx;
+			this.y += this.vy;
+		}
+	};
+
 	/***********************************************************************/
+	// ============================== SYSTEMS ==============================
+	/***********************************************************************/
+
+	private calcResistance = (resistance: number, vector: number): number => {
+		if (Math.abs(vector) >= resistance) {
+			if (vector > 0) {
+				vector -= resistance;
+			} else if (vector < 0) {
+				vector += resistance;
+			}
+		} else {
+			vector = 0;
+		}
+
+		return vector;
+	};
 
 	private useSpecialAttack = (): void => {
 		if (key.special && !this.special && this.specialMagazine) {
@@ -236,7 +268,7 @@ class Player {
 		}
 
 		// キーを押していないときは、ベクトル量を0に近付ける
-		this.brakePlayer();
+		this.airResistance();
 	};
 
 	private changeAnime = (
@@ -256,18 +288,7 @@ class Player {
 	compareValues = (target: 'x' | 'y' | 'r', value: number): boolean => {
 		let playerValue: number = 0;
 		let result: boolean = false;
-
-		switch (target) {
-			case 'x':
-				playerValue = player.x;
-				break;
-			case 'y':
-				playerValue = player.y;
-				break;
-			case 'r':
-				playerValue = player.r;
-				break;
-		}
+		playerValue = this[target];
 
 		if (playerValue > value) {
 			result = true;

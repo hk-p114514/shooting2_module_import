@@ -4,7 +4,6 @@ import { gameOver } from './system/gameOver';
 export const isAttacked = () => {
 	if (player.hp > 0) {
 		player.hp -= 1;
-		console.log('HIT !!!');
 		player.stun = 60;
 		player.damage = 10;
 	} else {
