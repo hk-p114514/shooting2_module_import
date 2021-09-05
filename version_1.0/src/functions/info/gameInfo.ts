@@ -24,7 +24,7 @@ const information = () => {
 		ctx.fillStyle = defaultColor;
 		const fontSize = 30;
 
-		if (!vars.isPushedSpace) {
+		if (!vars.afterPushedSpace) {
 			beforeStart(ctx, fontFamily, 40, screen_w, screen_h);
 		} else if (!vars.gameStart) {
 			countDown(ctx, fontFamily, screen_w, screen_h);

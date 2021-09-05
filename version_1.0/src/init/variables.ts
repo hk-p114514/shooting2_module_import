@@ -30,8 +30,9 @@ export const canvas_w = screen_w * 2;
 export const canvas_h = screen_h * 2;
 
 //フィールドのサイズ
-export const field_w = screen_w + 120;
-export const field_h = screen_h + 120;
+export const field_increase = 120;
+export const field_w = screen_w + field_increase;
+export const field_h = screen_h + field_increase;
 
 //キャンバス
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -48,7 +49,10 @@ export const star_max = 20;
 export const player = new Player();
 
 // 背景の情報
-export const background = new Background('./images/hamako_double.png');
+export const background = new Background(
+	'./images/hamako_bottom.png',
+	'./images/hamako_top.png',
+);
 
 //アイテムの種類
 export const itemMaster: ItemMaster[] = [new ItemMaster(0, 15, 1)];
@@ -113,7 +117,7 @@ export const vars = {
 	lastTime: Date.now(),
 
 	//ゲームスタートのためにユーザがスペースを押したかどうかを感知する
-	isPushedSpace: false,
+	afterPushedSpace: false,
 
 	//ゲームスタートフラグ
 	gameStart: false,

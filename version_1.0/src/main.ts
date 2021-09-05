@@ -13,10 +13,11 @@ import {
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
 if (DEBUG) {
 	player.hp = 500;
+	// player.hp = 0;
 	player.power = 50;
 }
 
@@ -46,6 +47,7 @@ const jumpUrl = [
 	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/netarisu_ranking/main/index.html',
 	'https://student.hamako-ths.ed.jp/~ei2030/games/tetorisu/speedUp_tetorisu/index.html',
 ];
+
 //右クリック禁止
 if (!DEBUG) {
 	document.oncontextmenu = () => {

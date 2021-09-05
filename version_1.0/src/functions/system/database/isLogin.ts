@@ -1,5 +1,6 @@
 import { db, firebase, auth } from '../../../config';
 import { player, scoreSubmit, vars } from '../../../init/variables';
+import { checkState } from './checkState';
 
 const login = (isLogin: HTMLElement, user: firebase.User) => {
 	const isLogout = document.getElementById('isLogout');
@@ -13,7 +14,6 @@ const login = (isLogin: HTMLElement, user: firebase.User) => {
 	}
 
 	const docUser = db.collection('profiles').doc(`${auth?.currentUser?.uid}`);
-
 	const inputUserName = document.getElementById('userName') as HTMLInputElement;
 	const loginText = document.getElementById('login-text');
 	docUser
@@ -57,7 +57,7 @@ const login = (isLogin: HTMLElement, user: firebase.User) => {
 					});
 
 				//スコアの投稿処理
-				if (scoreSubmit) {
+				if (scoreSubmit && checkState()) {
 					scoreSubmit.addEventListener('submit', () => {
 						if (player.hp > oldLife) {
 							docUser
@@ -117,6 +117,9 @@ const login = (isLogin: HTMLElement, user: firebase.User) => {
 								});
 						}
 					});
+				} else {
+					alert('通信時にエラーが発生しました');
+					location.reload();
 				}
 			} else {
 				//アカウントのデータが存在しない
