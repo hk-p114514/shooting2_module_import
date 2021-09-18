@@ -3,7 +3,6 @@ import { drawSprite } from '../functions/drawSprite';
 import { makeBullet } from './instance/makeBullet';
 
 const onePixel = 256;
-const fourPixel = onePixel * 4;
 
 class Player {
 	x: number;
@@ -186,7 +185,7 @@ class Player {
 	};
 
 	/***********************************************************************/
-	// ============================== SYSTEMS ==============================
+	//                                SYSTEMS                              //
 	/***********************************************************************/
 
 	private calcResistance = (resistance: number, vector: number): number => {
