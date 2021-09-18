@@ -23,7 +23,6 @@ main {
 	border-radius: 5px;
 	margin: 5%;
 	padding: 30px;
-	width: max-content;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -31,11 +30,6 @@ main {
 
 #after-game aside {
 	margin: 0 auto;
-}
-
-#isLogin {
-	display: flex;
-	flex-direction: column;
 }
 
 #isLogout {
@@ -47,14 +41,6 @@ main {
 #isLogout section {
 	/* width: 90%; */
 	margin: 0 auto;
-}
-
-.login-text {
-	color: #000;
-}
-
-#isLogin p {
-	color: #000;
 }
 
 .shadow-button {
@@ -91,20 +77,20 @@ main {
 	display: block;
 	color: white;
 	background-color: black;
-	outline: none;
 	border: 2px solid yellow;
-	width: 80%;
-	line-height: 1.5em;
-	text-align: center;
+	outline: none;
 	border-radius: 30px;
+	line-height: 1.5em;
+	width: 80%;
+	padding: 0 1em;
+	text-align: center;
 	box-sizing: border-box;
 	transition-duration: 0.3s;
 }
-
 .userName:focus {
 	border: 2px solid rgba(59, 168, 241, 0.8);
-	padding: 0.7em 0;
 	width: 90%;
+	padding: 5% 1.5em;
 	background-color: white;
 	color: black;
 }
@@ -116,11 +102,10 @@ main {
 	box-shadow: 0 0 10px rgba(233, 124, 73, 0.8);
 }
 
-/* ================= after-game ================= */
-
 .score-submit-button:hover {
 	box-shadow: 0 0 50px rgba(233, 124, 73, 0.8);
 }
+/* ================= after-game ================= */
 
 .playing {
 	opacity: 0;
