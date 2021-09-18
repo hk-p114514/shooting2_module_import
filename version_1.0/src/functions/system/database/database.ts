@@ -3,6 +3,7 @@ import { firebase, auth, db, ui } from '../../../config';
 import { login } from './isLogin';
 import { signOut } from './signOut';
 import { uiConfig } from './uiConfig';
+import { logout } from './isLogout';
 
 export const database = () => {
 	logoutButton?.addEventListener('click', () => {
@@ -18,6 +19,7 @@ export const database = () => {
 			//ログアウトしている時
 			if (isLogin) {
 				isLogin.style.display = 'none';
+				logout();
 			}
 			ui.start('#firebase-ui-container', uiConfig);
 		}

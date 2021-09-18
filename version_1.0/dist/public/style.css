@@ -40,6 +40,8 @@ main {
 
 #isLogout {
 	margin-top: 10%;
+	display: flex;
+	flex-direction: column;
 }
 
 #isLogout section {
@@ -62,9 +64,6 @@ main {
 	cursor: pointer;
 }
 
-.shadow-button:active {
-}
-
 #logout-button {
 	background-color: rgba(59, 168, 241, 0.8);
 	box-shadow: 0 0 10px rgba(59, 168, 241, 0.8);
@@ -82,13 +81,13 @@ main {
 }
 
 /* formタグ */
-#score-submit {
+.score-submit {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row-reverse;
 }
 
-#userName {
+.userName {
 	display: block;
 	color: white;
 	background-color: black;
@@ -102,7 +101,7 @@ main {
 	transition-duration: 0.3s;
 }
 
-#userName:focus {
+.userName:focus {
 	border: 2px solid rgba(59, 168, 241, 0.8);
 	padding: 0.7em 0;
 	width: 90%;
@@ -110,7 +109,7 @@ main {
 	color: black;
 }
 
-#score-submit-button {
+.score-submit-button {
 	color: white;
 	margin-top: 10%;
 	background-color: rgba(233, 124, 73, 0.8);
@@ -119,7 +118,7 @@ main {
 
 /* ================= after-game ================= */
 
-#score-submit-button:hover {
+.score-submit-button:hover {
 	box-shadow: 0 0 50px rgba(233, 124, 73, 0.8);
 }
 

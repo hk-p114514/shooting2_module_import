@@ -13,11 +13,11 @@ import {
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = false;
+const DEBUG: boolean = true;
 
 if (DEBUG) {
 	player.hp = 500;
-	// player.hp = 0;
+	player.hp = 0;
 	player.power = 50;
 }
 
