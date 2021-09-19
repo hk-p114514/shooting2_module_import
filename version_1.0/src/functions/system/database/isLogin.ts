@@ -65,6 +65,7 @@ const login = (isLogin: HTMLElement, user: firebase.User) => {
 									{
 										score: vars.score,
 										life: player.hp,
+										round: vars.gameRound,
 									},
 									{ merge: true },
 								)
@@ -86,6 +87,7 @@ const login = (isLogin: HTMLElement, user: firebase.User) => {
 										{
 											score: vars.score,
 											life: player.hp,
+											round: vars.gameRound,
 										},
 										{ merge: true },
 									)
