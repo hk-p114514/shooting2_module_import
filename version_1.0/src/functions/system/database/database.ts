@@ -17,10 +17,7 @@ export const database = () => {
 			login(isLogin, user);
 		} else {
 			//ログアウトしている時
-			if (isLogin) {
-				isLogin.style.display = 'none';
-				logout();
-			}
+			logout();
 			ui.start('#firebase-ui-container', uiConfig);
 		}
 	});
