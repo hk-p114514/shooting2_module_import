@@ -95,7 +95,7 @@ class Player {
 		//範囲チェック
 		this.limitRangeOfMovement();
 
-		console.log(`vx : ${this.vx}\nvy : ${this.vy}`);
+		// console.log(`vx : ${this.vx}\nvy : ${this.vy}`);
 	};
 
 	private keyOperation = (): void => {
@@ -175,7 +175,7 @@ class Player {
 			}
 			this.x += slowSpeedX;
 			this.y += slowSpeedY;
-			console.log('SHIFT');
+			// console.log('SHIFT');
 			this.vx = 0;
 			this.vy = 0;
 		} else {
