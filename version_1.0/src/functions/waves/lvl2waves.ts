@@ -3,7 +3,6 @@ import { enemy, item, vars } from '../../init/variables';
 import { oneWave, tenSeconds } from '../../main';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
-import { finishRound } from '../system/finishRound';
 import { increaseWave } from './increaseWave';
 import { levelUp } from './levelUp';
 
@@ -47,7 +46,7 @@ const lvl2Waves: Function[] = [
 		increaseWave(oneWave);
 	},
 
-	// 3
+	// 3 (ボス)
 	(): void => {
 		//  ボスキャラ出現
 		vars.gameCount++;
@@ -64,18 +63,8 @@ const lvl2Waves: Function[] = [
 		}
 		// 敵がいなくなったらループ or ゲームクリア
 		if (enemy.length === 0 && vars.gameCount > tenSeconds * 6) {
-			//  8秒程度経過 && 最終ラウンドまでクリアしたらゲームクリアを表示する
-			setTimeout(() => {
-				if (!vars.isLevelUp) {
-					levelUp();
-				}
-
-				if (vars.gameRound >= vars.maxRound) {
-					vars.gameClear = true;
-					finishRound(vars.callData);
-					vars.callData = 1;
-				}
-			}, 8000);
+			levelUp();
+			return;
 		}
 	},
 ];

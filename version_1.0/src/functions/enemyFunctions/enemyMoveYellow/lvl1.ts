@@ -1,18 +1,26 @@
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
 import { rand } from '../../random';
+import { changeSprite } from '../changeSprite';
+import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
 
 export const lvl1 = (enemy: Enemy) => {
+	const accelerationX = 30;
+	const vxMax = 300;
 	if (!enemy.flag) {
-		enemyBeforeAttack(enemy, player, 30, 300, -600);
+		enemyBeforeAttack(enemy, player, accelerationX, vxMax, -vxMax * 2);
 	} else {
-		if (player.x < enemy.x && enemy.vx < 300) {
-			enemy.accelerationY(30);
-		} else if (enemy.vx > -600) {
-			enemy.accelerationY(50);
-		}
+		enemyAfterAttack(
+			enemy,
+			player,
+			vxMax,
+			accelerationX,
+			-vxMax * 2,
+			50,
+			[1, 1],
+		);
 	}
 
 	if (!enemy.flag) {
@@ -23,6 +31,5 @@ export const lvl1 = (enemy: Enemy) => {
 		enemyBullet(enemy, 1000, -10, 10);
 	}
 
-	const ptn = [33, 34, 33, 35];
-	enemy.snum = ptn[(enemy.count >> 3) & 3];
+	changeSprite(enemy, 33, 4);
 };

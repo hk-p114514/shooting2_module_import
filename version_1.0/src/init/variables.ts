@@ -8,6 +8,7 @@ import { Item } from '../classes/Item';
 import { Star } from '../classes/Star';
 import { Bullet } from '../classes/Bullet';
 import { Background } from '../classes/Background';
+import { waves } from '../functions/waves/waves';
 
 // ******************************* 定数 *******************************
 
@@ -161,7 +162,7 @@ export const vars = {
 	gameRound: 0,
 
 	// ラウンドの最大数
-	maxRound: 2,
+	maxRound: waves.length,
 
 	// レベルアップフラグ
 	isLevelUp: false,

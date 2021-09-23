@@ -7,7 +7,7 @@ import { Enemy } from '../Enemy';
 const makeEnemy = (
 	enemyNumber: number,
 	/* デフォルト値を設定 */ [
-		x = rand(0, field_w) << 8,
+		x = (field_w / 2) << 8,
 		y = 0,
 		vx = 0,
 		vy = rand(300, 1200),

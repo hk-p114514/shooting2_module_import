@@ -1,5 +1,5 @@
 import { logoutButton } from '../../../init/variables';
-import { firebase, auth, db, ui } from '../../../config';
+import { auth, ui } from '../../../config';
 import { login } from './isLogin';
 import { signOut } from './signOut';
 import { uiConfig } from './uiConfig';

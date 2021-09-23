@@ -1,6 +1,6 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
-import { DEBUG, oneWave, tenSeconds } from '../../main';
+import { oneWave, tenSeconds } from '../../main';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { increaseWave } from './increaseWave';
@@ -46,7 +46,7 @@ const lvl1Waves: Function[] = [
 		increaseWave(oneWave);
 	},
 
-	// 3
+	// 3 (ボス)
 	(): void => {
 		//  ボスキャラ出現
 		if (vars.gameCount === tenSeconds * 5) {
@@ -63,7 +63,6 @@ const lvl1Waves: Function[] = [
 
 		// 敵がいなくなったらループ or ゲームクリア
 		if (enemy.length === 0 && vars.gameCount > tenSeconds * 6) {
-			//  8秒程度経過 && 最終ラウンドまでクリアしたらゲームクリアを表示する
 			levelUp();
 			return;
 		}

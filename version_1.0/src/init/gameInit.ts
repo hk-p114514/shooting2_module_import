@@ -2,7 +2,6 @@
 import { gameSpeed, vars } from './variables';
 import { drawAll, updateAll } from '../functions/useObjectProcess';
 import { information } from '../functions/info/gameInfo';
-import { makeStars } from '../classes/instance/makeStars';
 import { waves } from '../functions/waves/waves';
 
 export const gameInit = () => {

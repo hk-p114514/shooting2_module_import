@@ -39,21 +39,31 @@ const logout = () => {
 						);
 					} else {
 						// 同名のプレイヤーが存在しない
-						usernameDoc
-							.set({
-								name: username,
-								life: life,
-								score: score,
-								round: gameRound,
-							})
-							.then(() => {
-								alert('スコアを投稿しました');
-								inputUserName.value = '';
-							})
-							.catch((err) => {
-								alert('通信に失敗しました');
-								console.log(err);
-							});
+						const finalConfirmation = confirm(
+							`${username}でスコアを投稿します。\nよろしいですか?`,
+						);
+						if (finalConfirmation === true) {
+							usernameDoc
+								.set({
+									name: username,
+									life: life,
+									score: score,
+									round: gameRound,
+								})
+								.then(() => {
+									alert('スコアを投稿しました');
+									inputUserName.value = '';
+									setTimeout(() => {
+										location.reload();
+									}, 2000);
+								})
+								.catch((err) => {
+									alert('通信に失敗しました');
+									console.log(err);
+								});
+						} else {
+							alert('投稿をキャンセルしました');
+						}
 					}
 				})
 				.catch(() => {
