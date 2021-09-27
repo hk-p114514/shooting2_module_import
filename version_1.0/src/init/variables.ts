@@ -1,5 +1,5 @@
 import { EnemyMaster } from '../classes/EnemyMaster';
-import { Enemy } from '../classes/Enemy/Enemy';
+import { Enemy } from '../classes/Enemy';
 import { Player } from '../classes/Player';
 import { ItemMaster } from '../classes/ItemMaster';
 import { Explosion } from '../classes/Explosion';
@@ -9,6 +9,11 @@ import { Star } from '../classes/Star';
 import { Bullet } from '../classes/Bullet';
 import { Background } from '../classes/Background';
 import { waves } from '../functions/waves/waves';
+import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
+import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
+import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
+import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBossChild';
+import { enemyMoveBlue } from '../functions/enemyFunctions/enemyMoveBlue/enemyMoveBlue';
 
 // ******************************* 定数 *******************************
 
@@ -72,11 +77,29 @@ const normalEnemy = {
 
 //敵キャラの種類
 export const enemyMaster = [
-	new EnemyMaster(0, normalEnemy.r, normalEnemy.hp, normalEnemy.score), //ピンクのヒヨコ
-	new EnemyMaster(1, normalEnemy.r, normalEnemy.hp, normalEnemy.score), //黄色のヒヨコ
-	new EnemyMaster(2, 70, 1000, 10000), //ボスヒヨコ（黄色）
-	new EnemyMaster(3, 15, 5, 10), //ボスヒヨコ（黄色）の子供
-	new EnemyMaster(4, normalEnemy.r, normalEnemy.hp, normalEnemy.score),
+	new EnemyMaster(
+		0,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyMovePink,
+	), //ピンクのヒヨコ
+	new EnemyMaster(
+		1,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyMoveYellow,
+	), //黄色のヒヨコ
+	new EnemyMaster(2, 70, 1000, 10000, enemyMoveBoss), //ボスヒヨコ（黄色）
+	new EnemyMaster(3, 15, 5, 10, enemyMoveYellowChild), //ボスヒヨコ（黄色）の子供
+	new EnemyMaster(
+		4,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyMoveBlue,
+	), // 群青色のヒヨコ
 ];
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、
