@@ -54,7 +54,7 @@ class Enemy extends Character {
 	}
 }
 
-let enemyFunctions = [
+const enemyFunctions = [
 	enemyMovePink,
 	enemyMoveYellow,
 	enemyMoveBoss,

@@ -13,7 +13,8 @@ import {
 } from './init/variables';
 import { gameStart } from './init/gameStart';
 
-const DEBUG: boolean = true;
+// const DEBUG: boolean = true;
+const DEBUG: boolean = false;
 
 if (DEBUG) {
 	player.hp = 500;
