@@ -10,11 +10,11 @@ const enemyBeforeAttack = (
 ) => {
 	//一度攻撃する前の処理
 	if (enemy.x < player.x && enemy.vx < vxMax) {
-		// プレイヤーより左にいる、かつ、x軸のベクトル量が120以内なら
+		// プレイヤーより左にいる、かつ、x軸のベクトル量がvxMax以内なら
 		// 右に進む（プレイヤーのいる方に進む）
 		enemy.accelerationX(acceleration);
 	} else if (enemy.vx > vxMin) {
-		// プレイヤーより右にいる、かつ、x軸のベクトル量が-120以上なら
+		// プレイヤーより右にいる、かつ、x軸のベクトル量がvxMin以上なら
 		// 左に進む（プレイヤーのいる方に進む）
 		enemy.accelerationX(-acceleration);
 	}

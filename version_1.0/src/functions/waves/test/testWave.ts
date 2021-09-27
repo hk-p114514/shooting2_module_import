@@ -9,7 +9,7 @@ import { levelUp } from '../levelUp';
 const testWave: Function[] = [
 	// 0
 	(): void => {
-		// ピンクのヒヨコのみを出す
+		// 群青色ののみを出す
 		if (!rand(0, 30)) {
 			enemy.push(makeEnemy(4, []));
 		}
@@ -19,7 +19,7 @@ const testWave: Function[] = [
 
 	// 1
 	(): void => {
-		//  黄色のヒヨコのみを出す
+		// 群青色のヒヨコのみを出す
 		if (!rand(0, 30)) {
 			enemy.push(makeEnemy(4, []));
 		}
@@ -29,7 +29,7 @@ const testWave: Function[] = [
 
 	// 2
 	(): void => {
-		//  黄色とピンクのヒヨコをランダムで出す
+		// 群青色のヒヨコのみを出す
 		if (rand(0, 20) === 1) {
 			enemy.push(makeEnemy(4, []));
 		}
@@ -51,6 +51,7 @@ const testWave: Function[] = [
 		//  ボスキャラ出現
 		vars.gameCount++;
 		if (vars.gameCount === tenSeconds * 5) {
+			// 群青色のヒヨコを出す
 			enemy.push(makeEnemy(4, []));
 			vars.bossEncounter = true;
 		} else if (

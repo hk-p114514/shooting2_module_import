@@ -50,6 +50,24 @@ class Enemy extends Character {
 			isAttacked();
 		}
 	}
+
+	isAttackable = (
+		target: number,
+		range: number,
+		x: boolean = true,
+	): boolean => {
+		let mine = this.y;
+		if (x) {
+			mine = this.x;
+		}
+
+		const distance = Math.abs(mine - target);
+		range = range << 8;
+
+		const result: boolean = range >= distance ? true : false;
+
+		return result;
+	};
 }
 
 export { Enemy };
