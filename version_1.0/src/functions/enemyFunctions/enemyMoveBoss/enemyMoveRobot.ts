@@ -4,7 +4,7 @@ import { player } from '../../../init/variables';
 import { changeSprite } from '../changeSprite';
 import { enemyBullet } from '../enemyBullet';
 
-export const enemyMoveYellowChild = (enemy: Enemy) => {
+export const enemyMoveRobot = (enemy: Enemy) => {
 	//出現直後は一瞬動かない
 	if (enemy.count <= 10) {
 		enemy.vx = 0;

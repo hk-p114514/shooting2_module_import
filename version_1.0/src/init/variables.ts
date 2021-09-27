@@ -12,7 +12,7 @@ import { waves } from '../functions/waves/waves';
 import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
 import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
 import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
-import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBossChild';
+import { enemyMoveRobot } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveRobot';
 import { enemyMoveBlue } from '../functions/enemyFunctions/enemyMoveBlue/enemyMoveBlue';
 
 // ******************************* 定数 *******************************
@@ -92,7 +92,7 @@ export const enemyMaster = [
 		enemyMoveYellow,
 	), //黄色のヒヨコ
 	new EnemyMaster(2, 70, 1000, 10000, enemyMoveBoss), //ボスヒヨコ（黄色）
-	new EnemyMaster(3, 15, 5, 10, enemyMoveYellowChild), //ボスヒヨコ（黄色）の子供
+	new EnemyMaster(3, 15, 5, 10, enemyMoveRobot), //ボスヒヨコの子分(ロボ)
 	new EnemyMaster(
 		4,
 		normalEnemy.r,
