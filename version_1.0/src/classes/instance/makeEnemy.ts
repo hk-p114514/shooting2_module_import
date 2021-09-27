@@ -2,7 +2,7 @@
 
 import { rand } from '../../functions/random';
 import { field_w } from '../../init/variables';
-import { Enemy } from '../Enemy/Enemy';
+import { Enemy } from '../Enemy';
 
 const makeEnemy = (
 	enemyNumber: number,

@@ -1,4 +1,4 @@
-import { Enemy } from '../../../classes/Enemy/Enemy';
+import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
 import { rand } from '../../random';
 import { changeSprite } from '../changeSprite';

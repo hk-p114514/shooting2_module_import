@@ -1,5 +1,5 @@
 //ボスヒヨコ（黄色）の子供
-import { Enemy } from '../../../classes/Enemy/Enemy';
+import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
 import { changeSprite } from '../changeSprite';
 import { enemyBullet } from '../enemyBullet';

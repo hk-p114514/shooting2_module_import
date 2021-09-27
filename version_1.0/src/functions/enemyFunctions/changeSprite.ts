@@ -1,4 +1,4 @@
-import { Enemy } from '../../classes/Enemy/Enemy';
+import { Enemy } from '../../classes/Enemy';
 
 const changeSprite = (enemy: Enemy, start: number, sprites: number) => {
 	// スプライトの変更

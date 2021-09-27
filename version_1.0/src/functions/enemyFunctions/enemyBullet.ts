@@ -1,7 +1,7 @@
 //敵の弾発射
 import { enemyShot, player } from '../../init/variables';
 import { rand } from '../random';
-import { Enemy } from '../../classes/Enemy/Enemy';
+import { Enemy } from '../../classes/Enemy';
 import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
 
 export const enemyBullet = (
