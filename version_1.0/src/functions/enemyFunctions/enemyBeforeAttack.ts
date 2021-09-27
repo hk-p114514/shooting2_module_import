@@ -1,4 +1,4 @@
-import { Enemy } from '../../classes/Enemy';
+import { Enemy } from '../../classes/Enemy/Enemy';
 import { Player } from '../../classes/Player';
 
 const enemyBeforeAttack = (

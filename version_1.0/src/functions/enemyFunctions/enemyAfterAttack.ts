@@ -1,4 +1,4 @@
-import { Enemy } from '../../classes/Enemy';
+import { Enemy } from '../../classes/Enemy/Enemy';
 import { Player } from '../../classes/Player';
 
 // approachDirection => 0 : x方向に近づく , 1 : y方向に近づく

@@ -1,12 +1,11 @@
 import { Enemy } from '../../../classes/Enemy/Enemy';
 import { player } from '../../../init/variables';
-import { rand } from '../../random';
 import { changeSprite } from '../changeSprite';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
 
-const lvl2 = (enemy: Enemy): void => {
+const lvl1 = (enemy: Enemy) => {
 	const acceleration = 4;
 	const vxMax = 120;
 	const approachX = 400;
@@ -26,11 +25,7 @@ const lvl2 = (enemy: Enemy): void => {
 	}
 
 	if (Math.abs(player.y - enemy.y) < 300 << 8 && !enemy.flag) {
-		if (!rand(0, 2)) {
-			//連射率を操作
-			enemy.flag = true;
-		}
-
+		enemy.flag = true;
 		//enemyBulletを呼び出した回数分、攻撃する
 		enemyBullet(enemy, 1000, -10, 10);
 	}
@@ -39,9 +34,9 @@ const lvl2 = (enemy: Enemy): void => {
 		enemy.accelerationY(-30);
 	}
 
-	//スプライトの変更
-	//スプライトのパターン（アニメーションを表現）
-	changeSprite(enemy, 39, 4);
+	// スプライトの変更
+	// スプライトのパターン（アニメーションを表現）
+	changeSprite(enemy, 45, 4);
 };
 
-export { lvl2 };
+export { lvl1 };

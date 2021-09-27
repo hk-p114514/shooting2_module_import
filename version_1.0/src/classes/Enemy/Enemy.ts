@@ -1,11 +1,8 @@
-import { enemyMaster, player } from '../init/variables';
-import { Character } from './Character';
-import { checkHit } from '../functions/hit';
-import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
-import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
-import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
-import { enemyMoveYellowChild } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveYellowChild';
-import { isAttacked } from '../functions/isAttacked';
+import { enemyMaster, player } from '../../init/variables';
+import { Character } from '../Character';
+import { checkHit } from '../../functions/hit';
+import { isAttacked } from '../../functions/isAttacked';
+import { enemyFunctions } from './enemyFunctions';
 
 class Enemy extends Character {
 	enemyNumber: number;
@@ -53,12 +50,5 @@ class Enemy extends Character {
 		}
 	}
 }
-
-let enemyFunctions = [
-	enemyMovePink,
-	enemyMoveYellow,
-	enemyMoveBoss,
-	enemyMoveYellowChild,
-];
 
 export { Enemy };
