@@ -1,5 +1,5 @@
 import { EnemyMaster } from '../classes/EnemyMaster';
-import { Enemy } from '../classes/Enemy';
+import { Enemy } from '../classes/Enemy/Enemy';
 import { Player } from '../classes/Player';
 import { ItemMaster } from '../classes/ItemMaster';
 import { Explosion } from '../classes/Explosion';
@@ -61,12 +61,22 @@ export const itemMaster: ItemMaster[] = [new ItemMaster(0, 15, 1)];
 //ゲームスピード
 export const gameSpeed = 1000 / 60;
 
+const normalEnemy = {
+	// 通常敵キャラの半径
+	r: 10,
+	// 通常敵キャラの体力
+	hp: 1,
+	// 通常敵キャラを倒した際の取得スコア
+	score: 100,
+};
+
 //敵キャラの種類
 export const enemyMaster = [
-	new EnemyMaster(0, 10, 1, 100), //ピンクのヒヨコ
-	new EnemyMaster(1, 10, 1, 100), //黄色のヒヨコ
+	new EnemyMaster(0, normalEnemy.r, normalEnemy.hp, normalEnemy.score), //ピンクのヒヨコ
+	new EnemyMaster(1, normalEnemy.r, normalEnemy.hp, normalEnemy.score), //黄色のヒヨコ
 	new EnemyMaster(2, 70, 1000, 10000), //ボスヒヨコ（黄色）
 	new EnemyMaster(3, 15, 5, 10), //ボスヒヨコ（黄色）の子供
+	new EnemyMaster(4, normalEnemy.r, normalEnemy.hp, normalEnemy.score),
 ];
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

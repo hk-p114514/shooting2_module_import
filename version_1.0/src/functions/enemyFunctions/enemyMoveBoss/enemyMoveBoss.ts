@@ -1,7 +1,7 @@
 //ボスヒヨコ(黄色)の行動パターン ##################################################
 import { rand } from '../../random';
 import { enemy, enemyShot, field_w } from '../../../init/variables';
-import { Enemy } from '../../../classes/Enemy';
+import { Enemy } from '../../../classes/Enemy/Enemy';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
 import { makeEnemyShot } from '../../../classes/instance/makeEnemyShot';
 
