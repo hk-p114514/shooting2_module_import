@@ -4,6 +4,6 @@ import { lvl3wave } from './lvl3wave';
 import { testWave } from './test/testWave';
 
 // const waves: Function[][] = [lvl1Waves, lvl2Waves];
-const waves: Function[][] = [testWave, testWave, testWave];
+const waves: Function[][] = [testWave];
 
 export { waves };

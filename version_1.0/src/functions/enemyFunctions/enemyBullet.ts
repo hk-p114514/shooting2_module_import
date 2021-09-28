@@ -5,27 +5,34 @@ import { Enemy } from '../../classes/Enemy';
 import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
 
 export const enemyBullet = (
-	object: Enemy,
+	enemy: Enemy,
 	speed: number,
-	start: number,
-	end: number,
-	delay?: number,
-	hit: boolean = true,
+	{ gap = 0, delay = 0, isRandom = false, begin = 0, end = 0 } = {},
 ) => {
-	let angle, vx, vy;
+	// 射角
+	let angle: number = 0,
+		// とんでくスピード
+		vx: number = 0,
+		vy: number = 0;
 
 	//敵キャラからプレイヤーへの角度
-	angle = Math.atan2(player.y - object.y, player.x - object.x);
+	angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
 
-	let r = rand(start, end);
-	while (!hit && r <= player.r) {
-		r = rand(start, end);
+	if (isRandom) {
+		let r = rand(begin, end);
+		while (r <= player.r) {
+			r = rand(begin, end);
+		}
+
+		// 敵キャラからプレイヤーへ向うベクトルを少しずらす
+		angle += (r * Math.PI) / 180;
+	} else {
+		// ランダムで無い場合(真っ直ぐ飛んでく)
+		angle += gap ? gap : 0;
 	}
-
-	angle += (r * Math.PI) / 180;
 
 	vx = Math.cos(angle) * speed;
 	vy = Math.sin(angle) * speed;
 
-	enemyShot.push(makeEnemyShot(15, object.x, object.y, vx, vy, delay || 0));
+	enemyShot.push(makeEnemyShot(15, enemy.x, enemy.y, vx, vy, delay || 0));
 };

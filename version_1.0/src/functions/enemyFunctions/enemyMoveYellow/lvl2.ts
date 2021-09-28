@@ -9,6 +9,7 @@ const lvl2 = (enemy: Enemy) => {
 	const accelerationX = 30;
 	const vxMax = 300;
 	const breakOutAcceleration = 50;
+	const bulletSpeed = 16;
 	if (!enemy.flag) {
 		enemyBeforeAttack(enemy, player, accelerationX, vxMax, -vxMax * 2);
 	} else {
@@ -27,7 +28,11 @@ const lvl2 = (enemy: Enemy) => {
 		// forループの数だけ弾を発射する
 		for (let i = 0; i < 8; i++) {
 			// 球のスピード、プレイヤーを狙う弾（自機狙い）を0とした時の弾の広がる範囲
-			enemyBullet(enemy, 850, -16, 16);
+			enemyBullet(enemy, 850, {
+				isRandom: true,
+				begin: -bulletSpeed,
+				end: bulletSpeed,
+			});
 		}
 		enemy.flag = true;
 	}

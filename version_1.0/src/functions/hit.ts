@@ -4,7 +4,7 @@ export const checkHit = (
 	pr: number,
 	ex: number,
 	ey: number,
-	er: number
+	er: number,
 ) => {
 	//円同士の当たり判定
 

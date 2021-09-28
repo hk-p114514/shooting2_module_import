@@ -9,6 +9,7 @@ import { enemyBullet } from '../enemyBullet';
 export const lvl1 = (enemy: Enemy) => {
 	const accelerationX = 30;
 	const vxMax = 300;
+	const bulletSpeed = 10;
 	if (!enemy.flag) {
 		enemyBeforeAttack(enemy, player, accelerationX, vxMax, -vxMax * 2);
 	} else {
@@ -28,7 +29,11 @@ export const lvl1 = (enemy: Enemy) => {
 			enemy.flag = true;
 		}
 		//enemyBulletを呼び出した回数分、攻撃する
-		enemyBullet(enemy, 1000, -10, 10);
+		enemyBullet(enemy, 1000, {
+			isRandom: true,
+			begin: -bulletSpeed,
+			end: bulletSpeed,
+		});
 	}
 
 	changeSprite(enemy, 33, 4);

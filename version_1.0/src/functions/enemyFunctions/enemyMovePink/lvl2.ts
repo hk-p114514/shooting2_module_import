@@ -32,7 +32,7 @@ const lvl2 = (enemy: Enemy): void => {
 		}
 
 		//enemyBulletを呼び出した回数分、攻撃する
-		enemyBullet(enemy, 1000, -10, 10);
+		enemyBullet(enemy, 1000, { isRandom: true, begin: -10, end: 10 });
 	}
 
 	if (enemy.flag && enemy.vy > -500) {

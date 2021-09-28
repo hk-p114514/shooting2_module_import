@@ -51,8 +51,8 @@ const testWave: Function[] = [
 		//  ボスキャラ出現
 		vars.gameCount++;
 		if (vars.gameCount === tenSeconds * 5) {
-			// 群青色のヒヨコを出す
-			enemy.push(makeEnemy(4, []));
+			// ボスヒヨコを出す
+			enemy.push(makeEnemy(2, [, , , 200]));
 			vars.bossEncounter = true;
 		} else if (
 			vars.gameCount >= tenSeconds * 90 &&

@@ -21,7 +21,7 @@ export const enemyMoveRobot = (enemy: Enemy) => {
 		//更に少し経ったら弾を発射してくる
 		if (enemy.count >= 100) {
 			if (!enemy.reload) {
-				enemyBullet(enemy, 300, 0, 0);
+				enemyBullet(enemy, 300);
 				enemy.reload = 200;
 			}
 		}

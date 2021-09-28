@@ -31,9 +31,8 @@ const lvl1 = (enemy: Enemy) => {
 		// プレイヤーと自分の距離が300以内で、自分が攻撃していなかったら
 		enemy.flag = true;
 		//enemyBulletを呼び出した回数分、攻撃する
-		// enemyBullet(enemy, 1000, -10, 10);
 		for (let i = 0; i < 50; i++) {
-			enemyBullet(enemy, 500, 0, 360, i);
+			enemyBullet(enemy, 500, { gap: i });
 		}
 	}
 

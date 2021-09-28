@@ -12,7 +12,7 @@ class EnemyShot extends Character {
 		y: number,
 		vx: number,
 		vy: number,
-		timer: number
+		timer: number,
 	) {
 		super(snum, x, y, vx, vy);
 		this.r = 4;
