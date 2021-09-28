@@ -7,7 +7,15 @@ import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
 export const enemyBullet = (
 	enemy: Enemy,
 	speed: number,
-	{ gap = 0, delay = 0, isRandom = false, begin = 0, end = 0 } = {},
+
+	{
+		gap = 0,
+		delay = 0,
+		isRandom = false,
+		begin = 0,
+		end = 0,
+		moveCount = 0,
+	} = {},
 ) => {
 	// 射角
 	let angle: number = 0,
@@ -34,5 +42,10 @@ export const enemyBullet = (
 	vx = Math.cos(angle) * speed;
 	vy = Math.sin(angle) * speed;
 
-	enemyShot.push(makeEnemyShot(15, enemy.x, enemy.y, vx, vy, delay || 0));
+	enemyShot.push(
+		makeEnemyShot(15, enemy.x, enemy.y, vx, vy, {
+			delay: delay || 0,
+			moveCount: moveCount,
+		}),
+	);
 };

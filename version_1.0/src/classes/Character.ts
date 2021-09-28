@@ -8,7 +8,7 @@ class Character {
 	vx: number;
 	vy: number;
 	kill: boolean;
-	count: number;
+	count: number; // 60で代替一秒
 	constructor(snum: number, x: number, y: number, vx: number, vy: number) {
 		this.snum = snum;
 		this.x = x;

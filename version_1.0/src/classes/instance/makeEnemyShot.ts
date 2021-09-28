@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-import { EnemyShot } from "../EnemyShot";
+import { EnemyShot } from '../EnemyShot';
 
 const makeEnemyShot = (
-  snum: number,
-  x: number,
-  y: number,
-  vx: number,
-  vy: number,
-  delay: number = 0
+	snum: number,
+	x: number,
+	y: number,
+	vx: number,
+	vy: number,
+	{ delay = 0, moveCount = 0 } = {},
 ): EnemyShot => {
-  return new EnemyShot(snum, x, y, vx, vy, delay);
+	return new EnemyShot(snum, x, y, vx, vy, delay, moveCount);
 };
 
 export { makeEnemyShot };

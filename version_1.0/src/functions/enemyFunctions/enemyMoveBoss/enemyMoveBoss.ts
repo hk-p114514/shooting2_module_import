@@ -45,7 +45,9 @@ export const enemyMoveBoss = (boss: Enemy) => {
 		vy = Math.sin(angle) * 300;
 		let xGap = (Math.cos(angle) * bossR) << 8;
 		let yGap = (Math.sin(angle) * bossR) << 8;
-		enemyShot.push(makeEnemyShot(15, boss.x + xGap, boss.y + yGap, vx, vy, 30));
+		enemyShot.push(
+			makeEnemyShot(15, boss.x + xGap, boss.y + yGap, vx, vy, { delay: 30 }),
+		);
 		boss.direction += boss.directionGap;
 
 		if (boss.direction >= 360) {

@@ -5,12 +5,13 @@ import { makeItem } from '../../itemFunctions/makeItem';
 import { rand } from '../../random';
 import { increaseWave } from '../increaseWave';
 import { levelUp } from '../levelUp';
+const probability = 100;
 
 const testWave: Function[] = [
 	// 0
 	(): void => {
 		// 群青色ののみを出す
-		if (!rand(0, 30)) {
+		if (!rand(0, probability)) {
 			enemy.push(makeEnemy(4, []));
 		}
 		// 3０秒経過したらウェーブを１段階上げる
@@ -20,7 +21,7 @@ const testWave: Function[] = [
 	// 1
 	(): void => {
 		// 群青色のヒヨコのみを出す
-		if (!rand(0, 30)) {
+		if (!rand(0, probability)) {
 			enemy.push(makeEnemy(4, []));
 		}
 		// ２０秒経過したらウェーブを１段階上げる
@@ -30,7 +31,7 @@ const testWave: Function[] = [
 	// 2
 	(): void => {
 		// 群青色のヒヨコのみを出す
-		if (rand(0, 20) === 1) {
+		if (rand(0, probability) === 1) {
 			enemy.push(makeEnemy(4, []));
 		}
 		if (

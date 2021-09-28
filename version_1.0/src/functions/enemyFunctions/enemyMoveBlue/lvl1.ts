@@ -32,7 +32,7 @@ const lvl1 = (enemy: Enemy) => {
 		enemy.flag = true;
 		//enemyBulletを呼び出した回数分、攻撃する
 		for (let i = 0; i < 50; i++) {
-			enemyBullet(enemy, 500, { gap: i });
+			enemyBullet(enemy, 500, { gap: i, moveCount: 4 });
 		}
 	}
 

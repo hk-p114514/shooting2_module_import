@@ -2,10 +2,13 @@ import { Character } from './Character';
 import { vars, player } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
+import { Vector } from './Vector';
+import { rand } from '../functions/random';
 
 class EnemyShot extends Character {
 	r: number;
 	timer: number;
+	moveWaitSec: number;
 	constructor(
 		snum: number,
 		x: number,
@@ -13,6 +16,7 @@ class EnemyShot extends Character {
 		vx: number,
 		vy: number,
 		timer: number,
+		moveWaitSec: number = 0,
 	) {
 		super(snum, x, y, vx, vy);
 		this.r = 4;
@@ -21,8 +25,10 @@ class EnemyShot extends Character {
 		} else {
 			this.timer = timer;
 		}
+		this.moveWaitSec = moveWaitSec * 60;
 	}
-	update() {
+
+	update = () => {
 		if (this.timer) {
 			this.timer--;
 			return;
@@ -38,7 +44,19 @@ class EnemyShot extends Character {
 		}
 
 		this.snum = 14 + ((this.count >> 3) & 1);
-	}
+
+		if (this.moveWaitSec && this.count % this.moveWaitSec === 0) {
+			// moveCountが0でなかったら
+			this.rotation(99);
+		}
+	};
+
+	rotation = (angle: number) => {
+		const vector: Vector = new Vector(this.vx, this.vy);
+		vector.varyingAngle(angle);
+		this.vx = vector.vx;
+		this.vy = vector.vy;
+	};
 }
 
 export { EnemyShot };
