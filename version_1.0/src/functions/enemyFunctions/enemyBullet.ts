@@ -23,6 +23,9 @@ export const enemyBullet = (
 		vx: number = 0,
 		vy: number = 0;
 
+	// 角度をラジアンに変換
+	angle *= Math.PI / 180;
+
 	//敵キャラからプレイヤーへの角度
 	angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
 
