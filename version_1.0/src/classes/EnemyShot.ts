@@ -7,30 +7,32 @@ import { rand } from '../functions/random';
 
 class EnemyShot extends Character {
 	r: number;
-	timer: number;
+	delay: number;
 	moveWaitSec: number;
+	isMove: boolean = false;
 	constructor(
 		snum: number,
 		x: number,
 		y: number,
 		vx: number,
 		vy: number,
-		timer: number,
+		delay: number,
 		moveWaitSec: number = 0,
 	) {
 		super(snum, x, y, vx, vy);
 		this.r = 4;
-		if (timer === undefined) {
-			this.timer = 0;
+		if (delay === undefined) {
+			this.delay = 0;
 		} else {
-			this.timer = timer;
+			// 遅延時間を秒に直す
+			this.delay = delay * 60;
 		}
 		this.moveWaitSec = moveWaitSec * 60;
 	}
 
 	update = () => {
-		if (this.timer) {
-			this.timer--;
+		if (this.delay) {
+			this.delay--;
 			return;
 		}
 		super.update();
@@ -45,9 +47,14 @@ class EnemyShot extends Character {
 
 		this.snum = 14 + ((this.count >> 3) & 1);
 
-		if (this.moveWaitSec && this.count % this.moveWaitSec === 0) {
+		if (
+			this.moveWaitSec &&
+			this.count % this.moveWaitSec === 0 &&
+			!this.isMove
+		) {
 			// moveCountが0でなかったら
-			this.rotation(99);
+			this.rotation(30);
+			this.isMove = true;
 		}
 	};
 
