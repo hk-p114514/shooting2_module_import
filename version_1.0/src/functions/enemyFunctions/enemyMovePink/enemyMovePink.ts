@@ -11,5 +11,6 @@ export const enemyMovePink = (enemy: Enemy) => {
 			break;
 		case 1:
 			lvl2(enemy);
+			break;
 	}
 };

@@ -84,6 +84,7 @@ export const enemyMaster = [
 		normalEnemy.score,
 		enemyMovePink,
 	), //ピンクのヒヨコ
+
 	new EnemyMaster(
 		1,
 		normalEnemy.r,
@@ -91,6 +92,7 @@ export const enemyMaster = [
 		normalEnemy.score,
 		enemyMoveYellow,
 	), //黄色のヒヨコ
+
 	new EnemyMaster(2, 70, 1000, 10000, enemyMoveBoss), //ボスヒヨコ（黄色）
 	new EnemyMaster(3, 15, 5, 10, enemyMoveRobot), //ボスヒヨコの子分(ロボ)
 	new EnemyMaster(
