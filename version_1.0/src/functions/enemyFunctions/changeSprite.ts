@@ -1,6 +1,6 @@
 import { Enemy } from '../../classes/Enemy';
 
-const changeSprite = (enemy: Enemy, start: number, sprites: number) => {
+const changeSprite = (enemy: Enemy, start: number, sprites: number = 4) => {
 	// スプライトの変更
 	// スプライトのパターン（アニメーションを表現）
 	const ptn = [];

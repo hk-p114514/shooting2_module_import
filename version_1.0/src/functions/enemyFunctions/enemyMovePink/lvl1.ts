@@ -1,6 +1,5 @@
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
-import { changeSprite } from '../changeSprite';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
@@ -33,8 +32,4 @@ export const lvl1 = (enemy: Enemy) => {
 	if (enemy.flag && enemy.vy > -500) {
 		enemy.accelerationY(-30);
 	}
-
-	// スプライトの変更
-	// スプライトのパターン（アニメーションを表現）
-	changeSprite(enemy, 39, 4);
 };

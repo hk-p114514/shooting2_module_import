@@ -36,8 +36,6 @@ const lvl2 = (enemy: Enemy) => {
 		}
 		enemy.flag = true;
 	}
-
-	changeSprite(enemy, 33, 4);
 };
 
 export { lvl2 };

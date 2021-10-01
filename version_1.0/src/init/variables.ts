@@ -12,7 +12,7 @@ import { waves } from '../functions/waves/waves';
 import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
 import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
 import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
-import { enemyMoveRobot } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveRobot';
+import { enemyMoveRobot } from '../functions/enemyFunctions/enemyMoveRobot/enemyMoveRobot';
 import { enemyMoveBlue } from '../functions/enemyFunctions/enemyMoveBlue/enemyMoveBlue';
 
 // ******************************* 定数 *******************************
@@ -172,7 +172,6 @@ export const vars = {
 
 	//カメラの座標
 	camera_x: 0,
-
 	camera_y: 0,
 
 	//入力欄にフォーカスがあるときは、Rでのリロードをキャンセルする

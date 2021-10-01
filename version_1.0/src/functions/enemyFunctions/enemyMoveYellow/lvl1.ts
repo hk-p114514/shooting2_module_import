@@ -35,6 +35,4 @@ export const lvl1 = (enemy: Enemy) => {
 			end: bulletSpeed,
 		});
 	}
-
-	changeSprite(enemy, 33, 4);
 };

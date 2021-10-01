@@ -1,10 +1,10 @@
 //スプライト
 import { Sprite } from '../classes/Sprite';
 
-export let sprite = [
-	new Sprite(0, 0, 22, 42), //0　自機　左２
-	new Sprite(23, 0, 33, 42), //1　自機　左１
-	new Sprite(57, 0, 43, 42), //2　自機　正面
+export const sprite = [
+	new Sprite(0, 0, 22, 42), //  0　自機　左２
+	new Sprite(23, 0, 33, 42), // 1　自機　左１
+	new Sprite(57, 0, 43, 42), // 2　自機　正面
 	new Sprite(101, 0, 33, 42), //3　自機　右１
 	new Sprite(135, 0, 21, 42), //4　自機　右２
 	new Sprite(0, 50, 3, 7), //5　銃弾　１
@@ -100,3 +100,19 @@ export let sprite = [
 	//sticon_set.pngの情報
 	new Sprite(193, 26, 22, 20), //79	,赤いハート（ドット）
 ];
+
+export const enemySpriteStart = {
+	yellow: 33,
+	middleYellow: 72,
+	bigYellow: 75,
+	pink: 39,
+	middlePink: 73,
+	bigPink: 76,
+	blue: 45,
+	middleBlue: 74,
+	bigBlue: 77,
+	robot: 50,
+	chicken: 57,
+	egg: 63,
+	shell: 68,
+};

@@ -2,6 +2,7 @@
 import { vars } from '../../../init/variables';
 import { Enemy } from '../../../classes/Enemy';
 import { lvl1 } from './lvl1';
+import { enemySpriteStart } from '../../../init/spriteInit';
 
 export const enemyMoveBoss = (boss: Enemy) => {
 	switch (vars.gameRound) {
@@ -12,4 +13,7 @@ export const enemyMoveBoss = (boss: Enemy) => {
 			lvl1(boss);
 			break;
 	}
+
+	//スプライトの変更
+	boss.snum = enemySpriteStart.bigYellow;
 };

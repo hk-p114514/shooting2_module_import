@@ -1,6 +1,7 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
-import { enemy, item, vars } from '../../init/variables';
+import { enemy, enemyMaster, item, vars } from '../../init/variables';
 import { oneWave, tenSeconds } from '../../main';
+import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { increaseWave } from './increaseWave';
@@ -50,7 +51,12 @@ const lvl1Waves: Function[] = [
 	(): void => {
 		//  ボスキャラ出現
 		if (vars.gameCount === tenSeconds * 5) {
-			enemy.push(makeEnemy(2, [, , , 200]));
+			let boss = makeEnemy(0, [, , , 200]);
+			boss = remodelEnemy(boss, {
+				hp: 100,
+				vy: 200,
+			});
+			enemy.push(boss);
 			vars.bossEncounter = true;
 		} else if (
 			vars.gameCount >= tenSeconds * 90 &&

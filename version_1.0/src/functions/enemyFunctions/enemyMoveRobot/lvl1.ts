@@ -1,10 +1,8 @@
-//ボスヒヨコ（黄色）の子供
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
-import { changeSprite } from '../changeSprite';
 import { enemyBullet } from '../enemyBullet';
 
-export const enemyMoveRobot = (enemy: Enemy) => {
+const lvl1 = (enemy: Enemy) => {
 	//出現直後は一瞬動かない
 	if (enemy.count <= 10) {
 		enemy.vx = 0;
@@ -26,6 +24,6 @@ export const enemyMoveRobot = (enemy: Enemy) => {
 			}
 		}
 	}
-
-	changeSprite(enemy, 50, 4);
 };
+
+export { lvl1 };

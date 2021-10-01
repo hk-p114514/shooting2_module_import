@@ -1,6 +1,5 @@
 import { Enemy } from '../../../classes/Enemy';
 import { field_h, player } from '../../../init/variables';
-import { changeSprite } from '../changeSprite';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
@@ -40,10 +39,6 @@ const lvl1 = (enemy: Enemy) => {
 		// もう攻撃した & 自分のy座標がlimitYより大きい時
 		enemy.accelerationY(-breakOutX);
 	}
-
-	// スプライトの変更
-	// スプライトのパターン（アニメーションを表現）
-	changeSprite(enemy, 45, 4);
 };
 
 export { lvl1 };
