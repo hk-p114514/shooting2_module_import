@@ -1,6 +1,7 @@
 import { bullet, field_h, field_w, key, player, vars } from '../init/variables';
 import { drawSprite } from '../functions/drawSprite';
 import { makeBullet } from './instance/makeBullet';
+import { correctionToCalcValue } from '../functions/correctionToCalcValue';
 
 const onePixel = 256;
 
@@ -117,6 +118,7 @@ class Player {
 		if (key.ArrowLeft) {
 			vx -= speed;
 			isPushed = true;
+			// 自機が左に進んでいたら
 			this.changeAnime(-8, -1, '>');
 		}
 
@@ -124,6 +126,7 @@ class Player {
 		if (key.ArrowRight) {
 			vx += speed;
 			isPushed = true;
+			// 自機が右に進んでいたら
 			this.changeAnime(8, 1, '<');
 		}
 
@@ -215,17 +218,19 @@ class Player {
 		// space
 		const bulletSpeed = -2000;
 		if (key.space && this.reload === 0) {
+			// 弾の発射
 			bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, bulletSpeed));
 			bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, bulletSpeed));
-
 			if (this.special) {
 				//斜めに発射
 				bullet.push(makeBullet(this.x, this.y, 500, bulletSpeed + 100));
 				bullet.push(makeBullet(this.x, this.y, -500, bulletSpeed + 100));
-
 				bullet.push(makeBullet(this.x, this.y, 200, bulletSpeed));
 				bullet.push(makeBullet(this.x, this.y, -200, bulletSpeed));
 			}
+
+			// 発射時の効果音を出す
+			this.attackSound();
 
 			//60で約１秒間に一回発射できる
 			this.reload = 5;
@@ -235,6 +240,13 @@ class Player {
 				this.magazine = 0;
 			}
 		}
+	};
+
+	private attackSound = (): void => {
+		const audio = new Audio('musics/shot.mp3');
+		audio.currentTime = 0;
+		audio.volume = 0.5;
+		audio.play();
 	};
 
 	private subtractionOfPlayerValues = (): void => {
@@ -298,20 +310,22 @@ class Player {
 
 	// 移動範囲の判定
 	private limitRangeOfMovement = (): void => {
+		const fw = correctionToCalcValue(field_w);
+		const fh = correctionToCalcValue(field_h);
 		if (this.x <= 1) {
 			this.x = 20;
 		}
 
-		if (this.x >= field_w << 8) {
-			this.x = (field_w << 8) - 1;
+		if (this.x >= fw) {
+			this.x = fw - 1;
 		}
 
 		if (this.y < 0) {
 			this.y = 0;
 		}
 
-		if (this.y >= (field_h << 8) - 1) {
-			this.y = (field_h << 8) - 1;
+		if (this.y >= fh - 1) {
+			this.y = fh - 1;
 		}
 	};
 
