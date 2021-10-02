@@ -9,11 +9,7 @@ import { Star } from '../classes/Star';
 import { Bullet } from '../classes/Bullet';
 import { Background } from '../classes/Background';
 import { waves } from '../functions/waves/waves';
-import { enemyMovePink } from '../functions/enemyFunctions/enemyMovePink/enemyMovePink';
-import { enemyMoveYellow } from '../functions/enemyFunctions/enemyMoveYellow/enemyMoveYellow';
-import { enemyMoveBoss } from '../functions/enemyFunctions/enemyMoveBoss/enemyMoveBoss';
-import { enemyMoveRobot } from '../functions/enemyFunctions/enemyMoveRobot/enemyMoveRobot';
-import { enemyMoveBlue } from '../functions/enemyFunctions/enemyMoveBlue/enemyMoveBlue';
+import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 
 // ******************************* 定数 *******************************
 
@@ -82,27 +78,45 @@ export const enemyMaster = [
 		normalEnemy.r,
 		normalEnemy.hp,
 		normalEnemy.score,
-		enemyMovePink,
+		enemyFunctions.pink,
 	), //ピンクのヒヨコ
-
 	new EnemyMaster(
 		1,
 		normalEnemy.r,
 		normalEnemy.hp,
 		normalEnemy.score,
-		enemyMoveYellow,
+		enemyFunctions.yellow,
 	), //黄色のヒヨコ
-
-	new EnemyMaster(2, 70, 1000, 10000, enemyMoveBoss), //ボスヒヨコ（黄色）
-	new EnemyMaster(3, 15, 5, 10, enemyMoveRobot), //ボスヒヨコの子分(ロボ)
+	new EnemyMaster(
+		2,
+		70,
+		1000,
+		10000,
+		enemyFunctions.boss,
+	) /*ボスヒヨコ（黄色）*/,
+	new EnemyMaster(
+		3,
+		15,
+		5,
+		10,
+		enemyFunctions.robot,
+	) /*ボスヒヨコの子分(ロボ)*/,
 	new EnemyMaster(
 		4,
 		normalEnemy.r,
 		normalEnemy.hp,
 		normalEnemy.score,
-		enemyMoveBlue,
+		enemyFunctions.blue,
 	), // 群青色のヒヨコ
 ];
+
+export const enemyMasterIndex = {
+	pink: 0,
+	yellow: 1,
+	bigYellow: 2,
+	robot: 3,
+	blue: 4,
+};
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、
 // 以下のインスタンスの配列はvarsに含める必要が無い。

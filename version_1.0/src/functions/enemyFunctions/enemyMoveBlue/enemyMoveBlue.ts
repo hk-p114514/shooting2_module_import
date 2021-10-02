@@ -5,7 +5,10 @@ import { vars } from '../../../init/variables';
 import { changeSprite } from '../changeSprite';
 import { lvl1 } from './lvl1';
 
-const enemyMoveBlue = (enemy: Enemy) => {
+const enemyMoveBlue = (
+	enemy: Enemy,
+	spriteStart: number = enemySpriteStart.blue,
+) => {
 	switch (vars.gameRound) {
 		case 0:
 			lvl1(enemy);
@@ -17,7 +20,7 @@ const enemyMoveBlue = (enemy: Enemy) => {
 
 	// スプライトの変更
 	// スプライトのパターン（アニメーションを表現）
-	changeSprite(enemy, enemySpriteStart.blue);
+	changeSprite(enemy, spriteStart);
 };
 
 export { enemyMoveBlue };

@@ -23,12 +23,13 @@ if (DEBUG) {
 }
 
 const tenSeconds = 60;
-const debugTime = 1;
+const debugTime = 5;
 const oneWave = DEBUG ? debugTime : 30;
 
 // キーを操作したとき
 keyControl();
 
+// スコア投稿のinputタグにフォーカスした際、rキーを押してもリロードしないようにする
 if (scoreSubmit !== null) {
 	scoreSubmit.addEventListener('click', () => {
 		vars.inputOnFocus = false;

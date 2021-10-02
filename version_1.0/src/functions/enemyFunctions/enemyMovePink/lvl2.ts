@@ -4,6 +4,7 @@ import { rand } from '../../random';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
+import { attackableConditionPink } from './sharePinkMove';
 
 const lvl2 = (enemy: Enemy): void => {
 	const acceleration = 4;
@@ -24,7 +25,7 @@ const lvl2 = (enemy: Enemy): void => {
 		);
 	}
 
-	if (Math.abs(player.y - enemy.y) < 300 << 8 && !enemy.flag) {
+	if (attackableConditionPink(enemy)) {
 		if (!rand(0, 2)) {
 			//連射率を操作
 			enemy.flag = true;

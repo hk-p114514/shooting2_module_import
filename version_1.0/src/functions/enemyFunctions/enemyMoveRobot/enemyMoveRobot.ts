@@ -5,7 +5,10 @@ import { vars } from '../../../init/variables';
 import { changeSprite } from '../changeSprite';
 import { lvl1 } from './lvl1';
 
-export const enemyMoveRobot = (enemy: Enemy) => {
+export const enemyMoveRobot = (
+	enemy: Enemy,
+	spriteStart: number = enemySpriteStart.robot,
+) => {
 	switch (vars.gameRound) {
 		case 0:
 			lvl1(enemy);
@@ -14,5 +17,5 @@ export const enemyMoveRobot = (enemy: Enemy) => {
 			lvl1(enemy);
 	}
 
-	changeSprite(enemy, enemySpriteStart.robot);
+	changeSprite(enemy, spriteStart);
 };

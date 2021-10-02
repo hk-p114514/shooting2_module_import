@@ -2,6 +2,7 @@ import { enemyMaster, player } from '../init/variables';
 import { Character } from './Character';
 import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
+import { correctionToCalcValue } from '../functions/correctionToCalcValue';
 
 class Enemy extends Character {
 	enemyNumber: number;
@@ -62,7 +63,7 @@ class Enemy extends Character {
 		}
 
 		const distance = Math.abs(mine - target);
-		range = range << 8;
+		range = correctionToCalcValue(range);
 
 		const result: boolean = range >= distance ? true : false;
 

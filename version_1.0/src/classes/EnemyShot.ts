@@ -3,7 +3,6 @@ import { vars, player } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
 import { Vector } from './Vector';
-import { rand } from '../functions/random';
 
 class EnemyShot extends Character {
 	r: number;

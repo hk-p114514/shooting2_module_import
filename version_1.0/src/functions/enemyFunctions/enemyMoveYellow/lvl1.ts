@@ -1,7 +1,6 @@
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
 import { rand } from '../../random';
-import { changeSprite } from '../changeSprite';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';

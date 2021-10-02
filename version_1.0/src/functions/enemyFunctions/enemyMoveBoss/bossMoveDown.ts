@@ -1,9 +1,13 @@
 import { Enemy } from '../../../classes/Enemy';
 import { field_w } from '../../../init/variables';
+import { correctionToMapValue } from '../../correctionToMapValue';
 import { rand } from '../../random';
 
 const bossMoveDown = (boss: Enemy) => {
-	if (!boss.flag && boss.y >> 8 >= 120) {
+	const mapX = correctionToMapValue(boss.x);
+	const mapY = correctionToMapValue(boss.y);
+
+	if (!boss.flag && mapY >= 120) {
 		boss.flag = 1;
 	}
 
@@ -18,7 +22,7 @@ const bossMoveDown = (boss: Enemy) => {
 			boss.vx += rand(1, 300);
 		}
 
-		if (boss.x >> 8 > field_w - 100) {
+		if (mapX > field_w - 100) {
 			boss.flag = 3;
 		}
 	} else if (boss.flag === 3) {
@@ -26,7 +30,7 @@ const bossMoveDown = (boss: Enemy) => {
 			boss.vx -= rand(1, 300);
 		}
 
-		if (boss.x >> 8 < 100) {
+		if (mapX < 100) {
 			boss.flag = 2;
 		}
 	}

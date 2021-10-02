@@ -9,7 +9,10 @@ export const enemyBullet = (
 	speed: number,
 
 	{
+		xGap = 0,
+		yGap = 0,
 		gap = 0,
+		fixedAngle = NaN,
 		delay = 0,
 		isRandom = false,
 		begin = 0,
@@ -17,17 +20,10 @@ export const enemyBullet = (
 		moveCount = 0,
 	} = {},
 ) => {
-	// 射角
-	let angle: number = 0,
-		// とんでくスピード
-		vx: number = 0,
-		vy: number = 0;
-
-	// 角度をラジアンに変換
-	angle *= Math.PI / 180;
-
 	//敵キャラからプレイヤーへの角度
-	angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
+	let angle = Number.isNaN(fixedAngle)
+		? Math.atan2(player.y - enemy.y, player.x - enemy.x)
+		: fixedAngle;
 
 	if (isRandom) {
 		let r = rand(begin, end);
@@ -42,11 +38,12 @@ export const enemyBullet = (
 		angle += gap ? gap : 0;
 	}
 
-	vx = Math.cos(angle) * speed;
-	vy = Math.sin(angle) * speed;
+	// とんでくスピード
+	const vx = Math.cos(angle) * speed;
+	const vy = Math.sin(angle) * speed;
 
 	enemyShot.push(
-		makeEnemyShot(15, enemy.x, enemy.y, vx, vy, {
+		makeEnemyShot(15, enemy.x + xGap, enemy.y + yGap, vx, vy, {
 			delay: delay || 0,
 			moveCount: moveCount,
 		}),

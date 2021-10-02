@@ -1,22 +1,28 @@
 import { Enemy } from '../../../classes/Enemy';
-import { makeEnemyShot } from '../../../classes/instance/makeEnemyShot';
-import { enemyShot } from '../../../init/variables';
+import { enemyMaster, enemyMasterIndex } from '../../../init/variables';
+import { correctionToCalcValue } from '../../correctionToCalcValue';
 import { rand } from '../../random';
+import { enemyBullet } from '../enemyBullet';
 
 const bossShotDefault = (boss: Enemy) => {
 	if (boss.flag > 1) {
-		let angle, vx, vy, bossR;
-		bossR = 70;
-		//敵キャラから目標への角度(ラジアン)
-		angle = (boss.direction * Math.PI) / 180;
+		// ボスキャラの半径
+		const bossR = enemyMaster[enemyMasterIndex.bigYellow].r;
 
-		vx = Math.cos(angle) * 300;
-		vy = Math.sin(angle) * 300;
-		let xGap = (Math.cos(angle) * bossR) << 8;
-		let yGap = (Math.sin(angle) * bossR) << 8;
-		enemyShot.push(
-			makeEnemyShot(15, boss.x + xGap, boss.y + yGap, vx, vy, { delay: 0.5 }),
-		);
+		//敵キャラから目標への角度(ラジアン)
+		const angle = (boss.direction * Math.PI) / 180;
+		const speed: number = 300;
+
+		const xGap = correctionToCalcValue(Math.cos(angle) * bossR);
+		const yGap = correctionToCalcValue(Math.sin(angle) * bossR);
+
+		enemyBullet(boss, speed, {
+			delay: 0.5,
+			fixedAngle: angle,
+			xGap: xGap,
+			yGap: yGap,
+		});
+
 		boss.direction += boss.directionGap;
 
 		if (boss.direction >= 360) {

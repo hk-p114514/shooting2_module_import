@@ -1,6 +1,7 @@
 import { Enemy } from '../../../classes/Enemy';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
 import { enemy } from '../../../init/variables';
+import { correctionToCalcValue } from '../../correctionToCalcValue';
 
 const makeFollowers = (boss: Enemy, follower: number) => {
 	if (boss.hp < boss.maxHp / 2) {
@@ -14,8 +15,8 @@ const makeFollowers = (boss: Enemy, follower: number) => {
 
 			vx = Math.cos(angle) * 300;
 			vy = Math.sin(angle) * 300;
-			let xGap = (Math.cos(angle) * bossR) << 8;
-			let yGap = (Math.sin(angle) * bossR) << 8;
+			let xGap = correctionToCalcValue(Math.cos(angle) * bossR);
+			let yGap = correctionToCalcValue(Math.sin(angle) * bossR);
 			enemy.push(makeEnemy(follower, [boss.x + xGap, boss.y + yGap, vx, vy]));
 		}
 	}

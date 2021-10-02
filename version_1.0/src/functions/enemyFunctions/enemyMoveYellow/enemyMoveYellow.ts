@@ -6,7 +6,10 @@ import { lvl1 } from './lvl1';
 import { changeSprite } from '../changeSprite';
 import { enemySpriteStart } from '../../../init/spriteInit';
 
-export const enemyMoveYellow = (enemy: Enemy) => {
+export const enemyMoveYellow = (
+	enemy: Enemy,
+	spriteStart: number = enemySpriteStart.yellow,
+) => {
 	if (vars.gameRound == 0) {
 		lvl1(enemy);
 	}
@@ -23,5 +26,5 @@ export const enemyMoveYellow = (enemy: Enemy) => {
 			lvl1(enemy);
 	}
 
-	changeSprite(enemy, enemySpriteStart.yellow);
+	changeSprite(enemy, spriteStart);
 };

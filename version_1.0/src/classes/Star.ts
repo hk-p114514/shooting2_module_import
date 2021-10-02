@@ -1,3 +1,4 @@
+import { correctionToMapValue } from '../functions/correctionToMapValue';
 import { rand } from '../functions/random';
 import {
 	vars,
@@ -23,8 +24,8 @@ class Star {
 	}
 
 	draw() {
-		let x = this.x >> 8;
-		let y = this.y >> 8;
+		const x = correctionToMapValue(this.x);
+		const y = correctionToMapValue(this.y);
 		if (
 			x < vars.camera_x ||
 			x >= vars.camera_x + screen_w ||
@@ -36,7 +37,7 @@ class Star {
 
 		if (vctx) {
 			vctx.fillStyle = rand(0, 2) !== 0 ? '#66f' : '#aef';
-			vctx.fillRect(this.x >> 8, this.y >> 8, this.size, this.size);
+			vctx.fillRect(x, y, this.size, this.size);
 		}
 	}
 

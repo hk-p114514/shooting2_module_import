@@ -6,7 +6,10 @@ import { changeSprite } from '../changeSprite';
 import { lvl1 } from './lvl1';
 import { lvl2 } from './lvl2';
 
-export const enemyMovePink = (enemy: Enemy) => {
+export const enemyMovePink = (
+	enemy: Enemy,
+	spriteStart: number = enemySpriteStart.pink,
+) => {
 	switch (vars.gameRound) {
 		case 0:
 			lvl1(enemy);
@@ -15,7 +18,7 @@ export const enemyMovePink = (enemy: Enemy) => {
 			lvl2(enemy);
 			break;
 	}
+
 	//スプライトの変更
-	//スプライトのパターン（アニメーションを表現）
-	changeSprite(enemy, enemySpriteStart.pink);
+	changeSprite(enemy, spriteStart);
 };

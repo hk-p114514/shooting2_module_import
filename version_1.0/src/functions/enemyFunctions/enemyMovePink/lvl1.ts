@@ -3,6 +3,7 @@ import { player } from '../../../init/variables';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
+import { attackableConditionPink } from './sharePinkMove';
 
 export const lvl1 = (enemy: Enemy) => {
 	const acceleration = 4;
@@ -23,7 +24,7 @@ export const lvl1 = (enemy: Enemy) => {
 		);
 	}
 
-	if (Math.abs(player.y - enemy.y) < 300 << 8 && !enemy.flag) {
+	if (attackableConditionPink(enemy)) {
 		enemy.flag = true;
 		//enemyBulletを呼び出した回数分、攻撃する
 		enemyBullet(enemy, 1000, { isRandom: true, begin: -10, end: 10 });
