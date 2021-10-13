@@ -7,7 +7,7 @@ import { makeExplosion } from './instance/makeExplosion';
 const explosionSound = (): void => {
 	const audio = new Audio('musics/explosion.mp3');
 	audio.currentTime = 0;
-	audio.volume = 0.3;
+	audio.volume = 1;
 	audio.play();
 };
 
