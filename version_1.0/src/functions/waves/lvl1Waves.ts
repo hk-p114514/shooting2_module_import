@@ -1,8 +1,6 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
 import { oneWave, tenSeconds } from '../../main';
-import { enemyFunctions } from '../enemyFunctions/enemyFunctions';
-import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { increaseWave } from './increaseWave';

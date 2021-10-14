@@ -26,13 +26,11 @@ const lvl2 = (enemy: Enemy): void => {
 	}
 
 	if (attackableConditionPink(enemy)) {
-		if (!rand(0, 2)) {
-			//連射率を操作
-			enemy.flag = true;
+		for (let i = 0; i < rand(10, 100); i++) {
+			//enemyBulletを呼び出した回数分、攻撃する
+			enemyBullet(enemy, 1000, { isRandom: true });
 		}
-
-		//enemyBulletを呼び出した回数分、攻撃する
-		enemyBullet(enemy, 1000, { isRandom: true, begin: -10, end: 10 });
+		enemy.flag = true;
 	}
 
 	if (enemy.flag && enemy.vy > -500) {

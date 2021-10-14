@@ -7,17 +7,22 @@ import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
 export const enemyBullet = (
 	enemy: Enemy,
 	speed: number,
-
 	{
+		/* ================ */
+		// 発射する位置をずらす
 		xGap = 0,
 		yGap = 0,
-		gap = 0,
-		fixedAngle = NaN,
-		delay = 0,
+		/* ================ */
+		gap = 0, // 発射する角度を時機狙いからずらす
+		fixedAngle = NaN, // 発射角が決まっている場合は直接指定できる(rad)
+		delay = 0, // 発射遅延
+		/* ランダム発射オプション */
+		// ランダムで発射する場合true
 		isRandom = false,
 		begin = 0,
 		end = 0,
-		moveCount = 0,
+		/* ================== */
+		moveCount = 0, // 途中で弾を動作させる時のタイミング
 	} = {},
 ) => {
 	//敵キャラからプレイヤーへの角度

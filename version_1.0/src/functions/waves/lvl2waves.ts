@@ -10,7 +10,7 @@ const lvl2Waves: Function[] = [
 	// 0
 	(): void => {
 		// ピンクのヒヨコのみを出す
-		if (!rand(0, 30)) {
+		if (!rand(0, 20)) {
 			enemy.push(makeEnemy(0, []));
 		}
 		// 3０秒経過したらウェーブを１段階上げる
