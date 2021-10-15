@@ -12,7 +12,5 @@
 		"snumptime",
 		"vcanvas",
 		"vctx"
-	],
-	"editor.fontFamily": "Source Han Code JP M",
-	"editor.fontWeight": "bold"
+	]
 }
