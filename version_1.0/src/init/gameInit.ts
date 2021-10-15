@@ -9,7 +9,7 @@ export const gameInit = () => {
 	// Starクラスのインスタンスを作成
 	// makeStars(star, star_max);
 	// ゲームループ
-	bgmStart();
+	// bgmStart();
 	const gameLoop = (): void => {
 		if (!(vars.gameClear || vars.gameOver) && vars.gameStart) {
 			waves[vars.gameRound][vars.gameWave]();
