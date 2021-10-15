@@ -17,7 +17,6 @@ import {
 	vars,
 	background,
 } from '../init/variables';
-import { correctionToMapValue } from './correctionToMapValue';
 import { bossInfo } from './enemyFunctions/enemyMoveBoss/bossInfo';
 import { drawObject, updateObject } from './objectProcess';
 import { drawStars, updateStars } from './starProcess';
@@ -66,10 +65,8 @@ const drawAll = () => {
 
 	//　自機の範囲  0 ~ field_w
 	//カメラの範囲  0 ~ (field_w - screen_w)
-	vars.camera_x =
-		(correctionToMapValue(player.x) / field_w) * (field_w - screen_w);
-	vars.camera_y =
-		(correctionToMapValue(player.y) / field_h) * (field_h - screen_h);
+	vars.camera_x = ((player.x >> 8) / field_w) * (field_w - screen_w);
+	vars.camera_y = ((player.y >> 8) / field_h) * (field_h - screen_h);
 
 	// ボス出現時、ボスのHP情報を表示する
 	bossInfo(vctx, gap);

@@ -29,31 +29,82 @@
 				<canvas id="canvas" class="canvas"></canvas>
 			</section>
 			<div id="after-game">
-				<section id="isLogout">
-					<form onsubmit="return false" class="score-submit" id="score-submit">
-						<input
-							id="userNameLogout"
-							type="text"
-							class="userName"
-							placeholder="ユーザ名（公開されます）"
-							required
-							autocomplete="off"
-						/>
-						<button
-							id="scoreSubmitButtonLogout"
-							type="submit"
-							class="
-								score-submit-button
-								shadow-button
-								mdl-button mdl-js-button
-								mdl-button--raised
-								mdl-js-ripple-effect
-							"
-						>
-							スコアを投稿
-						</button>
-					</form>
-				</section>
+				<aside id="isLogout">
+					<!---------- ログアウト時 ---------->
+					<section>
+						<div id="firebase-ui-container"></div>
+						<div id="loader">Loading...</div>
+						<div class="login-text">
+							常設ランキングにスコアを投稿するには、
+							上記ボタンよりログインして下さい。
+						</div>
+						<form onsubmit="return false">
+							<input
+								id="userNameLogout"
+								type="text"
+								class="userName"
+								placeholder="ユーザ名（公開されます）"
+								required
+								autocomplete="off"
+							/>
+							<button
+								type="submit"
+								class="
+									score-submit-button
+									shadow-button
+									mdl-button mdl-js-button
+									mdl-button--raised
+									mdl-js-ripple-effect
+								"
+							>
+								スコアを投稿
+							</button>
+						</form>
+					</section>
+				</aside>
+				<aside id="isLogin">
+					<!---------- ログイン時 ---------->
+					<button
+						type="submit"
+						id="logout-button"
+						class="
+							logout-button
+							shadow-button
+							mdl-button mdl-js-button
+							mdl-button--raised
+							mdl-js-ripple-effect
+						"
+					>
+						サインアウト
+					</button>
+					<section class="score-container">
+						<p>ようこそ</p>
+						<p id="login-text"></p>
+						<form id="score-submit" onsubmit="return false">
+							<input
+								type="text"
+								id="userName"
+								class="userName"
+								placeholder="ユーザ名（公開されます）"
+								required
+								autocomplete="off"
+							/>
+							<button
+								type="submit"
+								id="score-submit-button"
+								class="
+									score-submit-button
+									shadow-button
+									mdl-button mdl-js-button
+									mdl-button--raised
+									mdl-js-ripple-effect
+								"
+							>
+								スコアを投稿
+							</button>
+						</form>
+					</section>
+				</aside>
 			</div>
 		</main>
 		<link

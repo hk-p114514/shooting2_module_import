@@ -1,41 +1,33 @@
 import { Enemy } from '../../../classes/Enemy';
 import { player } from '../../../init/variables';
-import { changeSprite } from '../changeSprite';
-import { enemyAfterAttack } from '../enemyAfterAttack';
-import { enemyBeforeAttack } from '../enemyBeforeAttack';
 import { enemyBullet } from '../enemyBullet';
 
-const lvl2 = (enemy: Enemy) => {
-	const accelerationX = 30;
-	const vxMax = 300;
-	const breakOutAcceleration = 50;
-	const bulletSpeed = 16;
-	if (!enemy.flag) {
-		enemyBeforeAttack(enemy, player, accelerationX, vxMax, -vxMax * 2);
+const lvl2 = (object: Enemy) => {
+	if (!object.flag) {
+		if (player.x > object.x && object.vx < 300) {
+			object.accelerationX(30);
+		} else if (object.vx > -600) {
+			object.accelerationX(-30);
+		}
 	} else {
-		enemyAfterAttack(
-			enemy,
-			player,
-			vxMax,
-			accelerationX,
-			-vxMax * 2,
-			breakOutAcceleration,
-			[1, 1],
-		);
+		if (player.x < object.x && object.vx < 300) {
+			object.accelerationY(30);
+		} else if (object.vx > -600) {
+			object.accelerationY(50);
+		}
 	}
 
-	if (!enemy.flag) {
+	if (!object.flag) {
 		// forループの数だけ弾を発射する
 		for (let i = 0; i < 8; i++) {
 			// 球のスピード、プレイヤーを狙う弾（自機狙い）を0とした時の弾の広がる範囲
-			enemyBullet(enemy, 850, {
-				isRandom: true,
-				begin: -bulletSpeed,
-				end: bulletSpeed,
-			});
+			enemyBullet(object, 850, -16, 16);
 		}
-		enemy.flag = true;
+		object.flag = true;
 	}
+
+	const ptn = [33, 34, 33, 35];
+	object.snum = ptn[(object.count >> 3) & 3];
 };
 
 export { lvl2 };

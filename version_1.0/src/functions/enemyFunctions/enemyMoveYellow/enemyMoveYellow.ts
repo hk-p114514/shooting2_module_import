@@ -3,28 +3,21 @@ import { Enemy } from '../../../classes/Enemy';
 import { vars } from '../../../init/variables';
 import { lvl2 } from './lvl2';
 import { lvl1 } from './lvl1';
-import { changeSprite } from '../changeSprite';
-import { enemySpriteStart } from '../../../init/spriteInit';
 
-export const enemyMoveYellow = (
-	enemy: Enemy,
-	spriteStart: number = enemySpriteStart.yellow,
-) => {
+export const enemyMoveYellow = (object: Enemy) => {
 	if (vars.gameRound == 0) {
-		lvl1(enemy);
+		lvl1(object);
 	}
 
 	switch (vars.gameRound) {
 		case 0:
-			lvl1(enemy);
+			lvl1(object);
 			break;
 		case 1:
-			lvl2(enemy);
+			lvl2(object);
 			break;
 
 		default:
-			lvl1(enemy);
+			lvl1(object);
 	}
-
-	changeSprite(enemy, spriteStart);
 };

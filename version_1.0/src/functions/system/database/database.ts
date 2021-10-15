@@ -1,5 +1,5 @@
 import { logoutButton } from '../../../init/variables';
-import { auth, ui } from '../../../config';
+import { firebase, auth, db, ui } from '../../../config';
 import { login } from './isLogin';
 import { signOut } from './signOut';
 import { uiConfig } from './uiConfig';
@@ -17,7 +17,10 @@ export const database = () => {
 			login(isLogin, user);
 		} else {
 			//ログアウトしている時
-			logout();
+			if (isLogin) {
+				isLogin.style.display = 'none';
+				logout();
+			}
 			ui.start('#firebase-ui-container', uiConfig);
 		}
 	});

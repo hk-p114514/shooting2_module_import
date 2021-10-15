@@ -2,7 +2,6 @@
 import { screen_h, screen_w, vctx, vars } from '../init/variables';
 import { sprite } from '../init/spriteInit';
 import { images } from '../init/sprite';
-import { correctionToMapValue } from './correctionToMapValue';
 
 export const drawSprite = (
 	snum: number,
@@ -15,8 +14,8 @@ export const drawSprite = (
 	let sw = sprite[snum].w;
 	let sh = sprite[snum].h;
 
-	let px = correctionToMapValue(x) - sw / 2;
-	let py = correctionToMapValue(y) - sh / 2;
+	let px = (x >> 8) - sw / 2;
+	let py = (y >> 8) - sh / 2;
 	if (
 		px + sw < vars.camera_x ||
 		px >= vars.camera_x + screen_w ||

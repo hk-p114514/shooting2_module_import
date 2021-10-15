@@ -14,22 +14,20 @@ import {
 import { gameStart } from './init/gameStart';
 
 const DEBUG: boolean = true;
-// const DEBUG: boolean = false;
 
 if (DEBUG) {
 	player.hp = 500;
-	// player.hp = 0;
+	player.hp = 0;
 	player.power = 50;
 }
 
 const tenSeconds = 60;
-const debugTime = 5;
+const debugTime = 1;
 const oneWave = DEBUG ? debugTime : 30;
 
 // キーを操作したとき
 keyControl();
 
-// スコア投稿のinputタグにフォーカスした際、rキーを押してもリロードしないようにする
 if (scoreSubmit !== null) {
 	scoreSubmit.addEventListener('click', () => {
 		vars.inputOnFocus = false;
