@@ -31,6 +31,6 @@ export const lvl1 = (enemy: Enemy) => {
 	}
 
 	if (enemy.flag && enemy.vy > -500) {
-		enemy.accelerationY(-30);
+		enemy.accelerationY(-breakOutX);
 	}
 };
