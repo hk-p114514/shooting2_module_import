@@ -17,6 +17,8 @@ export const enemyMovePink = (
 		case 1:
 			lvl2(enemy);
 			break;
+		default:
+			lvl1(enemy);
 	}
 
 	//スプライトの変更
