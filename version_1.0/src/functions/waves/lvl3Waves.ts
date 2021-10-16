@@ -3,7 +3,7 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy } from '../../init/variables';
 
-const lvl3wave: Function[] = [
+const lvl3Waves: Function[] = [
 	// 0
 	(): void => {},
 
@@ -17,4 +17,4 @@ const lvl3wave: Function[] = [
 	(): void => {},
 ];
 
-export { lvl3wave };
+export { lvl3Waves };

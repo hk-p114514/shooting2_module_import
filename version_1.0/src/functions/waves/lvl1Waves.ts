@@ -1,8 +1,6 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import { enemy, item, vars } from '../../init/variables';
 import { oneWave, tenSeconds } from '../../main';
-import { enemyFunctions } from '../enemyFunctions/enemyFunctions';
-import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { increaseWave } from './increaseWave';
@@ -11,12 +9,18 @@ import { levelUp } from './levelUp';
 const lvl1Waves: Function[] = [
 	// 0
 	(): void => {
+		console.log('in 0');
+
 		// ピンクのヒヨコのみを出す
 		if (!rand(0, 30)) {
+			console.log('In if');
 			enemy.push(makeEnemy(0, []));
+			console.log('end makeEnemy');
+			console.log('end if');
 		}
 		// 3０秒経過したらウェーブを１段階上げる
 		increaseWave(oneWave);
+		console.log('end 0');
 	},
 
 	// 1

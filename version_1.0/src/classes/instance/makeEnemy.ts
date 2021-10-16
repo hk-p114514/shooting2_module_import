@@ -14,6 +14,8 @@ const makeEnemy = (
 		vy = rand(300, 1200),
 	],
 ): Enemy => {
+	console.log('makeEnemy');
+
 	return new Enemy(enemyNumber, x, y, vx, vy);
 };
 

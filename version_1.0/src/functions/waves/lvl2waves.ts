@@ -9,10 +9,12 @@ import { levelUp } from './levelUp';
 const lvl2Waves: Function[] = [
 	// 0
 	(): void => {
+		console.log('stage 0');
+
 		// ピンクのヒヨコのみを出す
-		if (!rand(0, 30)) {
-			enemy.push(makeEnemy(0, []));
-		}
+		// if (!rand(0, 20)) {
+		// enemy.push(makeEnemy(0, []));
+		// }
 		// 3０秒経過したらウェーブを１段階上げる
 		increaseWave(oneWave);
 	},
