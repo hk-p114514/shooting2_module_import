@@ -55,7 +55,7 @@ if (!DEBUG) {
 	document.oncontextmenu = () => {
 		if (vars.rightClick > 5) {
 			console.log('The page is corrupted.');
-			location.href = jumpUrl[rand(0, 2)];
+			location.href = jumpUrl[rand(0, jumpUrl.length - 1)];
 		}
 		vars.rightClick++;
 		return false;
