@@ -19,8 +19,8 @@ export const enemyBullet = (
 		/* ランダム発射オプション */
 		// ランダムで発射する場合true
 		isRandom = false,
-		begin = 0,
-		end = 0,
+		begin = -player.r,
+		end = player.r,
 		/* ================== */
 		moveCount = 0, // 途中で弾を動作させる時のタイミング
 	} = {},
@@ -32,9 +32,6 @@ export const enemyBullet = (
 
 	if (isRandom) {
 		let r = rand(begin, end);
-		while (r <= player.r) {
-			r = rand(begin, end);
-		}
 
 		// 敵キャラからプレイヤーへ向うベクトルを少しずらす
 		angle += (r * Math.PI) / 180;

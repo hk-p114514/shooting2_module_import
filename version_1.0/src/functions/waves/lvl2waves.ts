@@ -12,9 +12,9 @@ const lvl2Waves: Function[] = [
 		console.log('stage 0');
 
 		// ピンクのヒヨコのみを出す
-		// if (!rand(0, 20)) {
-		// enemy.push(makeEnemy(0, []));
-		// }
+		if (!rand(0, 20)) {
+			enemy.push(makeEnemy(0, []));
+		}
 		// 3０秒経過したらウェーブを１段階上げる
 		increaseWave(oneWave);
 	},
