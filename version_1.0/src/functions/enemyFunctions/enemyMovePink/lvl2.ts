@@ -26,9 +26,9 @@ const lvl2 = (enemy: Enemy): void => {
 	}
 
 	if (attackableConditionPink(enemy)) {
-		for (let i = 0; i < rand(10, 100); i++) {
+		for (let i = 0; i < 3; i++) {
 			//enemyBulletを呼び出した回数分、攻撃する
-			enemyBullet(enemy, 1000, { isRandom: true });
+			enemyBullet(enemy, 1000, {});
 		}
 		enemy.flag = true;
 	}
