@@ -71,6 +71,15 @@ const normalEnemy = {
 	score: 100,
 };
 
+export const bossEnemy = {
+	// ボスキャラの半径
+	r: 70,
+	// ボスキャラの体力
+	hp: 1000,
+	// ボスキャラを倒した際の取得スコア
+	score: 10000,
+};
+
 //敵キャラの種類
 export const enemyMaster = [
 	new EnemyMaster(
@@ -89,9 +98,9 @@ export const enemyMaster = [
 	), //黄色のヒヨコ
 	new EnemyMaster(
 		2,
-		70,
-		1000,
-		10000,
+		bossEnemy.r,
+		bossEnemy.hp,
+		bossEnemy.score,
 		enemyFunctions.boss,
 	) /*ボスヒヨコ（黄色）*/,
 	new EnemyMaster(
