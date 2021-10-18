@@ -1,5 +1,5 @@
 import { rand } from '../../functions/random';
-import { bgmFadeIn } from './bgmFadeIn';
+import { bgmFadeIn, bgmFadeOut } from './bgmFadeInFadeOut';
 const bgmNumber: number = 3;
 const BGM_NUMBERS = Array.from({ length: bgmNumber }, (_, i) => ++i);
 
@@ -11,16 +11,17 @@ const makeBGM = (bgm: string[]): HTMLAudioElement[] => {
 	return object;
 };
 
-const bgm: HTMLAudioElement[] = makeBGM(
+const musics: HTMLAudioElement[] = makeBGM(
 	BGM_NUMBERS.map((number) => `bgm${number}`),
 );
-const use = bgm[rand(0, bgm.length - 1)];
+const bgm = musics[rand(0, musics.length - 1)];
 
 const bgmStart = (): void => {
-	use.play();
-	use.loop = true;
-	use.volume = 0;
+	bgm.play();
+	bgm.loop = true;
+	bgm.volume = 0;
 	bgmFadeIn();
+	bgmFadeOut();
 };
 
-export { bgmStart, use };
+export { bgmStart, bgm };
