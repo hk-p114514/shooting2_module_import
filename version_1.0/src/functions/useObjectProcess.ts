@@ -56,12 +56,12 @@ const drawAll = () => {
 
 	//ゲームオーバー時に表示を消す
 	if (!vars.gameOver && !vars.gameClear) {
-		drawObject(explosion);
 		drawObject(item);
 		drawObject(enemyShot);
-		drawObject(bullet);
-		player.draw();
 	}
+	drawObject(explosion);
+	drawObject(bullet);
+	player.draw();
 	drawObject(enemy);
 
 	//　自機の範囲  0 ~ field_w
