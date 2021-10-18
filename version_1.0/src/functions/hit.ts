@@ -7,7 +7,8 @@ export const checkHit = (
 	ex: number,
 	ey: number,
 	er: number,
-) => {
+): boolean => {
+	let result: boolean = false;
 	//円同士の当たり判定
 
 	//底辺
@@ -18,6 +19,8 @@ export const checkHit = (
 	let r = pr + er;
 
 	if (r * r >= a * a + b * b) {
-		return true;
+		result = true;
 	}
+
+	return result;
 };
