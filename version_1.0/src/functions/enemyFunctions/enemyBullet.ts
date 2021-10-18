@@ -3,6 +3,7 @@ import { enemyShot, player } from '../../init/variables';
 import { rand } from '../random';
 import { Enemy } from '../../classes/Enemy';
 import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
+import { toRad } from '../toRad';
 
 export const enemyBullet = (
 	enemy: Enemy,
@@ -34,7 +35,8 @@ export const enemyBullet = (
 		let r = rand(begin, end);
 
 		// 敵キャラからプレイヤーへ向うベクトルを少しずらす
-		angle += (r * Math.PI) / 180;
+		// 角度をラジアンに直す
+		angle += toRad(r);
 	} else {
 		// ランダムで無い場合(真っ直ぐ飛んでく)
 		angle += gap ? gap : 0;

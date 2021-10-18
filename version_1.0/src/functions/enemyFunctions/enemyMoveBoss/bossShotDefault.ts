@@ -2,6 +2,7 @@ import { Enemy } from '../../../classes/Enemy';
 import { enemyMaster, enemyMasterIndex } from '../../../init/variables';
 import { correctionToCalcValue } from '../../correctionToCalcValue';
 import { rand } from '../../random';
+import { toRad } from '../../toRad';
 import { enemyBullet } from '../enemyBullet';
 
 const bossShotDefault = (boss: Enemy) => {
@@ -10,7 +11,7 @@ const bossShotDefault = (boss: Enemy) => {
 		const bossR = enemyMaster[enemyMasterIndex.bigYellow].r;
 
 		//敵キャラから目標への角度(ラジアン)
-		const angle = (boss.direction * Math.PI) / 180;
+		const angle = toRad(boss.direction);
 		const speed: number = 300;
 
 		const xGap = correctionToCalcValue(Math.cos(angle) * bossR);
