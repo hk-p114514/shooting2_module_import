@@ -1,6 +1,6 @@
 import { Enemy } from '../../../classes/Enemy';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
-import { bossEnemy, enemy } from '../../../init/variables';
+import { bossEnemy } from '../../../init/variables';
 import { correctionToCalcValue } from '../../correctionToCalcValue';
 import { toRad } from '../../toRad';
 
@@ -19,7 +19,12 @@ const makeFollowers = (boss: Enemy, follower: number) => {
 			vy = Math.sin(angle) * 300;
 			let xGap = correctionToCalcValue(Math.cos(angle) * bossR);
 			let yGap = correctionToCalcValue(Math.sin(angle) * bossR);
-			enemy.push(makeEnemy(follower, [boss.x + xGap, boss.y + yGap, vx, vy]));
+			makeEnemy(follower, {
+				x: boss.x + xGap,
+				y: boss.y + yGap,
+				vx: vx,
+				vy: vy,
+			});
 		}
 	}
 };

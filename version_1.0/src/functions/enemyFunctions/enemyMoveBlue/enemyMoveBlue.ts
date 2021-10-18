@@ -9,13 +9,16 @@ const enemyMoveBlue = (
 	enemy: Enemy,
 	spriteStart: number = enemySpriteStart.blue,
 ) => {
-	switch (vars.gameRound) {
-		case 0:
-			lvl1(enemy);
-			break;
+	switch (vars.gameRound + 1) {
 		case 1:
 			lvl1(enemy);
 			break;
+		case 2:
+			lvl1(enemy);
+			break;
+
+		default:
+			lvl1(enemy);
 	}
 
 	// スプライトの変更

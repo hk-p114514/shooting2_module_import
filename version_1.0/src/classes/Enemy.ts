@@ -57,12 +57,12 @@ class Enemy extends Character {
 		range: number,
 		x: boolean = true,
 	): boolean => {
-		let mine = this.y;
+		let own = this.y;
 		if (x) {
-			mine = this.x;
+			own = this.x;
 		}
 
-		const distance = Math.abs(mine - target);
+		const distance = Math.abs(own - target);
 		range = correctionToCalcValue(range);
 
 		const result: boolean = range >= distance ? true : false;

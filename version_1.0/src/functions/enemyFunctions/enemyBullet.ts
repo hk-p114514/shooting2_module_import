@@ -23,7 +23,7 @@ export const enemyBullet = (
 		begin = -player.r,
 		end = player.r,
 		/* ================== */
-		moveCount = 0, // 途中で弾を動作させる時のタイミング
+		moveCount = 0, // (moveCount)秒 後に弾を動作させる
 	} = {},
 ) => {
 	//敵キャラからプレイヤーへの角度

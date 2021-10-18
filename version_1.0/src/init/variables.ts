@@ -10,6 +10,7 @@ import { Bullet } from '../classes/Bullet';
 import { Background } from '../classes/Background';
 import { waves } from '../functions/waves/waves';
 import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
+import { tenSeconds } from '../main';
 
 // ******************************* 定数 *******************************
 
@@ -58,6 +59,9 @@ export const background = new Background(
 
 //アイテムの種類
 export const itemMaster: ItemMaster[] = [new ItemMaster(0, 15, 1)];
+export const itemMasterIndex = {
+	heal: 0,
+};
 
 //ゲームスピード
 export const gameSpeed = 1000 / 60;

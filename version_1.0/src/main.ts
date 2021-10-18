@@ -23,7 +23,7 @@ if (DEBUG) {
 }
 
 const tenSeconds = 60;
-const debugTime = 1;
+const debugTime = 2;
 const oneWave = DEBUG ? debugTime : 30;
 
 // キーを操作したとき

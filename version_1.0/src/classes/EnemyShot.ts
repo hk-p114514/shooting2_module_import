@@ -16,7 +16,7 @@ class EnemyShot extends Character {
 		vx: number,
 		vy: number,
 		delay: number,
-		moveWaitSec: number = 0,
+		moveCount: number = 0,
 	) {
 		super(snum, x, y, vx, vy);
 		this.r = 4;
@@ -26,7 +26,8 @@ class EnemyShot extends Character {
 			// 遅延時間を秒に直す
 			this.delay = delay * 60;
 		}
-		this.moveWaitSec = moveWaitSec * 60;
+		// 移動までの時間を秒に変換する
+		this.moveWaitSec = moveCount * 60;
 	}
 
 	update = () => {
