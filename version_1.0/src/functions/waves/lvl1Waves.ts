@@ -17,6 +17,10 @@ const lvl1Waves: Function[] = [
 	(): void => {
 		// ピンクのヒヨコのみを出す
 		makeEnemy(e.pink, { probability: 30 });
+		makeEnemy(e.egg, { probability: 30 });
+		makeEnemy(e.shell, { probability: 30 });
+		makeEnemy(e.chicken, { probability: 30 });
+
 		// 3０秒経過したらウェーブを１段階上げる
 		increaseWave(oneWave);
 	},

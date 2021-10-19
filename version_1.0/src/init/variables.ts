@@ -152,6 +152,7 @@ export const enemyMasterIndex = {
 	blue: 4,
 	chicken: 5,
 	egg: 6,
+	shell: 7,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、
