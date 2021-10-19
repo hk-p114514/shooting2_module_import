@@ -1,6 +1,5 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
-	enemy,
 	enemyMasterIndex as e,
 	itemMasterIndex as i,
 	vars,
