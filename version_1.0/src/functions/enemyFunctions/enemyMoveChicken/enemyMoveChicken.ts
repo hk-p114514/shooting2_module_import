@@ -1,0 +1,3 @@
+const enemyMoveChicken = () => {};
+
+export { enemyMoveChicken };

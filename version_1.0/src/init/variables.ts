@@ -109,11 +109,11 @@ export const enemyMaster = [
 	) /*ボスヒヨコ（黄色）*/,
 	new EnemyMaster(
 		3,
-		15,
-		5,
-		10,
+		normalEnemy.r,
+		normalEnemy.hp * 5,
+		normalEnemy.score * 10,
 		enemyFunctions.robot,
-	) /*ボスヒヨコの子分(ロボ)*/,
+	), // ロボヒヨコ
 	new EnemyMaster(
 		4,
 		normalEnemy.r,
@@ -121,6 +121,27 @@ export const enemyMaster = [
 		normalEnemy.score,
 		enemyFunctions.blue,
 	), // 群青色のヒヨコ
+	new EnemyMaster(
+		5,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyFunctions.chicken,
+	), // 鶏
+	new EnemyMaster(
+		6,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyFunctions.egg,
+	), // たまご
+	new EnemyMaster(
+		7,
+		normalEnemy.r,
+		normalEnemy.hp,
+		normalEnemy.score,
+		enemyFunctions.shell,
+	), // 殻帽子ヒヨコ
 ];
 
 export const enemyMasterIndex = {
@@ -129,6 +150,8 @@ export const enemyMasterIndex = {
 	bigYellow: 2,
 	robot: 3,
 	blue: 4,
+	chicken: 5,
+	egg: 6,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

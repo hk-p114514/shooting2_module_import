@@ -1,0 +1,3 @@
+const enemyMoveEgg = () => {};
+
+export { enemyMoveEgg };
