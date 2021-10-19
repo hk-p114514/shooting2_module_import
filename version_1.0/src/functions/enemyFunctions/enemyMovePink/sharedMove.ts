@@ -3,12 +3,17 @@ import { player } from '../../../init/variables';
 import { enemyAfterAttack } from '../enemyAfterAttack';
 import { enemyBeforeAttack } from '../enemyBeforeAttack';
 
-const sharedMove = (enemy: Enemy, func: Function): void => {
-	const acceleration = 4;
-	const vxMax = 120;
-	const approachX = 400;
-	const breakOutX = 30;
-
+const sharedMove = (
+	enemy: Enemy,
+	{
+		func = () => {},
+		acceleration = 4,
+		vxMax = 120,
+		approachX = 400,
+		breakOutX = 30,
+		escapeVy = -500,
+	} = {},
+): void => {
 	if (!enemy.flag) {
 		enemyBeforeAttack(enemy, player, acceleration, vxMax);
 	} else {
@@ -25,7 +30,9 @@ const sharedMove = (enemy: Enemy, func: Function): void => {
 
 	func();
 
-	if (enemy.flag && enemy.vy > -500) {
+	// 攻撃した、かつ、vyが-500よりも大きいとき
+	if (enemy.flag && enemy.vy > escapeVy) {
+		// 上に浮上して逃げる
 		enemy.accelerationY(-breakOutX);
 	}
 };
