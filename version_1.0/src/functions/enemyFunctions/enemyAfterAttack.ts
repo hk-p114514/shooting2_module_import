@@ -10,6 +10,7 @@ const enemyAfterAttack = (
 	approachAcceleration: number,
 	breakOut: number,
 	breakOutAcceleration: number,
+	// *Direction:: 0 -> Y, not 0 -> X
 	[approachDirection = 0, breakOutDirection = 0],
 ) => {
 	// 攻撃した後の処理
