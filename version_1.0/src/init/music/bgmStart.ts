@@ -14,7 +14,7 @@ const makeBGM = (bgm: string[]): HTMLAudioElement[] => {
 const musics: HTMLAudioElement[] = makeBGM(
 	BGM_NUMBERS.map((number) => `bgm${number}`),
 );
-const bgm = musics[rand(0, musics.length - 1)];
+const bgm: HTMLAudioElement = musics[rand(0, musics.length - 1)];
 
 const bgmStart = (): void => {
 	bgm.play();

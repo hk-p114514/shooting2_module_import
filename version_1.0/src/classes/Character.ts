@@ -10,7 +10,15 @@ class Character {
 	vy: number;
 	kill: boolean;
 	count: number; // 60で代替一秒
-	constructor(snum: number, x: number, y: number, vx: number, vy: number) {
+	audio: HTMLAudioElement | null;
+	constructor(
+		snum: number,
+		x: number,
+		y: number,
+		vx: number,
+		vy: number,
+		audio: HTMLAudioElement | null = null,
+	) {
 		this.snum = snum;
 		this.x = x;
 		this.y = y;
@@ -18,6 +26,7 @@ class Character {
 		this.vy = vy;
 		this.kill = false;
 		this.count = 0;
+		this.audio = audio;
 	}
 
 	update() {
@@ -38,6 +47,14 @@ class Character {
 	draw(other?: number) {
 		drawSprite(this.snum, this.x, this.y, other);
 	}
+
+	public makeSounds = () => {
+		if (this.audio) {
+			this.audio.currentTime = 0;
+			this.audio.volume = 1;
+			this.audio.play();
+		}
+	};
 
 	moveX(move: number) {
 		this.x += move;

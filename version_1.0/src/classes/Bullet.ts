@@ -4,17 +4,10 @@ import { checkHit } from '../functions/hit';
 import { moreExplosion } from '../functions/moreExplosion';
 import { makeExplosion } from './instance/makeExplosion';
 
-const explosionSound = (): void => {
-	const audio = new Audio('musics/explosion.mp3');
-	audio.currentTime = 0;
-	audio.volume = 1;
-	audio.play();
-};
-
 class Bullet extends Character {
 	r: number;
 	constructor(x: number, y: number, vx: number, vy: number) {
-		super(6, x, y, vx, vy);
+		super(6, x, y, vx, vy, new Audio('musics/explosion.mp3'));
 		this.r = 4;
 	}
 
@@ -32,7 +25,7 @@ class Bullet extends Character {
 					enemy[i].hp -= player.power;
 
 					// 効果音を出す
-					explosionSound();
+					this.makeSounds();
 
 					//もし敵の hp が０以下ならば、死亡判定をする
 					if (enemy[i].hp <= 0 && !(vars.gameClear || vars.gameOver)) {

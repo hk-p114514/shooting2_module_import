@@ -2,6 +2,7 @@ import { bullet, field_h, field_w, key, player, vars } from '../init/variables';
 import { drawSprite } from '../functions/drawSprite';
 import { makeBullet } from './instance/makeBullet';
 import { correctionToCalcValue } from '../functions/correctionToCalcValue';
+import { makeSoundEffect } from '../functions/makeSoundEffect';
 
 const onePixel = 256;
 
@@ -27,6 +28,8 @@ class Player {
 	specialTime: number;
 	specialMagazine: number;
 	specialMaxTime: number;
+	attackSoundSrc: HTMLAudioElement = new Audio('musics/shot.mp3');
+	isAttackedSrc: HTMLAudioElement = new Audio('musics/playerIsAttacked.mp3');
 	constructor() {
 		this.x = (field_w / 2) << 8;
 		this.y = (field_h - 50) << 8;
@@ -242,11 +245,12 @@ class Player {
 		}
 	};
 
-	private attackSound = (): void => {
-		const audio = new Audio('musics/shot.mp3');
-		audio.currentTime = 0;
-		audio.volume = 0.5;
-		audio.play();
+	public attackSound = (): void => {
+		makeSoundEffect(this.attackSoundSrc);
+	};
+
+	public isAttackedSound = (): void => {
+		makeSoundEffect(this.isAttackedSrc);
 	};
 
 	private subtractionOfPlayerValues = (): void => {
