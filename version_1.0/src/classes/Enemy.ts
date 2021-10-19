@@ -7,6 +7,7 @@ import { correctionToCalcValue } from '../functions/correctionToCalcValue';
 class Enemy extends Character {
 	enemyNumber: number;
 	r: number;
+	diameter: number;
 	maxHp: number;
 	hp: number;
 	score: number;
@@ -19,6 +20,7 @@ class Enemy extends Character {
 		super(0, x, y, vx, vy);
 		this.enemyNumber = enemyMaster[id].enemyNumber;
 		this.r = enemyMaster[id].r;
+		this.diameter = this.r * 2;
 		this.maxHp = enemyMaster[id].hp;
 		this.score = enemyMaster[id].score;
 		this.moveFunction = enemyMaster[id].moveFunction;
