@@ -55,7 +55,6 @@ const lvl1Waves: Function[] = [
 		//  ボスキャラ出現
 		if (vars.gameCount >= tenSeconds * 5 && !vars.bossEncounter) {
 			const boss = makeEnemy(e.bigYellow, { vy: 200 });
-			remodelEnemy(boss, { hp: 2 });
 			vars.bossEncounter = true;
 		} else if (
 			vars.gameCount >= tenSeconds * 90 &&

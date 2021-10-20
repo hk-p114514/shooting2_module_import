@@ -8,10 +8,13 @@ const bossMoveVertical = (
 	limitY: number,
 ) => {
 	limitY -= boss.diameter;
+
 	// まだ下に下がれれば
-	if (y < limitY && boss.vy < maxVy) {
+	if (y < limitY) {
 		boss.vy += rand(1, maxVy);
-	} else if (y >= limitY && boss.vy >= -maxVy) {
+	}
+
+	if (y >= limitY) {
 		boss.vy -= rand(1, maxVy);
 	}
 };

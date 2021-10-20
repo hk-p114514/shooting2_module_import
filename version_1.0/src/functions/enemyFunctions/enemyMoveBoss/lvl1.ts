@@ -1,16 +1,17 @@
 import { Enemy } from '../../../classes/Enemy';
-import { bossMoveDown } from './bossMoveDown';
+import { enemyMasterIndex } from '../../../init/variables';
+import { bossMoveBattle } from './bossMoveBattle';
 import { bossShotDefault } from './bossShotDefault';
 import { makeFollowers } from './makeFollowers';
 
 const lvl1 = (boss: Enemy) => {
-	bossMoveDown(boss);
+	bossMoveBattle(boss, { pattern: 'v' });
 
 	//弾の発射
 	bossShotDefault(boss);
 
 	// 取り巻きキャラを出現
-	makeFollowers(boss, 3);
+	makeFollowers(boss, enemyMasterIndex.pink);
 };
 
 export { lvl1 };

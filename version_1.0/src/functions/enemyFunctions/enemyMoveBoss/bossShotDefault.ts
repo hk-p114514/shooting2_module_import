@@ -5,14 +5,13 @@ import { rand } from '../../random';
 import { toRad } from '../../toRad';
 import { enemyBullet } from '../enemyBullet';
 
-const bossShotDefault = (boss: Enemy) => {
+const bossShotDefault = (boss: Enemy, { speed = 300, chDir = false } = {}) => {
 	if (boss.flag > 1) {
 		// ボスキャラの半径
 		const bossR = enemyMaster[enemyMasterIndex.bigYellow].r;
 
 		//敵キャラから目標への角度(ラジアン)
 		const angle = toRad(boss.direction);
-		const speed: number = 300;
 
 		const xGap = correctionToCalcValue(Math.cos(angle) * bossR);
 		const yGap = correctionToCalcValue(Math.sin(angle) * bossR);
@@ -26,7 +25,7 @@ const bossShotDefault = (boss: Enemy) => {
 
 		boss.direction += boss.directionGap;
 
-		if (boss.direction >= 360) {
+		if (boss.direction >= 360 && chDir) {
 			boss.direction = 0;
 			if (rand(0, 2) === 0) {
 				//360度周期　＆　３分の１の確率で弾の角度を変える
