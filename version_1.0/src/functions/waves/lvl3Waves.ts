@@ -1,8 +1,7 @@
 'use strict';
 
 import { makeEnemy } from '../../classes/instance/makeEnemy';
-import { enemyMasterIndex as e } from '../../init/variables';
-import { oneWave } from '../../main';
+import { enemyMasterIndex as e, oneWave } from '../../init/variables';
 import { increaseWave } from './increaseWave';
 
 const lvl3Waves: Function[] = [

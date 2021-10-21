@@ -8,9 +8,9 @@ const makeEnemyShot = (
 	y: number,
 	vx: number,
 	vy: number,
-	{ delay = 0, moveCount = 0 } = {},
+	{ delay = 0, moveCount = 0, moveAngle = 30 } = {},
 ): EnemyShot => {
-	return new EnemyShot(snum, x, y, vx, vy, delay, moveCount);
+	return new EnemyShot(snum, x, y, vx, vy, delay, moveCount, moveAngle);
 };
 
 export { makeEnemyShot };

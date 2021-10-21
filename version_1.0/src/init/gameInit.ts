@@ -11,7 +11,7 @@ export const gameInit = () => {
 	// ゲームループ
 
 	// bgmループ
-	bgmStart();
+	// bgmStart();
 	const gameLoop = (): void => {
 		if (!(vars.gameClear || vars.gameOver) && vars.gameStart) {
 			waves[vars.gameRound][vars.gameWave]();

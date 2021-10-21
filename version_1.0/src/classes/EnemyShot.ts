@@ -3,12 +3,14 @@ import { vars, player } from '../init/variables';
 import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
 import { Vector } from './Vector';
+import { secToCount } from '../functions/secToCount';
 
 class EnemyShot extends Character {
 	r: number;
 	delay: number;
 	moveWaitSec: number;
 	isMove: boolean = false;
+	moveAngle: number;
 	constructor(
 		snum: number,
 		x: number,
@@ -17,6 +19,7 @@ class EnemyShot extends Character {
 		vy: number,
 		delay: number,
 		moveCount: number = 0,
+		moveAngle: number = 30,
 	) {
 		super(snum, x, y, vx, vy);
 		this.r = 4;
@@ -24,10 +27,13 @@ class EnemyShot extends Character {
 			this.delay = 0;
 		} else {
 			// 遅延時間を秒に直す
-			this.delay = delay * 60;
+			this.delay = secToCount(delay);
 		}
-		// 移動までの時間を秒に変換する
-		this.moveWaitSec = moveCount * 60;
+		// 移動までの時間を秒からカウントに変換する
+		this.moveWaitSec = secToCount(moveCount);
+
+		// 軌道を動かす角度
+		this.moveAngle = moveAngle;
 	}
 
 	update = () => {
@@ -58,7 +64,7 @@ class EnemyShot extends Character {
 			!this.isMove
 		) {
 			// moveCountが0でなかったら
-			this.rotation(30);
+			this.rotation(this.moveAngle);
 			this.isMove = true;
 		}
 	};

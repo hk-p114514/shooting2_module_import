@@ -5,7 +5,18 @@ import { rand } from '../../random';
 import { toRad } from '../../toRad';
 import { enemyBullet } from '../enemyBullet';
 
-const bossShotDefault = (boss: Enemy, { speed = 300, chDir = false } = {}) => {
+const bossShotDefault = (
+	boss: Enemy,
+	{
+		speed = 300,
+		changeDir = false,
+		changeFrequency = 3,
+		minDir = 3.5,
+		maxDir = 360,
+		moveCount = 0,
+		moveAngle = 30,
+	} = {},
+): void => {
 	if (boss.flag > 1) {
 		// ボスキャラの半径
 		const bossR = enemyMaster[enemyMasterIndex.bigYellow].r;
@@ -21,15 +32,17 @@ const bossShotDefault = (boss: Enemy, { speed = 300, chDir = false } = {}) => {
 			fixedAngle: angle,
 			xGap: xGap,
 			yGap: yGap,
+			moveCount: moveCount,
+			moveAngle: moveAngle,
 		});
 
 		boss.direction += boss.directionGap;
 
-		if (boss.direction >= 360 && chDir) {
+		if (boss.direction >= 360 && changeDir) {
 			boss.direction = 0;
-			if (rand(0, 2) === 0) {
+			if (!rand(0, changeFrequency - 1)) {
 				//360度周期　＆　３分の１の確率で弾の角度を変える
-				boss.directionGap = rand(3.5, 60);
+				boss.directionGap = rand(minDir, maxDir);
 			}
 		}
 	}

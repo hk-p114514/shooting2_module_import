@@ -24,6 +24,7 @@ export const enemyBullet = (
 		end = player.r,
 		/* ================== */
 		moveCount = 0, // (moveCount)秒 後に弾を動作させる
+		moveAngle = 30, // 弾の軌道を変える角度
 	} = {},
 ) => {
 	//敵キャラからプレイヤーへの角度
@@ -50,6 +51,7 @@ export const enemyBullet = (
 		makeEnemyShot(15, enemy.x + xGap, enemy.y + yGap, vx, vy, {
 			delay: delay || 0,
 			moveCount: moveCount,
+			moveAngle: moveAngle,
 		}),
 	);
 };

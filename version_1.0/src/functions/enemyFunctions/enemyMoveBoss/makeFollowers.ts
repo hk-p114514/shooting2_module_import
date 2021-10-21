@@ -1,30 +1,43 @@
 import { Enemy } from '../../../classes/Enemy';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
+import { enemySpriteStart } from '../../../init/spriteInit';
 import { bossEnemy } from '../../../init/variables';
-import { correctionToCalcValue } from '../../correctionToCalcValue';
+import { correctionToMapValue } from '../../correctionToMapValue';
+import { secToCount } from '../../secToCount';
 import { toRad } from '../../toRad';
+import { enemyFunctions } from '../enemyFunctions';
 
-const makeFollowers = (boss: Enemy, follower: number) => {
+const makeFollowers = (
+	boss: Enemy,
+	follower: number,
+	{ followerNumber = 4, vx = 300, vy = 300, makeFollowerCount = 1 } = {},
+) => {
 	if (boss.hp < boss.maxHp / 2) {
-		let count = boss.count % (60 * 5);
-		if (count / 10 < 4 && count % 10 === 0) {
-			//雑魚キャラを出現
-			let angle, vx, vy, bossR;
-			bossR = bossEnemy.r;
-			//敵キャラから目標への角度
-			// angle = 90 + 45 - ((count / 10) * 30 * Math.PI) / 180;
-			angle = toRad((count / 10) * 30);
+		// ボスの体力が半分以下かつ
+		const count = boss.count % secToCount(5);
+		makeFollowerCount = count / (makeFollowerCount * 10);
 
-			vx = Math.cos(angle) * 300;
-			vy = Math.sin(angle) * 300;
-			let xGap = correctionToCalcValue(Math.cos(angle) * bossR);
-			let yGap = correctionToCalcValue(Math.sin(angle) * bossR);
-			makeEnemy(follower, {
-				x: boss.x + xGap,
-				y: boss.y + yGap,
+		if (makeFollowerCount < followerNumber && count % 10 === 0) {
+			//雑魚キャラを出現
+			const bossR = bossEnemy.r;
+
+			//敵キャラから目標への角度
+			const angle = toRad(makeFollowerCount * 30);
+
+			vx = Math.cos(angle) * vx;
+			vy = Math.sin(angle) * vy;
+
+			const x = correctionToMapValue(Math.cos(angle) * bossR + boss.x);
+			const y = correctionToMapValue(Math.sin(angle) * bossR + boss.y);
+			const e = makeEnemy(follower, {
+				x: x,
+				y: y,
 				vx: vx,
 				vy: vy,
 			});
+
+			e.moveFunction = enemyFunctions.chicken;
+			e.moveFunctionArg = enemySpriteStart.chicken;
 		}
 	}
 };

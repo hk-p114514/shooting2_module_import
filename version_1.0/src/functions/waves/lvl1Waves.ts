@@ -1,13 +1,16 @@
+import { Enemy } from '../../classes/Enemy';
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
 	enemyMasterIndex as e,
+	field_w,
 	itemMasterIndex as i,
+	oneWave,
 	vars,
 } from '../../init/variables';
-import { oneWave, tenSeconds } from '../../main';
 import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
+import { secToCount } from '../secToCount';
 import { increaseWave } from './increaseWave';
 import { isPossibleLvUp } from './isPossibleLvUp';
 import { levelUp } from './levelUp';
@@ -17,12 +20,9 @@ const lvl1Waves: Function[] = [
 	(): void => {
 		// ピンクのヒヨコのみを出す
 		makeEnemy(e.pink, { probability: 30 });
-		makeEnemy(e.egg, { probability: 30 });
-		makeEnemy(e.shell, { probability: 30 });
-		makeEnemy(e.chicken, { probability: 30 });
 
 		// 3０秒経過したらウェーブを１段階上げる
-		increaseWave(oneWave);
+		increaseWave(oneWave * 2);
 	},
 
 	// 1
@@ -30,7 +30,7 @@ const lvl1Waves: Function[] = [
 		//  黄色のヒヨコのみを出す
 		makeEnemy(e.yellow, { probability: 30 });
 		// ２０秒経過したらウェーブを１段階上げる
-		increaseWave(oneWave);
+		increaseWave(oneWave * 2);
 	},
 
 	// 2
@@ -41,23 +41,29 @@ const lvl1Waves: Function[] = [
 		if (
 			!rand(0, 99) &&
 			vars.healCount == 2 &&
-			vars.gameCount > tenSeconds * 20
+			vars.gameCount > secToCount(20)
 		) {
 			//  20秒経過したら回復アイテムを出す
 			makeItem(i.heal);
 		}
 		// 30秒経過したらウェーブを１段階上げる
-		increaseWave(oneWave);
+		increaseWave(oneWave * 1.5);
 	},
 
 	// 3 (ボス)
 	(): void => {
+		let boss: Enemy;
 		//  ボスキャラ出現
-		if (vars.gameCount >= tenSeconds * 5 && !vars.bossEncounter) {
-			const boss = makeEnemy(e.bigYellow, { vy: 200 });
+		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
+			boss = makeEnemy(e.bigYellow, {
+				vy: 200,
+				x: field_w / 2,
+			});
+			remodelEnemy(boss, { hp: boss.hp / 4, score: boss.score / 4 });
+			vars.bossMhp = boss.hp;
 			vars.bossEncounter = true;
 		} else if (
-			vars.gameCount >= tenSeconds * 90 &&
+			vars.gameCount >= secToCount(90) &&
 			vars.healCount == 1 &&
 			!rand(0, 99)
 		) {

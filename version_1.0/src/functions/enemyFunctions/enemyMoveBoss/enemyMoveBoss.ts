@@ -8,7 +8,8 @@ import { enemySpriteStart } from '../../../init/spriteInit';
 export const enemyMoveBoss = (
 	boss: Enemy,
 	spriteStart: number = enemySpriteStart.bigPink,
-) => {
+): void => {
+	vars.bossHp = boss.hp;
 	switch (vars.gameRound) {
 		case 0:
 			lvl1(boss);
@@ -18,6 +19,8 @@ export const enemyMoveBoss = (
 			lvl2(boss);
 			spriteStart = enemySpriteStart.bigYellow;
 			break;
+		default:
+			lvl1(boss);
 	}
 
 	//スプライトの変更

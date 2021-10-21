@@ -10,9 +10,14 @@ import { Bullet } from '../classes/Bullet';
 import { Background } from '../classes/Background';
 import { waves } from '../functions/waves/waves';
 import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
-import { tenSeconds } from '../main';
 
 // ******************************* 定数 *******************************
+
+export const DEBUG: boolean = true;
+// const DEBUG: boolean = false;
+export const tenSeconds: number = 10;
+export const debugTime = 1;
+export const oneWave = DEBUG ? debugTime : tenSeconds;
 
 export const scoreSubmit = document.getElementById('score-submit');
 export const logoutButton = document.getElementById('logout-button');
@@ -63,8 +68,10 @@ export const itemMasterIndex = {
 	heal: 0,
 };
 
+export const frame: number = 60;
+
 //ゲームスピード
-export const gameSpeed = 1000 / 60;
+export const gameSpeed = 1000 / frame;
 
 const normalEnemy = {
 	// 通常敵キャラの半径
@@ -103,7 +110,7 @@ export const enemyMaster = [
 	new EnemyMaster(
 		2,
 		bossEnemy.r,
-		bossEnemy.hp,
+		bossEnemy.hp * 1.5,
 		bossEnemy.score,
 		enemyFunctions.boss,
 	) /*ボスヒヨコ（黄色）*/,
@@ -142,6 +149,13 @@ export const enemyMaster = [
 		normalEnemy.score,
 		enemyFunctions.shell,
 	), // 殻帽子ヒヨコ
+	new EnemyMaster(
+		8,
+		bossEnemy.r,
+		bossEnemy.hp,
+		bossEnemy.score,
+		enemyFunctions.boss,
+	) /*ボスヒヨコ（ピンク）*/,
 ];
 
 export const enemyMasterIndex = {

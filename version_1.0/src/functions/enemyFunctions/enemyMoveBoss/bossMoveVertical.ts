@@ -1,17 +1,19 @@
 import { Enemy } from '../../../classes/Enemy';
+import { field_h } from '../../../init/variables';
 import { rand } from '../../random';
 
 const bossMoveVertical = (
 	boss: Enemy,
 	maxVy: number,
 	y: number,
-	limitY: number,
+	limitY: number = field_h,
 ) => {
 	limitY -= boss.diameter;
 	const ceiling = boss.diameter;
 	const vy = boss.vy;
+	let vp = boss.getVp();
 
-	switch (boss.vp) {
+	switch (vp) {
 		case 0:
 			if (vy <= maxVy) {
 				// 天井に着いたら、下に移動
@@ -19,8 +21,9 @@ const bossMoveVertical = (
 			}
 
 			if (y >= limitY) {
-				boss.vp = 1;
+				vp = 1;
 			}
+
 			break;
 		case 1:
 			if (vy >= -maxVy) {
@@ -29,13 +32,14 @@ const bossMoveVertical = (
 			}
 
 			if (y <= ceiling) {
-				boss.vp = 0;
+				vp = 0;
 			}
+
 			break;
 		default:
 	}
 
-	console.log(`vy : ${boss.vy}`);
+	boss.vp = vp;
 };
 
 export { bossMoveVertical };
