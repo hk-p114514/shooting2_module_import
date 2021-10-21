@@ -8,15 +8,15 @@ const bossMoveVertical = (
 	limitY: number,
 ) => {
 	limitY -= boss.diameter;
+	const vy = boss.vy;
 
-	// まだ下に下がれれば
-	if (y < limitY) {
-		boss.vy += rand(1, maxVy);
+	// 限界を超えたとき
+	if (y < boss.diameter) {
+		boss.vy += rand(1, maxVy - vy);
+	} else if (y >= limitY) {
+		boss.vy -= rand(1, maxVy - vy);
 	}
-
-	if (y >= limitY) {
-		boss.vy -= rand(1, maxVy);
-	}
+	console.log(`vy : ${boss.vy}`);
 };
 
 export { bossMoveVertical };
