@@ -12,7 +12,7 @@ class Enemy extends Character {
 	hp: number;
 	score: number;
 	flag: boolean | number;
-	verticalPoint: 0 | 1 | 2;
+	vp: number;
 	direction: number;
 	directionGap: number;
 	reload: number;
@@ -27,7 +27,7 @@ class Enemy extends Character {
 		this.moveFunction = enemyMaster[id].moveFunction;
 		this.hp = this.maxHp;
 		this.flag = false; //trueになると攻撃する
-		this.verticalPoint = 1; // 0 -> 天井, 1 -> 中間, 2 -> 床
+		this.vp = 0; // 0 -> 天井, 1 -> 床
 
 		//弾の発射角度
 		this.direction = 90; //右側が０度なので、下方向は９０度となる
@@ -72,6 +72,10 @@ class Enemy extends Character {
 		const result: boolean = range >= distance ? true : false;
 
 		return result;
+	};
+
+	getVp = (): number => {
+		return this.vp;
 	};
 }
 
