@@ -6,7 +6,7 @@ import { makeFollowers } from './makeFollowers';
 
 const lvl1 = (boss: Boss) => {
 	bossMoveBattle(boss, { pattern: '' });
-	const angles = [0, 90, -90];
+	const angles = [90, -90, 0];
 
 	//弾の発射
 	bossShotDefault(boss, {

@@ -69,9 +69,9 @@ class EnemyShot extends Character {
 		}
 	};
 
-	rotation = (angle: number) => {
+	rotation = (angle: number, addMagnitude:number = 0) => {
 		const vector: Vector = new Vector(this.vx, this.vy);
-		vector.varyingAngle(angle);
+		vector.varyingAngle(angle, addMagnitude);
 		this.vx = vector.vx;
 		this.vy = vector.vy;
 	};

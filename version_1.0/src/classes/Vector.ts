@@ -17,7 +17,13 @@ class Vector {
 	}
 
 	// 直交座標系に変換
-	transformToCartesianCoordinate = (magnitude: number, angle: number) => {
+	transformToCartesianCoordinate = (
+		magnitude: number,
+		angle: number,
+		addMagnitude: number = 0,
+	) => {
+		magnitude += addMagnitude;
+
 		const vx = magnitude * Math.cos(angle);
 		const vy = magnitude * Math.sin(angle);
 
@@ -25,12 +31,13 @@ class Vector {
 	};
 
 	// 角度を変化させる
-	varyingAngle = (angle: number) => {
+	varyingAngle = (angle: number, addMagnitude: number = 0) => {
 		angle = toRad(angle);
 		angle += this.angle;
 		const cartesian = this.transformToCartesianCoordinate(
 			this.magnitude,
 			angle,
+			addMagnitude,
 		);
 
 		this.vx = cartesian.vx;

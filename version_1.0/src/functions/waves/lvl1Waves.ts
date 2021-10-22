@@ -53,7 +53,7 @@ const lvl1Waves: Function[] = [
 
 	// 3 (ボス)
 	(): void => {
-		let boss: Enemy;
+		let boss: Boss | Enemy;
 		//  ボスキャラ出現
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
 			boss = makeEnemy(e.bigYellow, {

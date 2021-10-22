@@ -17,9 +17,9 @@ import { gameStart } from './init/gameStart';
 
 (() => {
 	if (DEBUG) {
-		player.hp = 500;
+		// player.hp = 500;
 		// player.hp = 0;
-		player.power = 50;
+		// player.power = 50;
 		console.log('DEBUG MODE');
 		console.log(`oneWave : ${oneWave}`);
 	}

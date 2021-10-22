@@ -58,10 +58,10 @@ const drawAll = () => {
 	if (!vars.gameOver && !vars.gameClear) {
 		drawObject(item);
 		drawObject(enemyShot);
+		drawObject(explosion);
+		drawObject(bullet);
+		player.draw();
 	}
-	drawObject(explosion);
-	drawObject(bullet);
-	player.draw();
 	drawObject(enemy);
 
 	//　自機の範囲  0 ~ field_w
