@@ -1,3 +1,4 @@
+import { Boss } from '../../classes/Boss';
 import { Enemy } from '../../classes/Enemy';
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
@@ -58,6 +59,7 @@ const lvl1Waves: Function[] = [
 			boss = makeEnemy(e.bigYellow, {
 				vy: 200,
 				x: field_w / 2,
+				changeMax: 3,
 			});
 			remodelEnemy(boss, { hp: boss.hp / 4, score: boss.score / 4 });
 			vars.bossMhp = boss.hp;

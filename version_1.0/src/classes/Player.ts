@@ -98,8 +98,6 @@ class Player {
 
 		//範囲チェック
 		this.limitRangeOfMovement();
-
-		// console.log(`vx : ${this.vx}\nvy : ${this.vy}`);
 	};
 
 	private keyOperation = (): void => {

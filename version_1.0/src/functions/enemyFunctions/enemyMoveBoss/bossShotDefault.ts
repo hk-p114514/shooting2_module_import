@@ -38,9 +38,9 @@ const bossShotDefault = (
 
 		boss.direction += boss.directionGap;
 
-		if (boss.direction >= 360 && changeDir) {
+		if (boss.direction >= 360) {
 			boss.direction = 0;
-			if (!rand(0, changeFrequency - 1)) {
+			if (!rand(0, changeFrequency - 1) && changeDir) {
 				//360度周期　＆　３分の１の確率で弾の角度を変える
 				boss.directionGap = rand(minDir, maxDir);
 			}

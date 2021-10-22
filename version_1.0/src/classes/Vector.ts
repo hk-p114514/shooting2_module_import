@@ -1,3 +1,5 @@
+import { toRad } from '../functions/toRad';
+
 class Vector {
 	// x方向の成分
 	vx: number;
@@ -24,6 +26,7 @@ class Vector {
 
 	// 角度を変化させる
 	varyingAngle = (angle: number) => {
+		angle = toRad(angle);
 		angle += this.angle;
 		const cartesian = this.transformToCartesianCoordinate(
 			this.magnitude,

@@ -1,19 +1,19 @@
-import { Enemy } from '../../../classes/Enemy';
+import { Boss } from '../../../classes/Boss';
 import { enemyMasterIndex } from '../../../init/variables';
-import { rand } from '../../random';
 import { bossMoveBattle } from './bossMoveBattle';
 import { bossShotDefault } from './bossShotDefault';
 import { makeFollowers } from './makeFollowers';
 
-const lvl1 = (boss: Enemy) => {
+const lvl1 = (boss: Boss) => {
 	bossMoveBattle(boss, { pattern: '' });
+	const angles = [0, 90, -90];
 
-	const dirs = [-1, 1];
 	//弾の発射
 	bossShotDefault(boss, {
 		moveCount: 2,
-		moveAngle: dirs[rand(0, dirs.length - 1)],
+		moveAngle: angles[boss.changeIndex],
 	});
+	console.log(boss.changeMax);
 
 	// 取り巻きキャラを出現
 	makeFollowers(boss, enemyMasterIndex.pink);

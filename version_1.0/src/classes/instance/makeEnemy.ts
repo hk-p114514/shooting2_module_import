@@ -3,6 +3,7 @@
 import { correctionToCalcValue } from '../../functions/correctionToCalcValue';
 import { rand } from '../../functions/random';
 import { enemy, field_w, player } from '../../init/variables';
+import { Boss } from '../Boss';
 import { Enemy } from '../Enemy';
 
 const makeEnemy = (
@@ -14,13 +15,15 @@ const makeEnemy = (
 		y = 0,
 		vx = 0,
 		vy = rand(300, 1200),
+		changeMax = NaN,
 	} = {},
-): Enemy => {
+): Enemy | Boss => {
 	x = correctionToCalcValue(x);
 	y = correctionToCalcValue(y);
-	const e = new Enemy(enemyNumber, x, y, vx, vy);
-	console.log(`enemy :${e.x}-${e.y}`);
-	console.log(`player:${player.x}-${player.y}`);
+
+	const e = isNaN(changeMax)
+		? new Enemy(enemyNumber, x, y, vx, vy)
+		: new Boss(enemyNumber, x, y, vx, vy, { changeMax: changeMax });
 
 	if (!rand(0, probability - 1)) {
 		enemy.push(e);
