@@ -6,8 +6,8 @@ import { makeExplosion } from './instance/makeExplosion';
 
 class Bullet extends Character {
 	r: number;
-	constructor(x: number, y: number, vx: number, vy: number) {
-		super(6, x, y, vx, vy, new Audio('musics/explosion.mp3'));
+	constructor(x: number, y: number, vx: number, vy: number, snum: number) {
+		super(snum, x, y, vx, vy, new Audio('musics/explosion.mp3'));
 		this.r = 4;
 	}
 
@@ -45,12 +45,6 @@ class Bullet extends Character {
 						);
 					} else {
 						explosion.push(makeExplosion(0, this.x, this.y, 0, 0));
-					}
-
-					if (enemy[i].maxHp >= 1000) {
-						vars.bossHp = enemy[i].hp;
-
-						vars.bossMhp = enemy[i].maxHp;
 					}
 					break;
 				}

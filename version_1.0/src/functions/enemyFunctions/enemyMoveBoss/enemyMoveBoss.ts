@@ -1,6 +1,5 @@
 //ボスヒヨコ(黄色)の行動パターン ##################################################
 import { vars } from '../../../init/variables';
-import { Enemy } from '../../../classes/Enemy';
 import { lvl1 } from './lvl1';
 import { lvl2 } from './lvl2';
 import { enemySpriteStart } from '../../../init/spriteInit';
@@ -10,7 +9,6 @@ export const enemyMoveBoss = (
 	boss: Boss,
 	spriteStart: number = enemySpriteStart.bigPink,
 ): void => {
-	vars.bossHp = boss.hp;
 	switch (vars.gameRound) {
 		case 0:
 			lvl1(boss);

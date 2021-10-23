@@ -19,6 +19,7 @@ const bossMoveBattle = (
 		pattern = '',
 	} = {},
 ) => {
+	// 出現後画面内まで下がる
 	bossMoveDown(boss, mapY);
 
 	if (move) {

@@ -19,7 +19,7 @@ const makeFollowers = (
 
 		if (makeFollowerCount < followerNumber && count % 10 === 0) {
 			//雑魚キャラを出現
-			const bossR = bossEnemy.r;
+			const bossR = boss.r;
 
 			//敵キャラから目標への角度
 			const angle = toRad(makeFollowerCount * 30);

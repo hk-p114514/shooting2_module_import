@@ -10,6 +10,7 @@ const remodelEnemy = (
 		hp = enemy.hp,
 		score = enemy.score,
 		moveFunction = enemy.moveFunction,
+		directionGap = enemy.directionGap,
 	} = {},
 ): Enemy => {
 	enemy.x = x;
@@ -20,6 +21,7 @@ const remodelEnemy = (
 	enemy.hp = hp;
 	enemy.score = score;
 	enemy.moveFunction = moveFunction;
+	enemy.directionGap = directionGap;
 
 	return enemy;
 };

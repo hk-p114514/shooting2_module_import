@@ -3,7 +3,7 @@ import { Player } from '../../classes/Player';
 const printSpecialBar = (
 	player: Player,
 	screen_w: number,
-	screen_h: number,
+	heightGap: number,
 	x: number,
 	y: number,
 	ctx: CanvasRenderingContext2D,
@@ -18,7 +18,7 @@ const printSpecialBar = (
 		ctx.strokeStyle = 'lime';
 		ctx.strokeRect(x, y, maxSize, x);
 	} else if (!player.special) {
-		ctx.fillText(`SPECIAL : ${player.specialMagazine}`, x, screen_h - 60);
+		ctx.fillText(`SPECIAL : ${player.specialMagazine}`, x, y + heightGap);
 	}
 };
 

@@ -99,6 +99,8 @@ export const sprite = [
 
 	//sticon_set.pngの情報
 	new Sprite(193, 26, 22, 20), //79	,赤いハート（ドット）
+
+	new Sprite(4, 55, 5, 5), // 80	,範囲攻撃の際の赤い弾
 ];
 
 export const enemySpriteStart = {
@@ -115,4 +117,14 @@ export const enemySpriteStart = {
 	chicken: 57,
 	egg: 63,
 	shell: 68,
+};
+
+export const shotSprite = {
+	ps1: 5,
+	ps2: 6,
+	pSpecial: 80,
+	es1_1: 12,
+	es1_2: 13,
+	es2_1: 14,
+	es2_2: 15,
 };

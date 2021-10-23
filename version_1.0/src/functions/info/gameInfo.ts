@@ -1,13 +1,6 @@
 //##############################	ゲームの情報を表示	 ##############################
-import {
-	canvas_h,
-	canvas_w,
-	ctx,
-	player,
-	screen_h,
-	screen_w,
-	vars,
-} from '../../init/variables';
+import { ctx, player, screen_h, screen_w, vars } from '../../init/variables';
+import { correctionToMapValue } from '../correctionToMapValue';
 import { beforeStart } from './beforeStart';
 import { countDown } from './countDown';
 import { gameClear } from './gameClear';
@@ -48,12 +41,16 @@ const information = () => {
 				const startX = 10;
 
 				data.push(`HP : ${player.hp}`);
+				// have the same digit
+				const x = correctionToMapValue(player.x).toString();
+				const y = correctionToMapValue(player.y).toString();
+				data.push(`X : ${x.padStart(3, '_')}\nY : ${y.padStart(3, '_')}`);
 				data.push(`SCORE : ${vars.score}`);
 				ctx.fillStyle = defaultColor;
 
-				const nextHeight = printInfo(data, startX, startY, heightGap, ctx);
+				const nextHeight: number = printInfo(data, startX, startY, heightGap, ctx);
 
-				printSpecialBar(player, screen_w, screen_h, startX, nextHeight, ctx);
+				printSpecialBar(player, screen_w, heightGap, startX, nextHeight, ctx);
 			}
 			{
 				//右下にタイマーを表示

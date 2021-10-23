@@ -2,10 +2,12 @@ import { Boss } from '../../classes/Boss';
 import { Enemy } from '../../classes/Enemy';
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
+	bossEnemy,
 	enemyMasterIndex as e,
 	field_w,
 	itemMasterIndex as i,
 	oneWave,
+	tenSeconds,
 	vars,
 } from '../../init/variables';
 import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
@@ -42,9 +44,9 @@ const lvl1Waves: Function[] = [
 		if (
 			!rand(0, 99) &&
 			vars.healCount == 2 &&
-			vars.gameCount > secToCount(20)
+			vars.gameCount > secToCount(tenSeconds)
 		) {
-			//  20秒経過したら回復アイテムを出す
+			// 10秒経過したら回復アイテムを出す
 			makeItem(i.heal);
 		}
 		// 30秒経過したらウェーブを１段階上げる
@@ -53,19 +55,21 @@ const lvl1Waves: Function[] = [
 
 	// 3 (ボス)
 	(): void => {
-		let boss: Boss | Enemy;
+		let boss: Enemy;
 		//  ボスキャラ出現
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
 			boss = makeEnemy(e.bigYellow, {
-				vy: 200,
+				vy: bossEnemy.vy,
 				x: field_w / 2,
 				changeMax: 3,
 			});
-			remodelEnemy(boss, { hp: boss.hp / 4, score: boss.score / 4 });
-			vars.bossMhp = boss.hp;
-			vars.bossEncounter = true;
+			remodelEnemy(boss, {
+				hp: boss.hp / 4,
+				score: boss.score / 4,
+				directionGap: 0,
+			});
 		} else if (
-			vars.gameCount >= secToCount(90) &&
+			vars.gameCount >= secToCount(tenSeconds * 3) &&
 			vars.healCount == 1 &&
 			!rand(0, 99)
 		) {

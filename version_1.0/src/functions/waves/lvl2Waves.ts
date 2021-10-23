@@ -34,11 +34,7 @@ const lvl2Waves: Function[] = [
 		const enemies = [e.pink, e.yellow];
 		//  黄色とピンクのヒヨコをランダムで出す
 		makeEnemy(enemies[rand(0, enemies.length - 1)], { probability: 20 });
-		if (
-			!rand(0, 99) &&
-			vars.healCount == 2 &&
-			vars.gameCount > secToCount(20)
-		) {
+		if (!rand(0, 99) && vars.healCount == 2 && vars.gameCount > secToCount(20)) {
 			//  20秒経過したら回復アイテムを出す
 			makeItem(i.heal);
 		}
@@ -51,8 +47,7 @@ const lvl2Waves: Function[] = [
 		//  ボスキャラ出現
 		vars.gameCount++;
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
-			makeEnemy(e.bigYellow, { vy: 200 });
-			vars.bossEncounter = true;
+			makeEnemy(e.bigYellow, { vy: 200, changeMax: 0 });
 		} else if (
 			vars.gameCount >= secToCount(90) &&
 			vars.healCount == 1 &&

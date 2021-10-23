@@ -1,3 +1,4 @@
+import { vars } from '../init/variables';
 import { Enemy } from './Enemy';
 
 class Boss extends Enemy {
@@ -14,9 +15,12 @@ class Boss extends Enemy {
 		super(id, x, y, vx, vy, moveFunctionArg);
 		this.changeIndex = changeIndex;
 		this.changeMax = changeMax;
+		vars.bossEncounter = true;
 	}
 
 	update() {
+		vars.bossMhp = this.maxHp;
+		vars.bossHp = this.hp;
 		if (this.direction === 0) {
 			// 弾幕が一周したら
 			if (this.changeIndex >= this.changeMax) {

@@ -4,6 +4,7 @@ import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
 import { Vector } from './Vector';
 import { secToCount } from '../functions/secToCount';
+import { shotSprite } from '../init/spriteInit';
 
 class EnemyShot extends Character {
 	r: number;
@@ -11,6 +12,8 @@ class EnemyShot extends Character {
 	moveWaitSec: number;
 	isMove: boolean = false;
 	moveAngle: number;
+	addMagnitude: number = 0;
+	snumOriginal: number;
 	constructor(
 		snum: number,
 		x: number,
@@ -20,8 +23,10 @@ class EnemyShot extends Character {
 		delay: number,
 		moveCount: number = 0,
 		moveAngle: number = 30,
+		addMagnitude: number = 0,
 	) {
 		super(snum, x, y, vx, vy);
+		this.snumOriginal = snum;
 		this.r = 4;
 		if (delay === undefined) {
 			this.delay = 0;
@@ -34,6 +39,9 @@ class EnemyShot extends Character {
 
 		// 軌道を動かす角度
 		this.moveAngle = moveAngle;
+
+		// 軌道変化時に変えるベクトル量
+		this.addMagnitude = addMagnitude;
 	}
 
 	update = () => {
@@ -56,20 +64,20 @@ class EnemyShot extends Character {
 			}
 		}
 
-		this.snum = 14 + ((this.count >> 3) & 1);
+		// 約0.1秒毎にスプライトを変更する
+		if (this.count % secToCount(0.1) === 0) {
+			this.snum =
+				this.snum === this.snumOriginal ? this.snum + 1 : this.snumOriginal;
+		}
 
-		if (
-			this.moveWaitSec &&
-			this.count % this.moveWaitSec === 0 &&
-			!this.isMove
-		) {
+		if (this.moveWaitSec && this.count % this.moveWaitSec === 0 && !this.isMove) {
 			// moveCountが0でなかったら
-			this.rotation(this.moveAngle);
+			this.rotation(this.moveAngle, this.addMagnitude);
 			this.isMove = true;
 		}
 	};
 
-	rotation = (angle: number, addMagnitude:number = 0) => {
+	rotation = (angle: number, addMagnitude: number = 0) => {
 		const vector: Vector = new Vector(this.vx, this.vy);
 		vector.varyingAngle(angle, addMagnitude);
 		this.vx = vector.vx;

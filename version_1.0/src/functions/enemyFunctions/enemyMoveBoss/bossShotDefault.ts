@@ -1,3 +1,4 @@
+import { Boss } from '../../../classes/Boss';
 import { Enemy } from '../../../classes/Enemy';
 import { enemyMaster, enemyMasterIndex } from '../../../init/variables';
 import { correctionToCalcValue } from '../../correctionToCalcValue';
@@ -6,15 +7,17 @@ import { toRad } from '../../toRad';
 import { enemyBullet } from '../enemyBullet';
 
 const bossShotDefault = (
-	boss: Enemy,
+	boss: Boss,
 	{
 		speed = 300,
+		directionGap = 0,
 		changeDir = false,
 		changeFrequency = 3,
 		minDir = 3.5,
 		maxDir = 360,
 		moveCount = 0,
 		moveAngle = 30,
+		addMagnitude = 0,
 	} = {},
 ): void => {
 	if (boss.flag > 1) {
@@ -34,9 +37,10 @@ const bossShotDefault = (
 			yGap: yGap,
 			moveCount: moveCount,
 			moveAngle: moveAngle,
+			addMagnitude: addMagnitude,
 		});
 
-		boss.direction += boss.directionGap;
+		boss.direction += boss.directionGap + directionGap;
 
 		if (boss.direction >= 360) {
 			boss.direction = 0;

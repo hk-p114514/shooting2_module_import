@@ -14,9 +14,9 @@ import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 // ******************************* 定数 *******************************
 
 export const DEBUG: boolean = true;
-// const DEBUG: boolean = false;
+// export const DEBUG: boolean = false;
 export const tenSeconds: number = 10;
-export const debugTime = 1;
+export const debugTime = 0.1;
 export const oneWave = DEBUG ? debugTime : tenSeconds;
 
 export const scoreSubmit = document.getElementById('score-submit');
@@ -77,7 +77,7 @@ const normalEnemy = {
 	// 通常敵キャラの半径
 	r: 10,
 	// 通常敵キャラの体力
-	hp: 1,
+	hp: 2,
 	// 通常敵キャラを倒した際の取得スコア
 	score: 100,
 };
@@ -89,6 +89,8 @@ export const bossEnemy = {
 	hp: 5000,
 	// ボスキャラを倒した際の取得スコア
 	score: 10000,
+	// ボスキャラの登場時のスピード
+	vy: 200,
 };
 
 //敵キャラの種類
@@ -110,15 +112,15 @@ export const enemyMaster = [
 	new EnemyMaster(
 		2,
 		bossEnemy.r,
-		bossEnemy.hp * 1.1,
+		bossEnemy.hp,
 		bossEnemy.score,
 		enemyFunctions.boss,
 	) /*ボスヒヨコ（黄色）*/,
 	new EnemyMaster(
 		3,
 		normalEnemy.r,
-		normalEnemy.hp * 5,
-		normalEnemy.score * 10,
+		normalEnemy.hp,
+		normalEnemy.score,
 		enemyFunctions.robot,
 	), // ロボヒヨコ
 	new EnemyMaster(
@@ -131,8 +133,8 @@ export const enemyMaster = [
 	new EnemyMaster(
 		5,
 		normalEnemy.r,
-		normalEnemy.hp,
-		normalEnemy.score,
+		normalEnemy.hp * 6,
+		normalEnemy.score * 2,
 		enemyFunctions.chicken,
 	), // 鶏
 	new EnemyMaster(

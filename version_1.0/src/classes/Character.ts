@@ -1,6 +1,7 @@
 import { field_h, field_w } from '../init/variables';
 import { drawSprite } from '../functions/drawSprite';
 import { correctionToCalcValue } from '../functions/correctionToCalcValue';
+import { Player } from './Player';
 
 class Character {
 	snum: number;
@@ -55,6 +56,13 @@ class Character {
 			this.audio.play();
 		}
 	};
+
+	calcDistance(a: Character, player: Player): number {
+		const dx = a.x - player.x;
+		const dy = a.y - player.y;
+
+		return Math.sqrt(dx * dx + dy * dy);
+	}
 
 	moveX(move: number) {
 		this.x += move;

@@ -4,6 +4,7 @@ import { rand } from '../random';
 import { Enemy } from '../../classes/Enemy';
 import { makeEnemyShot } from '../../classes/instance/makeEnemyShot';
 import { toRad } from '../toRad';
+import { shotSprite } from '../../init/spriteInit';
 
 export const enemyBullet = (
 	enemy: Enemy,
@@ -25,6 +26,7 @@ export const enemyBullet = (
 		/* ================== */
 		moveCount = 0, // (moveCount)秒 後に弾を動作させる
 		moveAngle = 30, // 弾の軌道を変える角度
+		addMagnitude = 0, // 弾の軌道を変える際に変化させるベクトル量
 	} = {},
 ) => {
 	//敵キャラからプレイヤーへの角度
@@ -39,6 +41,7 @@ export const enemyBullet = (
 		// 角度をラジアンに直す
 		angle += toRad(r);
 	} else {
+		gap = toRad(gap);
 		// ランダムで無い場合(真っ直ぐ飛んでく)
 		angle += gap ? gap : 0;
 	}
@@ -48,10 +51,11 @@ export const enemyBullet = (
 	const vy = Math.sin(angle) * speed;
 
 	enemyShot.push(
-		makeEnemyShot(15, enemy.x + xGap, enemy.y + yGap, vx, vy, {
+		makeEnemyShot(shotSprite.es2_1, enemy.x + xGap, enemy.y + yGap, vx, vy, {
 			delay: delay || 0,
 			moveCount: moveCount,
 			moveAngle: moveAngle,
+			addMagnitude: addMagnitude,
 		}),
 	);
 };

@@ -3,6 +3,7 @@ import { drawSprite } from '../functions/drawSprite';
 import { makeBullet } from './instance/makeBullet';
 import { correctionToCalcValue } from '../functions/correctionToCalcValue';
 import { makeSoundEffect } from '../functions/makeSoundEffect';
+import { shotSprite as s } from '../init/spriteInit';
 
 const onePixel = 256;
 
@@ -216,18 +217,28 @@ class Player {
 	};
 
 	private playerAttack = (): void => {
+		const bs: number = this.special ? s.pSpecial : s.ps1;
+
 		// space
 		const bulletSpeed = -2000;
 		if (key.space && this.reload === 0) {
 			// 弾の発射
-			bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, bulletSpeed));
-			bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, bulletSpeed));
+			bullet.push(makeBullet(this.x + (4 << 8), this.y, 0, bulletSpeed, bs));
+			bullet.push(makeBullet(this.x - (4 << 8), this.y, 0, bulletSpeed, bs));
+
 			if (this.special) {
 				//斜めに発射
-				bullet.push(makeBullet(this.x, this.y, 500, bulletSpeed + 100));
-				bullet.push(makeBullet(this.x, this.y, -500, bulletSpeed + 100));
-				bullet.push(makeBullet(this.x, this.y, 200, bulletSpeed));
-				bullet.push(makeBullet(this.x, this.y, -200, bulletSpeed));
+				const directions = [500, 200];
+				directions.map((dir, i) => {
+					if (i <= 0) {
+						const speed = bulletSpeed + 100;
+						bullet.push(makeBullet(this.x, this.y, dir, speed, bs));
+						bullet.push(makeBullet(this.x, this.y, -dir, speed, bs));
+					} else {
+						bullet.push(makeBullet(this.x, this.y, dir, bulletSpeed, bs));
+						bullet.push(makeBullet(this.x, this.y, -dir, bulletSpeed, bs));
+					}
+				});
 			}
 
 			// 発射時の効果音を出す
