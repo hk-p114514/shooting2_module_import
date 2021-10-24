@@ -19,13 +19,13 @@ const makeEnemy = (
 		isBoss = false,
 	} = {},
 ): Enemy | Boss => {
+	if (Number.isNaN(x)) {
+		// xの初期値はデフォルトでランダム
+		x = rand(0, field_w);
+	}
+
 	x = correctionToCalcValue(x);
 	y = correctionToCalcValue(y);
-
-	if (Number.isNaN(x)) {
-		const diameter = enemyMaster[enemyNumber].r * 2;
-		x = rand(diameter, field_w - diameter);
-	}
 
 	const e = !isBoss
 		? new Enemy(enemyNumber, x, y, vx, vy)

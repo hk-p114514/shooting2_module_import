@@ -51,8 +51,6 @@ class EnemyShot extends Character {
 		}
 		super.update();
 		if (
-			// プレイヤーがスタン状態でない
-			!player.stun &&
 			// プレイヤーに弾が当たっている
 			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
 		) {

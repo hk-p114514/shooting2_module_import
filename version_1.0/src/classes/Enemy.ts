@@ -40,7 +40,7 @@ class Enemy extends Character {
 
 		//弾の発射角度
 		this.direction = 90; //右側が０度なので、下方向は９０度となる
-		this.directionGap = 10;
+		this.directionGap = 0;
 
 		//リロード時間
 		this.reload = 0;
@@ -61,19 +61,12 @@ class Enemy extends Character {
 		}
 
 		//当たり判定
-		if (
-			!player.stun &&
-			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
-		) {
+		if (checkHit(this.x, this.y, this.r, player.x, player.y, player.r)) {
 			isAttacked();
 		}
 	}
 
-	isAttackable = (
-		target: number,
-		range: number,
-		x: boolean = true,
-	): boolean => {
+	isAttackable = (target: number, range: number, x: boolean = true): boolean => {
 		let own = this.y;
 		if (x) {
 			own = this.x;

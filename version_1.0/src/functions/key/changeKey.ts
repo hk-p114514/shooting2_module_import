@@ -9,8 +9,9 @@ const changeKey = (pushedKey: string, isPushed: boolean): void => {
 	}
 
 	// 攻撃(スペース)
-	if (pushedKey === ' ') {
-		key.space = isPushed;
+	if (pushedKey === ' ' && isPushed) {
+		// スペースを押す度にON/OFFが切り替わる
+		key.space = !key.space;
 	}
 
 	// 上

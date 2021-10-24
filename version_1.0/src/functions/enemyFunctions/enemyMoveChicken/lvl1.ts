@@ -8,7 +8,7 @@ import { sharedMove } from '../enemyMovePink/sharedMove';
 const lvl1 = (enemy: Enemy) => {
 	const r = player.r / 2;
 	const range = rand(500, 1000);
-	const speed = rand(1000, 2000);
+	const speed = rand(300, 500);
 
 	sharedMove(enemy, {
 		func: () => {

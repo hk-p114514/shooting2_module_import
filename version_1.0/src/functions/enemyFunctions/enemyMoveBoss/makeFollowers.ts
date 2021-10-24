@@ -1,15 +1,14 @@
 import { Enemy } from '../../../classes/Enemy';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
-import { enemySpriteStart } from '../../../init/spriteInit';
-import { bossEnemy } from '../../../init/variables';
 import { correctionToMapValue } from '../../correctionToMapValue';
 import { secToCount } from '../../secToCount';
 import { toRad } from '../../toRad';
-import { enemyFunctions } from '../enemyFunctions';
 
 const makeFollowers = (
 	boss: Enemy,
 	follower: number,
+	func: Function,
+	snum: number,
 	{ followerNumber = 4, vx = 300, vy = 300, makeFollowerCount = 1 } = {},
 ) => {
 	if (boss.hp < boss.maxHp / 2) {
@@ -36,8 +35,9 @@ const makeFollowers = (
 				vy: vy,
 			});
 
-			e.moveFunction = enemyFunctions.chicken;
-			e.moveFunctionArg = enemySpriteStart.chicken;
+			// 動作とスプライトを指定
+			e.moveFunction = func;
+			e.moveFunctionArg = snum;
 		}
 	}
 };

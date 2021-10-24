@@ -7,6 +7,17 @@ import { enemyMoveRobot } from './enemyMoveRobot/enemyMoveRobot';
 import { enemyMoveShell } from './enemyMoveShell/enemyMoveShell';
 import { enemyMoveYellow } from './enemyMoveYellow/enemyMoveYellow';
 
+type enemyName = {
+	pink: string;
+	yellow: string;
+	blue: string;
+	robot: string;
+	boss: string;
+	chicken: string;
+	egg: string;
+	shell: string;
+};
+
 const enemyFunctions = {
 	pink: enemyMovePink,
 	yellow: enemyMoveYellow,
@@ -18,4 +29,4 @@ const enemyFunctions = {
 	shell: enemyMoveShell,
 };
 
-export { enemyFunctions };
+export { enemyFunctions, enemyName };

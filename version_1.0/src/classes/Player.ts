@@ -44,9 +44,9 @@ class Player {
 		this.magazine = 0;
 		this.stun = 0;
 		this.count = 0;
-		this.maxHp = 5;
+		this.maxHp = 10;
 		//自機HP
-		this.hp = 5;
+		this.hp = this.maxHp;
 
 		//自機の攻撃力
 		this.power = 1;

@@ -77,7 +77,7 @@ const normalEnemy = {
 	// 通常敵キャラの半径
 	r: 10,
 	// 通常敵キャラの体力
-	hp: 2,
+	hp: 1,
 	// 通常敵キャラを倒した際の取得スコア
 	score: 100,
 };
@@ -86,7 +86,7 @@ export const bossEnemy = {
 	// ボスキャラの半径
 	r: 70,
 	// ボスキャラの体力
-	hp: 5000,
+	hp: 1000,
 	// ボスキャラを倒した際の取得スコア
 	score: 10000,
 	// ボスキャラの登場時のスピード
@@ -119,7 +119,7 @@ export const enemyMaster = [
 	new EnemyMaster(
 		3,
 		normalEnemy.r,
-		normalEnemy.hp,
+		normalEnemy.hp * 5,
 		normalEnemy.score,
 		enemyFunctions.robot,
 	), // ロボヒヨコ
@@ -140,7 +140,7 @@ export const enemyMaster = [
 	new EnemyMaster(
 		6,
 		normalEnemy.r,
-		normalEnemy.hp,
+		normalEnemy.hp * 10,
 		normalEnemy.score,
 		enemyFunctions.egg,
 	), // たまご

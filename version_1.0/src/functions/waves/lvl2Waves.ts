@@ -1,11 +1,15 @@
+import { Boss } from '../../classes/Boss';
+import { Enemy } from '../../classes/Enemy';
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
 	enemyMasterIndex as e,
 	field_w,
 	itemMasterIndex as i,
 	oneWave,
+	tenSeconds,
 	vars,
 } from '../../init/variables';
+import { remodelEnemy } from '../enemyFunctions/remodelEnemy';
 import { makeItem } from '../itemFunctions/makeItem';
 import { rand } from '../random';
 import { secToCount } from '../secToCount';
@@ -47,20 +51,24 @@ const lvl2Waves: Function[] = [
 	(): void => {
 		//  ボスキャラ出現
 		vars.gameCount++;
+		let boss: Enemy;
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
-			makeEnemy(e.bigYellow, {
+			boss = makeEnemy(e.bigYellow, {
 				vy: 200,
 				changeMax: 3,
 				isBoss: true,
 				x: field_w / 2,
 			});
+			remodelEnemy(boss, { score: boss.score / 2, hp: boss.hp / 2 });
 		} else if (
-			vars.gameCount >= secToCount(90) &&
-			vars.healCount == 1 &&
-			!rand(0, 99)
+			vars.gameCount >= secToCount(tenSeconds * 2) &&
+			vars.healCount >= 1 &&
+			!rand(0, 999)
 		) {
 			makeItem(i.heal);
 		}
+		console.log(`count : ${vars.gameCount}\nheal : ${vars.healCount}`);
+
 		// 敵がいなくなったらループ or ゲームクリア
 		if (isPossibleLvUp()) {
 			levelUp();

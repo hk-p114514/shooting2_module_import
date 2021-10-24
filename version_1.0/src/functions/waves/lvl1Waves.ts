@@ -65,9 +65,8 @@ const lvl1Waves: Function[] = [
 				isBoss: true,
 			});
 			remodelEnemy(boss, {
-				hp: boss.hp / 4,
+				hp: boss.hp / 2,
 				score: boss.score / 4,
-				directionGap: 0,
 			});
 		} else if (
 			vars.gameCount >= secToCount(tenSeconds * 3) &&
