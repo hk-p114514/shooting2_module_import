@@ -25,9 +25,11 @@ const bossMoveBattle = (
 	if (move) {
 		switch (pattern) {
 			case 'h':
+				// 横移動
 				bossMoveHorizontal(boss, maxVx, mapX, limitX);
 				break;
 			case 'v':
+				// 縦移動
 				bossMoveVertical(boss, maxVy, mapY, limitY);
 				break;
 			case 'hv':

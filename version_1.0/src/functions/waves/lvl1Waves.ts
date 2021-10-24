@@ -57,11 +57,12 @@ const lvl1Waves: Function[] = [
 	(): void => {
 		let boss: Enemy;
 		//  ボスキャラ出現
+		vars.gameCount++;
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
 			boss = makeEnemy(e.bigYellow, {
 				vy: bossEnemy.vy,
 				x: field_w / 2,
-				changeMax: 3,
+				isBoss: true,
 			});
 			remodelEnemy(boss, {
 				hp: boss.hp / 4,

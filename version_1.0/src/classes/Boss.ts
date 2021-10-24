@@ -10,7 +10,7 @@ class Boss extends Enemy {
 		y: number,
 		vx: number,
 		vy: number,
-		{ moveFunctionArg = NaN, changeIndex = 0, changeMax = 0 } = {},
+		{ moveFunctionArg = NaN, changeIndex = 0, changeMax = 3 } = {},
 	) {
 		super(id, x, y, vx, vy, moveFunctionArg);
 		this.changeIndex = changeIndex;
@@ -22,6 +22,7 @@ class Boss extends Enemy {
 		vars.bossMhp = this.maxHp;
 		vars.bossHp = this.hp;
 		if (this.direction === 0) {
+			this.direction += this.directionGap;
 			// 弾幕が一周したら
 			if (this.changeIndex >= this.changeMax) {
 				this.changeIndex = 0;

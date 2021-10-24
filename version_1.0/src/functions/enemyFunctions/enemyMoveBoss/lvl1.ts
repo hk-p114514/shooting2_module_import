@@ -7,14 +7,14 @@ import { makeFollowers } from './makeFollowers';
 const lvl1 = (boss: Boss) => {
 	bossMoveBattle(boss, { pattern: '' });
 	const angles = [90, -90, 0];
-	const speed = [100, 500, 1000];
+	const speed = [250, 500, 1000];
 
 	//弾の発射
 	bossShotDefault(boss, {
-		speed: speed[boss.changeIndex],
+		speed: speed[boss.changeIndex % speed.length],
 		directionGap: 10,
 		moveCount: 2,
-		moveAngle: angles[boss.changeIndex],
+		moveAngle: angles[boss.changeIndex % angles.length],
 	});
 
 	// 取り巻きキャラを出現

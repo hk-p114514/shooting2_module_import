@@ -1,5 +1,4 @@
 import { Boss } from '../../../classes/Boss';
-import { Enemy } from '../../../classes/Enemy';
 import { enemyMaster, enemyMasterIndex } from '../../../init/variables';
 import { correctionToCalcValue } from '../../correctionToCalcValue';
 import { rand } from '../../random';

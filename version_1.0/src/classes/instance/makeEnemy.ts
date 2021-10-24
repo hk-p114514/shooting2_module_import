@@ -15,7 +15,8 @@ const makeEnemy = (
 		y = 0,
 		vx = 0,
 		vy = rand(300, 1200),
-		changeMax = NaN,
+		changeMax = 3,
+		isBoss = false,
 	} = {},
 ): Enemy | Boss => {
 	x = correctionToCalcValue(x);
@@ -26,7 +27,7 @@ const makeEnemy = (
 		x = rand(diameter, field_w - diameter);
 	}
 
-	const e = isNaN(changeMax)
+	const e = !isBoss
 		? new Enemy(enemyNumber, x, y, vx, vy)
 		: new Boss(enemyNumber, x, y, vx, vy, { changeMax: changeMax });
 

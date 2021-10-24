@@ -16,7 +16,7 @@ import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 export const DEBUG: boolean = true;
 // export const DEBUG: boolean = false;
 export const tenSeconds: number = 10;
-export const debugTime = 0.1;
+export const debugTime = 1;
 export const oneWave = DEBUG ? debugTime : tenSeconds;
 
 export const scoreSubmit = document.getElementById('score-submit');

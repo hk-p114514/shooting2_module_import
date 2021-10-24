@@ -1,6 +1,7 @@
 import { makeEnemy } from '../../classes/instance/makeEnemy';
 import {
 	enemyMasterIndex as e,
+	field_w,
 	itemMasterIndex as i,
 	oneWave,
 	vars,
@@ -47,7 +48,12 @@ const lvl2Waves: Function[] = [
 		//  ボスキャラ出現
 		vars.gameCount++;
 		if (vars.gameCount >= secToCount(5) && !vars.bossEncounter) {
-			makeEnemy(e.bigYellow, { vy: 200, changeMax: 0 });
+			makeEnemy(e.bigYellow, {
+				vy: 200,
+				changeMax: 3,
+				isBoss: true,
+				x: field_w / 2,
+			});
 		} else if (
 			vars.gameCount >= secToCount(90) &&
 			vars.healCount == 1 &&
