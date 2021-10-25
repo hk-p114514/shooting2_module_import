@@ -2,21 +2,11 @@ import { enemyMoveBlue } from './enemyMoveBlue/enemyMoveBlue';
 import { enemyMoveBoss } from './enemyMoveBoss/enemyMoveBoss';
 import { enemyMoveChicken } from './enemyMoveChicken/enemyMoveChicken';
 import { enemyMoveEgg } from './enemyMoveEgg/enemyMoveEgg';
+import { enemyMoveLastBoss } from './enemyMoveLastBoss/enemyMoveLastBoss';
 import { enemyMovePink } from './enemyMovePink/enemyMovePink';
 import { enemyMoveRobot } from './enemyMoveRobot/enemyMoveRobot';
 import { enemyMoveShell } from './enemyMoveShell/enemyMoveShell';
 import { enemyMoveYellow } from './enemyMoveYellow/enemyMoveYellow';
-
-type enemyName = {
-	pink: string;
-	yellow: string;
-	blue: string;
-	robot: string;
-	boss: string;
-	chicken: string;
-	egg: string;
-	shell: string;
-};
 
 const enemyFunctions = {
 	pink: enemyMovePink,
@@ -27,6 +17,7 @@ const enemyFunctions = {
 	chicken: enemyMoveChicken,
 	egg: enemyMoveEgg,
 	shell: enemyMoveShell,
+	lastBoss: enemyMoveLastBoss,
 };
 
-export { enemyFunctions, enemyName };
+export { enemyFunctions };

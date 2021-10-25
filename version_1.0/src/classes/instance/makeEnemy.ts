@@ -2,7 +2,7 @@
 
 import { correctionToCalcValue } from '../../functions/correctionToCalcValue';
 import { rand } from '../../functions/random';
-import { enemy, enemyMaster, field_w, player } from '../../init/variables';
+import { enemy, field_w } from '../../init/variables';
 import { Boss } from '../Boss';
 import { Enemy } from '../Enemy';
 

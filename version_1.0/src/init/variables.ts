@@ -13,8 +13,8 @@ import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 
 // ******************************* 定数 *******************************
 
-// export const DEBUG: boolean = true;
-export const DEBUG: boolean = false;
+export const DEBUG: boolean = true;
+// export const DEBUG: boolean = false;
 export const tenSeconds: number = 10;
 export const debugTime = 1;
 export const oneWave = DEBUG ? debugTime : tenSeconds;
@@ -158,6 +158,13 @@ export const enemyMaster = [
 		bossEnemy.score,
 		enemyFunctions.boss,
 	) /*ボスヒヨコ（ピンク）*/,
+	new EnemyMaster(
+		9,
+		105,
+		bossEnemy.hp * 1.5,
+		bossEnemy.score,
+		enemyFunctions.lastBoss /* ラスボスなので動作関数は用いない */,
+	),
 ];
 
 export const enemyMasterIndex = {
@@ -169,6 +176,8 @@ export const enemyMasterIndex = {
 	chicken: 5,
 	egg: 6,
 	shell: 7,
+	bigPink: 8,
+	lastBoss: 9,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

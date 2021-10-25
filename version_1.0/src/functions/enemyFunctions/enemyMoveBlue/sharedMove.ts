@@ -41,7 +41,7 @@ const sharedMove = (
 		enemy.flag = true;
 		//enemyBulletを呼び出した回数分、攻撃する
 		for (let i = 0; i < attackTimes; i++) {
-			enemyBullet(enemy, bulletSpeed, { gap: i, moveCount: moveCount });
+			enemyBullet(enemy, bulletSpeed, { gap: 10 * i, moveCount: moveCount });
 		}
 		func();
 	}

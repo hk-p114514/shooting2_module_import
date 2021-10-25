@@ -2,17 +2,17 @@
 import { Sprite } from '../classes/Sprite';
 
 export const sprite = [
-	new Sprite(0, 0, 22, 42), //  0　自機　左２
-	new Sprite(23, 0, 33, 42), // 1　自機　左１
-	new Sprite(57, 0, 43, 42), // 2　自機　正面
+	new Sprite(0, 0, 22, 42), //0　自機　左２
+	new Sprite(23, 0, 33, 42), //1　自機　左１
+	new Sprite(57, 0, 43, 42), //2　自機　正面
 	new Sprite(101, 0, 33, 42), //3　自機　右１
 	new Sprite(135, 0, 21, 42), //4　自機　右２
 	new Sprite(0, 50, 3, 7), //5　銃弾　１
 	new Sprite(4, 50, 5, 5), //6　銃弾　２
 
-	new Sprite(3, 42, 16, 5), // 7,噴射 左2
-	new Sprite(29, 42, 21, 5), // 8,噴射 左1
-	new Sprite(69, 42, 19, 5), // 9,噴射 正面
+	new Sprite(3, 42, 16, 5), //7,噴射 左2
+	new Sprite(29, 42, 21, 5), //8,噴射 左1
+	new Sprite(69, 42, 19, 5), //9,噴射 正面
 	new Sprite(108, 42, 21, 5), //10,噴射 右1
 	new Sprite(138, 42, 16, 5), //11,噴射 右2
 
@@ -100,11 +100,12 @@ export const sprite = [
 	//sticon_set.pngの情報
 	new Sprite(193, 26, 22, 20), //79	,赤いハート（ドット）
 
-	new Sprite(4, 55, 5, 5), // 80	,範囲攻撃の際の赤い弾
+	new Sprite(4, 55, 5, 5), // 80	       ,範囲攻撃の際の赤い弾
 
-	new Sprite(483, 8, 121, 132), // 81    ,ラスボス
-
-	new Sprite(),
+	new Sprite(299, 461, 192, 210), // 81    ,ラスボス
+	new Sprite(487, 213, 15, 58), // 82    ,スコップ(ミニ)
+	new Sprite(505, 152, 33, 121), // 83   ,スコップ(大)
+	new Sprite(540, 212, 50, 62), // 84    ,指
 ];
 
 export const enemySpriteStart = {

@@ -7,7 +7,7 @@ const bossMoveHorizontal = (
 	x: number,
 	limitX: number,
 ) => {
-	limitX -= boss.diameter;
+	limitX -= boss.r;
 
 	if (boss.flag === 2) {
 		if (boss.vx < maxVx) {

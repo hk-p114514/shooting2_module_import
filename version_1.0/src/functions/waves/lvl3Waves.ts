@@ -1,30 +1,40 @@
 'use strict';
 
 import { makeEnemy } from '../../classes/instance/makeEnemy';
+import { LastBoss } from '../../classes/LastBoss';
 import {
+	enemy,
 	enemyMasterIndex as e,
+	field_w,
 	itemMasterIndex as i,
 	oneWave,
+	tenSeconds,
 	vars,
 } from '../../init/variables';
+import { correctionToCalcValue } from '../correctionToCalcValue';
+import { correctionToMapValue } from '../correctionToMapValue';
 import { makeItem } from '../itemFunctions/makeItem';
 import { randArr } from '../randArr';
 import { rand } from '../random';
 import { secToCount } from '../secToCount';
 import { increaseWave } from './increaseWave';
+import { isPossibleLvUp } from './isPossibleLvUp';
+import { levelUp } from './levelUp';
 
 const lvl3Waves: Function[] = [
 	// 0
 	(): void => {
 		// 鶏を出す
 		makeEnemy(e.chicken, { probability: 40 });
-		increaseWave(oneWave);
+		// increaseWave(oneWave);
+		increaseWave(1);
 	},
 
 	// 1
 	(): void => {
 		// 群青色のヒヨコを出す
 		makeEnemy(e.blue, { probability: 30 });
+		increaseWave(oneWave * 3);
 	},
 
 	// 2
@@ -44,7 +54,23 @@ const lvl3Waves: Function[] = [
 	// 3 (ボス)
 	(): void => {
 		// ボスキャラ出現
-		const lastBoss = new LastBoss();
+		vars.gameCount++;
+		if (vars.gameCount > secToCount(5) && !vars.bossEncounter) {
+			enemy.push(
+				new LastBoss(e.lastBoss, correctionToCalcValue(field_w / 2), 0, 0, 200),
+			);
+		} else if (
+			vars.gameCount >= secToCount(tenSeconds * 2) &&
+			vars.healCount >= 1 &&
+			!rand(0, 999)
+		) {
+			makeItem(i.heal);
+		}
+
+		if (isPossibleLvUp()) {
+			levelUp();
+			return;
+		}
 	},
 ];
 

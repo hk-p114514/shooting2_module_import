@@ -9,7 +9,7 @@ class EnemyMaster {
 		r: number,
 		hp: number,
 		score: number,
-		moveFunction: Function,
+		moveFunction: Function = () => {},
 	) {
 		this.enemyNumber = enemyNumber;
 		this.r = r;

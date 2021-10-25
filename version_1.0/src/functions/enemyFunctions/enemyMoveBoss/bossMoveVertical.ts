@@ -8,8 +8,8 @@ const bossMoveVertical = (
 	y: number,
 	limitY: number = field_h,
 ) => {
-	limitY -= boss.diameter;
-	const ceiling = boss.diameter;
+	limitY -= boss.r;
+	const ceiling = boss.r;
 	const vy = boss.vy;
 	let vp = boss.getVp();
 

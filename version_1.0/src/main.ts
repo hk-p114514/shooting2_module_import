@@ -17,12 +17,12 @@ import { gameStart } from './init/gameStart';
 
 (() => {
 	if (DEBUG) {
-		// player.hp = 500;
+		player.hp = 500;
 		// player.hp = 0;
 		// player.power = 20;
 		console.log('DEBUG MODE');
 		console.log(`oneWave : ${oneWave}`);
-		// vars.gameRound = 1;
+		vars.gameRound = 2;
 	}
 })();
 

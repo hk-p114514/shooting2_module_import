@@ -10,7 +10,7 @@ class Character {
 	vx: number;
 	vy: number;
 	kill: boolean;
-	count: number; // 60で代替一秒
+	count: number; // 60で大体一秒
 	audio: HTMLAudioElement | null;
 	constructor(
 		snum: number,
