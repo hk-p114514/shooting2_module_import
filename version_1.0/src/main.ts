@@ -22,7 +22,7 @@ import { gameStart } from './init/gameStart';
 		// player.power = 20;
 		console.log('DEBUG MODE');
 		console.log(`oneWave : ${oneWave}`);
-		vars.gameRound = 1;
+		// vars.gameRound = 1;
 	}
 })();
 

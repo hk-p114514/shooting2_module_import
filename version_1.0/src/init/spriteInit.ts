@@ -101,6 +101,10 @@ export const sprite = [
 	new Sprite(193, 26, 22, 20), //79	,赤いハート（ドット）
 
 	new Sprite(4, 55, 5, 5), // 80	,範囲攻撃の際の赤い弾
+
+	new Sprite(483, 8, 121, 132), // 81    ,ラスボス
+
+	new Sprite(),
 ];
 
 export const enemySpriteStart = {
@@ -117,6 +121,7 @@ export const enemySpriteStart = {
 	chicken: 57,
 	egg: 63,
 	shell: 68,
+	lastBoss: 81,
 };
 
 export const shotSprite = {

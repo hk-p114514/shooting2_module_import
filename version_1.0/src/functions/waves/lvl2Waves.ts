@@ -23,7 +23,7 @@ const lvl2Waves: Function[] = [
 		// ピンクのヒヨコのみを出す
 		makeEnemy(e.pink, { probability: 30 });
 		// 3０秒経過したらウェーブを１段階上げる
-		increaseWave(oneWave);
+		increaseWave(oneWave * 2);
 	},
 
 	// 1
@@ -44,7 +44,7 @@ const lvl2Waves: Function[] = [
 			makeItem(i.heal);
 		}
 		// 30秒経過したらウェーブを１段階上げる
-		increaseWave(oneWave);
+		increaseWave(oneWave * 3);
 	},
 
 	// 3 (ボス)

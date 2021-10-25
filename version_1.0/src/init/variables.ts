@@ -13,8 +13,8 @@ import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 
 // ******************************* 定数 *******************************
 
-export const DEBUG: boolean = true;
-// export const DEBUG: boolean = false;
+// export const DEBUG: boolean = true;
+export const DEBUG: boolean = false;
 export const tenSeconds: number = 10;
 export const debugTime = 1;
 export const oneWave = DEBUG ? debugTime : tenSeconds;
