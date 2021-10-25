@@ -16,8 +16,8 @@ class LastBoss extends Enemy {
 		vars.bossHp = this.hp;
 		if (!rand(0, 500)) {
 			this.movePattern = this.count % 3;
-			this.vx = 0;
-			this.vy = 0;
+			this.vx /= 2;
+			this.vy /= 2;
 		}
 		super.update();
 
