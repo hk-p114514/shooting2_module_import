@@ -161,7 +161,7 @@ export const enemyMaster = [
 	new EnemyMaster(
 		9,
 		105,
-		bossEnemy.hp * 1.5,
+		bossEnemy.hp * 10,
 		bossEnemy.score,
 		enemyFunctions.lastBoss /* ラスボスなので動作関数は用いない */,
 	),

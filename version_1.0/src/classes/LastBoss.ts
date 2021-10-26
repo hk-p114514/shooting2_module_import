@@ -11,6 +11,10 @@ class LastBoss extends Enemy {
 		vars.bossEncounter = true;
 	}
 
+	checkIsOutRange = () => {
+		// ラスボスは頻繁にテレポートを行うので範囲外チェックをキャンセルさせる
+	};
+
 	update = () => {
 		vars.bossMhp = this.maxHp;
 		vars.bossHp = this.hp;

@@ -1,12 +1,9 @@
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
 import { LastBoss } from '../../../classes/LastBoss';
-import { shotSprite as s } from '../../../init/spriteInit';
 import { enemySpriteStart } from '../../../init/spriteInit';
-import { enemy, enemyMasterIndex } from '../../../init/variables';
+import { enemyMasterIndex } from '../../../init/variables';
 import { correctionToMapValue } from '../../correctionToMapValue';
-import { enemyFunctions } from '../enemyFunctions';
 import { bossMoveBattle } from '../enemyMoveBoss/bossMoveBattle';
-import { makeFollowers } from '../enemyMoveBoss/makeFollowers';
 
 const enemyMoveLastBoss = (
 	boss: LastBoss,

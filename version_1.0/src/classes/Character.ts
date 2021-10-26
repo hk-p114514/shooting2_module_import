@@ -35,6 +35,10 @@ class Character {
 		this.x += this.vx;
 		this.y += this.vy;
 
+		this.checkIsOutRange();
+	}
+
+	checkIsOutRange = () => {
 		// 256倍(>> 8)されていたフィールドの縦横幅を座標値に戻す
 		const fw = correctionToCalcValue(field_w);
 		const fh = correctionToCalcValue(field_h);
@@ -43,7 +47,7 @@ class Character {
 			// キャラクターが範囲外に出ていたらkill(計算外)する
 			this.kill = true;
 		}
-	}
+	};
 
 	draw({ file = 0 } = {}) {
 		drawSprite(this.snum, this.x, this.y, { file: file });
