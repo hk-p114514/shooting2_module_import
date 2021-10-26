@@ -1,22 +1,22 @@
 import { correctionToMapValue } from './correctionToMapValue';
 
 export const checkHit = (
-	px: number,
-	py: number,
-	pr: number,
-	ex: number,
-	ey: number,
-	er: number,
+	x1: number,
+	y1: number,
+	r1: number,
+	x2: number,
+	y2: number,
+	r2: number,
 ): boolean => {
 	let result: boolean = false;
 	//円同士の当たり判定
 
 	//底辺
-	let a = correctionToMapValue(px - ex);
+	const a = correctionToMapValue(x1 - x2);
 	//高さ
-	let b = correctionToMapValue(py - ey);
+	const b = correctionToMapValue(y1 - y2);
 	//半径足す半径
-	let r = pr + er;
+	const r = r1 + r2;
 
 	if (r * r >= a * a + b * b) {
 		result = true;

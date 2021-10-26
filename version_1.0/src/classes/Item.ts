@@ -1,6 +1,6 @@
 import { Character } from './Character';
 import { itemMaster, player } from '../init/variables';
-import { checkHit } from '../functions/hit';
+import { checkHit } from '../functions/checkHit';
 import { itemMoveDefault } from '../functions/itemFunctions/itemMoveDefault';
 import { heal } from '../functions/heal';
 import { ItemMaster } from './ItemMaster';

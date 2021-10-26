@@ -172,6 +172,7 @@ export const enemyMaster = [
 		0,
 		enemyFunctions.shovel,
 		// ショベル
+		{ isSquare: true, width: 15, height: 58 },
 	),
 ];
 

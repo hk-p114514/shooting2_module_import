@@ -1,6 +1,6 @@
 import { Character } from './Character';
 import { vars, player } from '../init/variables';
-import { checkHit } from '../functions/hit';
+import { checkHit } from '../functions/checkHit';
 import { isAttacked } from '../functions/isAttacked';
 import { Vector } from './Vector';
 import { secToCount } from '../functions/secToCount';

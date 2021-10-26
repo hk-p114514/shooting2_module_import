@@ -1,6 +1,6 @@
 import { Character } from './Character';
 import { enemy, explosion, isPlaying, player, vars } from '../init/variables';
-import { checkHit } from '../functions/hit';
+import { checkHit } from '../functions/checkHit';
 import { moreExplosion } from '../functions/moreExplosion';
 import { makeExplosion } from './instance/makeExplosion';
 
@@ -15,9 +15,7 @@ class Bullet extends Character {
 		super.update();
 		for (let i = 0; i < enemy.length; i++) {
 			if (!enemy[i].kill && isPlaying) {
-				if (
-					checkHit(this.x, this.y, this.r, enemy[i].x, enemy[i].y, enemy[i].r)
-				) {
+				if (checkHit(this.x, this.y, this.r, enemy[i].x, enemy[i].y, enemy[i].r)) {
 					//もし敵にあたっていたら、自機の弾を消す
 					this.kill = true;
 
@@ -37,12 +35,7 @@ class Bullet extends Character {
 						//スコアをサーバに渡す処理
 
 						//爆発エフェクト
-						moreExplosion(
-							enemy[i].x,
-							enemy[i].y,
-							enemy[i].vx >> 3,
-							enemy[i].vy >> 3,
-						);
+						moreExplosion(enemy[i].x, enemy[i].y, enemy[i].vx >> 3, enemy[i].vy >> 3);
 					} else {
 						explosion.push(makeExplosion(0, this.x, this.y, 0, 0));
 					}

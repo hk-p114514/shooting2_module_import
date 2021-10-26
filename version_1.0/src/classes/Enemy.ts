@@ -1,8 +1,9 @@
 import { enemyMaster, player } from '../init/variables';
 import { Character } from './Character';
-import { checkHit } from '../functions/hit';
+import { checkHit } from '../functions/checkHit';
 import { isAttacked } from '../functions/isAttacked';
 import { correctionToCalcValue } from '../functions/correctionToCalcValue';
+import { checkHit2 } from '../functions/checkHit2';
 
 class Enemy extends Character {
 	enemyNumber: number;
@@ -18,6 +19,9 @@ class Enemy extends Character {
 	reload: number;
 	moveFunction: Function;
 	moveFunctionArg: number;
+	isSquare: boolean;
+	width: number;
+	height: number;
 	constructor(
 		id: number,
 		x: number,
@@ -25,6 +29,7 @@ class Enemy extends Character {
 		vx: number,
 		vy: number,
 		moveFunctionArg: number = NaN,
+		{ isSquare = false, width = 0, height = 0 } = {},
 	) {
 		super(0, x, y, vx, vy);
 		this.enemyNumber = enemyMaster[id].enemyNumber;
@@ -37,6 +42,10 @@ class Enemy extends Character {
 		this.hp = this.maxHp;
 		this.flag = false; //trueになると攻撃する
 		this.vp = 0; // 0 -> 天井, 1 -> 床
+
+		this.isSquare = isSquare;
+		this.width = this.isSquare ? width : this.diameter;
+		this.height = this.isSquare ? height : this.diameter;
 
 		//弾の発射角度
 		this.direction = 90; //右側が０度なので、下方向は９０度となる
@@ -61,7 +70,19 @@ class Enemy extends Character {
 		}
 
 		//当たり判定
-		if (checkHit(this.x, this.y, this.r, player.x, player.y, player.r)) {
+		if (
+			this.isSquare
+				? checkHit2(
+						this.x,
+						this.y,
+						this.width,
+						this.height,
+						player.x,
+						player.y,
+						player.r,
+				  )
+				: checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
+		) {
 			isAttacked();
 		}
 	}
