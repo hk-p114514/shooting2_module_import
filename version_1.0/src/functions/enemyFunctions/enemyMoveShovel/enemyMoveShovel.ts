@@ -2,10 +2,12 @@ import { Enemy } from '../../../classes/Enemy';
 import { enemySpriteStart } from '../../../init/spriteInit';
 import { changeSprite } from '../changeSprite';
 
-const enemyMoveShovel = (shovel: Enemy, speed: number = 1000) => {
-	shovel.vy = speed;
+const enemyMoveShovel = (enemy: Enemy) => {
+	console.log('CLEAER');
 
-	changeSprite(shovel, enemySpriteStart.shovel);
+	enemy.vy = 1000;
+
+	enemy.snum = enemySpriteStart.shovel;
 };
 
 export { enemyMoveShovel };

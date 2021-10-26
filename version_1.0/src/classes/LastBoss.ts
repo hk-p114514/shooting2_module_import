@@ -14,7 +14,7 @@ class LastBoss extends Enemy {
 	update = () => {
 		vars.bossMhp = this.maxHp;
 		vars.bossHp = this.hp;
-		if (!rand(0, 500)) {
+		if (!rand(0, 200)) {
 			this.movePattern = this.count % 3;
 			this.vx = 0;
 			this.vy = 0;
@@ -26,6 +26,12 @@ class LastBoss extends Enemy {
 				if (!rand(0, 400)) {
 					this.teleport();
 				}
+				break;
+
+			case 1:
+				break;
+
+			case 2:
 				break;
 		}
 	};

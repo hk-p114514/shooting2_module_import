@@ -6,6 +6,7 @@ import { enemyMoveLastBoss } from './enemyMoveLastBoss/enemyMoveLastBoss';
 import { enemyMovePink } from './enemyMovePink/enemyMovePink';
 import { enemyMoveRobot } from './enemyMoveRobot/enemyMoveRobot';
 import { enemyMoveShell } from './enemyMoveShell/enemyMoveShell';
+import { enemyMoveShovel } from './enemyMoveShovel/enemyMoveShovel';
 import { enemyMoveYellow } from './enemyMoveYellow/enemyMoveYellow';
 
 const enemyFunctions = {
@@ -18,6 +19,7 @@ const enemyFunctions = {
 	egg: enemyMoveEgg,
 	shell: enemyMoveShell,
 	lastBoss: enemyMoveLastBoss,
+	shovel: enemyMoveShovel,
 };
 
 export { enemyFunctions };

@@ -124,8 +124,6 @@ export const enemySpriteStart = {
 	shell: 68,
 	lastBoss: 81,
 	shovel: 82,
-	bigShovel: 83,
-	finger: 84,
 };
 
 export const shotSprite = {
