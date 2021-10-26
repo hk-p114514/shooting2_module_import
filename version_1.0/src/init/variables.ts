@@ -168,12 +168,17 @@ export const enemyMaster = [
 	new EnemyMaster(
 		10,
 		15,
-		1000,
+		bossEnemy.hp,
 		0,
 		enemyFunctions.shovel,
-		// ショベル
+		// ショベル(ミニ)
 		{ isSquare: true, width: 15, height: 58 },
 	),
+	new EnemyMaster(11, 33, bossEnemy.hp, 0, enemyFunctions.bigShovel, {
+		isSquare: true,
+		width: 33,
+		height: 58,
+	}),
 ];
 
 export const enemyMasterIndex = {
@@ -188,6 +193,7 @@ export const enemyMasterIndex = {
 	bigPink: 8,
 	lastBoss: 9,
 	shovel: 10,
+	bigShovel: 11,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

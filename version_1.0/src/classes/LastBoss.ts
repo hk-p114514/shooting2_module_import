@@ -5,7 +5,8 @@ import { Enemy } from './Enemy';
 
 class LastBoss extends Enemy {
 	movePattern: number = 0;
-	maxPattern: number = 5;
+	maxPattern: number = 10;
+	bulletSpeed: number = 1000;
 	constructor(id: number, x: number, y: number, vx: number, vy: number) {
 		super(id, x, y, vx, vy);
 		vars.bossEncounter = true;
@@ -15,11 +16,18 @@ class LastBoss extends Enemy {
 		// ラスボスは頻繁にテレポートを行うので範囲外チェックをキャンセルさせる
 	};
 
+	calcBulletSpeed = () => {
+		if (this.count % 360 == 0) {
+			this.bulletSpeed = rand(500, 2000);
+		}
+	};
+
 	update = () => {
 		vars.bossMhp = this.maxHp;
 		vars.bossHp = this.hp;
+		this.calcBulletSpeed();
 		if (!rand(0, 200)) {
-			this.movePattern = this.count % 3;
+			this.movePattern = this.count % this.maxPattern;
 			this.vx = 0;
 			this.vy = 0;
 		}

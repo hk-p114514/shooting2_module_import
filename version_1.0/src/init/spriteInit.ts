@@ -104,8 +104,9 @@ export const sprite = [
 
 	new Sprite(299, 461, 192, 210), // 81    ,ラスボス
 	new Sprite(487, 213, 15, 58), // 82    ,スコップ(ミニ)
-	new Sprite(505, 152, 33, 121), // 83   ,スコップ(大)
-	new Sprite(540, 212, 50, 62), // 84    ,指
+	new Sprite(486, 279, 14, 58), // 83		 ,スコップ(色違い)
+	new Sprite(505, 152, 33, 121), // 84   ,スコップ(大)
+	new Sprite(540, 212, 50, 62), // 85    ,指
 ];
 
 export const enemySpriteStart = {
@@ -124,6 +125,8 @@ export const enemySpriteStart = {
 	shell: 68,
 	lastBoss: 81,
 	shovel: 82,
+	shovelLight: 83,
+	bigShovel: 84,
 };
 
 export const shotSprite = {

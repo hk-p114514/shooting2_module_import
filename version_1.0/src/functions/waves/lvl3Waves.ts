@@ -61,7 +61,7 @@ const lvl3Waves: Function[] = [
 			);
 		} else if (
 			vars.gameCount >= secToCount(tenSeconds * 2) &&
-			vars.healCount >= 1 &&
+			vars.healCount >= 0 &&
 			!rand(0, 999)
 		) {
 			makeItem(i.heal);

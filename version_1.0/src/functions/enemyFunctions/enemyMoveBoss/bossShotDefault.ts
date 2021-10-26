@@ -1,4 +1,5 @@
 import { Boss } from '../../../classes/Boss';
+import { LastBoss } from '../../../classes/LastBoss';
 import { enemyMaster, enemyMasterIndex } from '../../../init/variables';
 import { correctionToCalcValue } from '../../correctionToCalcValue';
 import { rand } from '../../random';
@@ -6,7 +7,7 @@ import { toRad } from '../../toRad';
 import { enemyBullet } from '../enemyBullet';
 
 const bossShotDefault = (
-	boss: Boss,
+	boss: Boss | LastBoss,
 	{
 		speed = 300,
 		directionGap = 0,
