@@ -4,7 +4,6 @@ import { checkHit } from '../functions/hit';
 import { isAttacked } from '../functions/isAttacked';
 import { Vector } from './Vector';
 import { secToCount } from '../functions/secToCount';
-import { shotSprite } from '../init/spriteInit';
 
 class EnemyShot extends Character {
 	r: number;
@@ -20,7 +19,7 @@ class EnemyShot extends Character {
 		y: number,
 		vx: number,
 		vy: number,
-		delay: number,
+		delay: number = 0,
 		moveCount: number = 0,
 		moveAngle: number = 30,
 		addMagnitude: number = 0,
@@ -43,6 +42,10 @@ class EnemyShot extends Character {
 		// 軌道変化時に変えるベクトル量
 		this.addMagnitude = addMagnitude;
 	}
+
+	draw = () => {
+		super.draw();
+	};
 
 	update = () => {
 		if (this.delay) {

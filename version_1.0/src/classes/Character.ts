@@ -45,8 +45,8 @@ class Character {
 		}
 	}
 
-	draw(other?: number) {
-		drawSprite(this.snum, this.x, this.y, other);
+	draw({ file = 0 } = {}) {
+		drawSprite(this.snum, this.x, this.y, { file: file });
 	}
 
 	public makeSounds = () => {

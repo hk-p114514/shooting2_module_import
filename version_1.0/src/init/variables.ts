@@ -165,6 +165,9 @@ export const enemyMaster = [
 		bossEnemy.score,
 		enemyFunctions.lastBoss /* ラスボスなので動作関数は用いない */,
 	),
+	new EnemyMaster(10, 15, 1000, 0) /* シャベル(mini) */,
+	new EnemyMaster(11, 33, 1000, 0) /* シャベル(big)*/,
+	new EnemyMaster(12, 50, 1000, 0) /* 指 */,
 ];
 
 export const enemyMasterIndex = {
@@ -178,6 +181,9 @@ export const enemyMasterIndex = {
 	shell: 7,
 	bigPink: 8,
 	lastBoss: 9,
+	shovel: 10,
+	bigShovel: 11,
+	finger: 12,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

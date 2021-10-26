@@ -1,5 +1,5 @@
 import { LastBoss } from '../../../classes/LastBoss';
-import { enemySpriteStart } from '../../../init/spriteInit';
+import { enemySpriteStart, shotSprite as s } from '../../../init/spriteInit';
 import { correctionToMapValue } from '../../correctionToMapValue';
 import { bossMoveBattle } from '../enemyMoveBoss/bossMoveBattle';
 
@@ -16,6 +16,9 @@ const enemyMoveLastBoss = (
 		mapX: mapX,
 		mapY: mapY,
 	});
+
+	// シャベルを召喚
+	boss.attack();
 
 	// スプライトの変更
 	boss.snum = spriteStart;

@@ -10,6 +10,7 @@ export const enemyBullet = (
 	enemy: Enemy,
 	speed: number,
 	{
+		snum = shotSprite.es2_1,
 		/* ================ */
 		// 発射する位置をずらす
 		xGap = 0,
@@ -51,7 +52,7 @@ export const enemyBullet = (
 	const vy = Math.sin(angle) * speed;
 
 	enemyShot.push(
-		makeEnemyShot(shotSprite.es2_1, enemy.x + xGap, enemy.y + yGap, vx, vy, {
+		makeEnemyShot(snum, enemy.x + xGap, enemy.y + yGap, vx, vy, {
 			delay: delay || 0,
 			moveCount: moveCount,
 			moveAngle: moveAngle,
