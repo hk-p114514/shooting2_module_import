@@ -50,7 +50,7 @@ const enemyMoveLastBoss = (
 				directionGap: 10,
 				changeDir: true,
 				moveCount: 0.5,
-				addMagnitude: boss.bulletSpeed / 4,
+				addMagnitude: boss.bulletSpeed / 5,
 				moveAngle: rand(-100, 100),
 			});
 	}

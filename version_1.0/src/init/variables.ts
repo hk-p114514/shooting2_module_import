@@ -179,6 +179,8 @@ export const enemyMaster = [
 		width: 33,
 		height: 58,
 	}),
+	new EnemyMaster(12, 50, bossEnemy.hp, 0, enemyFunctions.finger),
+	new EnemyMaster(13, 92, bossEnemy.hp, 0, enemyFunctions.kadai),
 ];
 
 export const enemyMasterIndex = {

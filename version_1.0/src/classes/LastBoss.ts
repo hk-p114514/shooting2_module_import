@@ -35,7 +35,7 @@ class LastBoss extends Enemy {
 
 		switch (this.movePattern) {
 			case 0:
-				if (!rand(0, 400)) {
+				if (!rand(0, 400) && this.flag > 1) {
 					this.teleport();
 				}
 				break;

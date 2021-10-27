@@ -2,6 +2,7 @@ import { enemyMoveBlue } from './enemyMoveBlue/enemyMoveBlue';
 import { enemyMoveBoss } from './enemyMoveBoss/enemyMoveBoss';
 import { enemyMoveChicken } from './enemyMoveChicken/enemyMoveChicken';
 import { enemyMoveEgg } from './enemyMoveEgg/enemyMoveEgg';
+import { enemyMoveKadai } from './enemyMoveKadai/enemyMoveKadai';
 import { enemyMoveLastBoss } from './enemyMoveLastBoss/enemyMoveLastBoss';
 import { enemyMovePink } from './enemyMovePink/enemyMovePink';
 import { enemyMoveRobot } from './enemyMoveRobot/enemyMoveRobot';
@@ -22,6 +23,8 @@ const enemyFunctions = {
 	lastBoss: enemyMoveLastBoss,
 	shovel: enemyMoveShovel,
 	bigShovel: enemyMoveBigShovel,
+	// finger: enemyMoveFinger,
+	kadai: enemyMoveKadai,
 };
 
 export { enemyFunctions };
