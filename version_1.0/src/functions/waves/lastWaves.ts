@@ -20,7 +20,7 @@ import { increaseWave } from './increaseWave';
 import { isPossibleLvUp } from './isPossibleLvUp';
 import { levelUp } from './levelUp';
 
-const lvl3Waves: Function[] = [
+const lastWaves: Function[] = [
 	// 0
 	(): void => {
 		// 鶏を出す
@@ -72,4 +72,4 @@ const lvl3Waves: Function[] = [
 	},
 ];
 
-export { lvl3Waves };
+export { lastWaves };

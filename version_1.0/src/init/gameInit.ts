@@ -4,6 +4,7 @@ import { drawAll, updateAll } from '../functions/useObjectProcess';
 import { information } from '../functions/info/gameInfo';
 import { waves } from '../functions/waves/waves';
 import { bgmStart } from './music/bgmStart';
+import { isNotEndGame } from '../functions/isNotEndGame';
 
 export const gameInit = () => {
 	// // Starクラスのインスタンスを作成
@@ -11,9 +12,9 @@ export const gameInit = () => {
 	// ゲームループ
 
 	// bgmループ
-	// bgmStart();
+	bgmStart();
 	const gameLoop = (): void => {
-		if (!(vars.gameClear || vars.gameOver) && vars.gameStart) {
+		if (isNotEndGame() && vars.gameStart) {
 			waves[vars.gameRound][vars.gameWave]();
 			vars.gameTimer++;
 			vars.gameCount++;

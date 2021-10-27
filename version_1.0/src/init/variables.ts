@@ -180,7 +180,7 @@ export const enemyMaster = [
 		height: 58,
 	}),
 	new EnemyMaster(12, 92, 5, 200, enemyFunctions.kadai),
-	// new EnemyMaster(13, 50, bossEnemy.hp, 0, enemyFunctions.finger),
+	new EnemyMaster(13, 50, bossEnemy.hp, 0, enemyFunctions.finger),
 ];
 
 export const enemyMasterIndex = {
@@ -197,6 +197,7 @@ export const enemyMasterIndex = {
 	shovel: 10,
 	bigShovel: 11,
 	kadai: 12,
+	finger: 13,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

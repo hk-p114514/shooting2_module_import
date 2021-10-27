@@ -58,11 +58,9 @@ class EnemyShot extends Character {
 			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
 		) {
 			// ゲームが終了していない
-			if (!(vars.gameOver || vars.gameClear)) {
-				// 効果音を出す
-				player.isAttackedSound();
-				isAttacked();
-			}
+			// 効果音を出す
+			player.isAttackedSound();
+			isAttacked();
 		}
 
 		// 約0.1秒毎にスプライトを変更する

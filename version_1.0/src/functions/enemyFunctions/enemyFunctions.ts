@@ -23,7 +23,7 @@ const enemyFunctions = {
 	lastBoss: enemyMoveLastBoss,
 	shovel: enemyMoveShovel,
 	bigShovel: enemyMoveBigShovel,
-	// finger: enemyMoveFinger,
+	finger: enemyMoveFinger,
 	kadai: enemyMoveKadai,
 };
 
