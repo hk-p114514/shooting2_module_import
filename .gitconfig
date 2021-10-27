@@ -1,5 +1,0 @@
-[http]
-proxy = http://proxy.hamako-ths.ed.jp:8080
-
-[https]
-proxy = https://proxy.hamako-ths.ed.jp:8080
