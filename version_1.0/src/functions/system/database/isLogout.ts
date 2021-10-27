@@ -27,50 +27,32 @@ const logout = () => {
 
 		// 0点の時はデータベースにアクセスしない
 		if (score > 0) {
-			// 既に同じ名前のプレイヤー情報がないか確認する
-			const usernameDoc = hamakoFes.doc(username);
-			usernameDoc
-				.get()
-				.then((doc) => {
-					if (doc.exists) {
-						// 既に同名のプレイヤーが存在する
-						alert(
-							`「${username}」は既に存在します。\n他の名前に変更してください`,
-						);
-					} else {
-						// 同名のプレイヤーが存在しない
-						const finalConfirmation = confirm(
-							`${username}でスコアを投稿します。\nよろしいですか?`,
-						);
-						if (finalConfirmation === true) {
-							usernameDoc
-								.set({
-									name: username,
-									life: life,
-									score: score,
-									round: gameRound,
-								})
-								.then(() => {
-									alert('スコアを投稿しました');
-									inputUserName.value = '';
-									setTimeout(() => {
-										location.reload();
-									}, 2000);
-								})
-								.catch((err) => {
-									alert('通信に失敗しました');
-									console.log(err);
-								});
-						} else {
-							alert('投稿をキャンセルしました');
-						}
-					}
-				})
-				.catch(() => {
-					alert('通信に失敗しました\n通信環境を確認して再度お試し下さい');
-				});
-		} else {
-			alert('スコアが低すぎるため投稿できませんw');
+			// 同名のプレイヤーが存在しない
+			const finalConfirmation = confirm(
+				`${username}でスコアを投稿します。\nよろしいですか?`,
+			);
+			if (finalConfirmation === true) {
+				hamakoFes
+					.add({
+						name: username,
+						life: life,
+						score: score,
+						round: gameRound,
+					})
+					.then(() => {
+						alert('スコアを投稿しました');
+						inputUserName.value = '';
+						setTimeout(() => {
+							location.reload();
+						}, 2000);
+					})
+					.catch((err) => {
+						alert('通信に失敗しました');
+						console.log(err);
+					});
+			} else {
+				alert('投稿をキャンセルしました');
+			}
 		}
 	});
 };
