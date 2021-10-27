@@ -13,8 +13,8 @@ import { enemyFunctions } from '../functions/enemyFunctions/enemyFunctions';
 
 // ******************************* 定数 *******************************
 
-export const DEBUG: boolean = true;
-// export const DEBUG: boolean = false;
+// export const DEBUG: boolean = true;
+export const DEBUG: boolean = false;
 export const tenSeconds: number = 10;
 export const debugTime = 1;
 export const oneWave = DEBUG ? debugTime : tenSeconds;
@@ -179,8 +179,8 @@ export const enemyMaster = [
 		width: 33,
 		height: 58,
 	}),
-	new EnemyMaster(12, 50, bossEnemy.hp, 0, enemyFunctions.finger),
-	new EnemyMaster(13, 92, bossEnemy.hp, 0, enemyFunctions.kadai),
+	new EnemyMaster(12, 92, 5, 200, enemyFunctions.kadai),
+	// new EnemyMaster(13, 50, bossEnemy.hp, 0, enemyFunctions.finger),
 ];
 
 export const enemyMasterIndex = {
@@ -196,6 +196,7 @@ export const enemyMasterIndex = {
 	lastBoss: 9,
 	shovel: 10,
 	bigShovel: 11,
+	kadai: 12,
 };
 
 // 変更がなされるのは配列の中身であり、本質的な変数の書き換えが行われないので、

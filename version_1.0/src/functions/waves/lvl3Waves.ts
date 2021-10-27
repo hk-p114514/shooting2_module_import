@@ -12,7 +12,6 @@ import {
 	vars,
 } from '../../init/variables';
 import { correctionToCalcValue } from '../correctionToCalcValue';
-import { correctionToMapValue } from '../correctionToMapValue';
 import { makeItem } from '../itemFunctions/makeItem';
 import { randArr } from '../randArr';
 import { rand } from '../random';
@@ -26,14 +25,13 @@ const lvl3Waves: Function[] = [
 	(): void => {
 		// 鶏を出す
 		makeEnemy(e.chicken, { probability: 40 });
-		// increaseWave(oneWave);
-		increaseWave(1);
+		increaseWave(oneWave);
 	},
 
 	// 1
 	(): void => {
 		// 群青色のヒヨコを出す
-		makeEnemy(e.blue, { probability: 30 });
+		makeEnemy(e.blue, { probability: 40 });
 		increaseWave(oneWave * 3);
 	},
 

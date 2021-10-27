@@ -16,13 +16,13 @@ import {
 import { gameStart } from './init/gameStart';
 
 (() => {
-	if (DEBUG) {
-		player.hp = 500;
+	if (!DEBUG) {
+		// player.hp = 500;
 		// player.hp = 0;
-		// player.power = 20;
-		console.log('DEBUG MODE');
-		console.log(`oneWave : ${oneWave}`);
-		vars.gameRound = 2;
+		// player.power = 100;
+		// console.log('DEBUG MODE');
+		// console.log(`oneWave : ${oneWave}`);
+		// vars.gameRound = 2;
 	}
 })();
 

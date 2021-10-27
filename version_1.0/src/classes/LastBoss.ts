@@ -18,7 +18,7 @@ class LastBoss extends Enemy {
 
 	calcBulletSpeed = () => {
 		if (this.count % 360 == 0) {
-			this.bulletSpeed = rand(500, 2000);
+			this.bulletSpeed = rand(500, 1500);
 		}
 	};
 

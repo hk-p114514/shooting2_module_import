@@ -1,16 +1,11 @@
-import { Boss } from '../../../classes/Boss';
-import { makeBullet } from '../../../classes/instance/makeBullet';
 import { makeEnemy } from '../../../classes/instance/makeEnemy';
 import { LastBoss } from '../../../classes/LastBoss';
 import { enemySpriteStart as eS } from '../../../init/spriteInit';
 import { enemyMasterIndex as eI, vars } from '../../../init/variables';
 import { correctionToMapValue } from '../../correctionToMapValue';
 import { rand } from '../../random';
-import { enemyBullet } from '../enemyBullet';
-import { enemyFunctions as eF } from '../enemyFunctions';
 import { bossMoveBattle } from '../enemyMoveBoss/bossMoveBattle';
 import { bossShotDefault } from '../enemyMoveBoss/bossShotDefault';
-import { makeFollowers } from '../enemyMoveBoss/makeFollowers';
 
 const enemyMoveLastBoss = (
 	boss: LastBoss,
@@ -42,6 +37,7 @@ const enemyMoveLastBoss = (
 			boss.movePattern = rand(0, boss.maxPattern);
 			break;
 		case 4:
+			makeEnemy(eI.kadai, { probability: 30 });
 			break;
 
 		default:
@@ -49,9 +45,9 @@ const enemyMoveLastBoss = (
 				speed: boss.bulletSpeed,
 				directionGap: 10,
 				changeDir: true,
-				moveCount: 0.5,
-				addMagnitude: boss.bulletSpeed / 5,
-				moveAngle: rand(-100, 100),
+				moveCount: 1,
+				addMagnitude: boss.bulletSpeed / 6,
+				moveAngle: rand(0, 360),
 			});
 	}
 
