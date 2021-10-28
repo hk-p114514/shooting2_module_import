@@ -1,3 +1,4 @@
+import { vars } from '../variables';
 import { bgm } from './bgmStart';
 const oneSecond: number = 1000;
 const downVolume: number = 0.1;
@@ -12,8 +13,9 @@ const bgmFadeIn = () => {
 
 const bgmFadeOut = () => {
 	if (
-		bgm.volume > 0 &&
-		bgm.duration - bgm.currentTime <= maxSoundLevel / downVolume
+		vars.gameOver ||
+		(bgm.volume > 0 &&
+			bgm.duration - bgm.currentTime <= maxSoundLevel / downVolume)
 	) {
 		bgm.volume -= downVolume;
 		setTimeout(bgmFadeOut, oneSecond);

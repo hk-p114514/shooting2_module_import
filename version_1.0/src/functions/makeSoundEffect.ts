@@ -2,10 +2,10 @@
 
 import { isNotEndGame } from './isNotEndGame';
 
-const makeSoundEffect = (audio: HTMLAudioElement) => {
+const makeSoundEffect = (audio: HTMLAudioElement, volume: number = 0.5) => {
 	if (isNotEndGame()) {
 		audio.currentTime = 0;
-		audio.volume = 1;
+		audio.volume = volume;
 		audio.play();
 	}
 };

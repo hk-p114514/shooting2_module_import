@@ -4,7 +4,7 @@ import { key } from '../../init/variables';
 
 const changeKey = (pushedKey: string, isPushed: boolean): void => {
 	// 特殊攻撃開始
-	if (pushedKey === 'f') {
+	if (pushedKey === 'f' || pushedKey === 'F') {
 		key.special = isPushed;
 	}
 

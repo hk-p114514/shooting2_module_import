@@ -56,7 +56,7 @@ class Character {
 	public makeSounds = () => {
 		if (this.audio) {
 			this.audio.currentTime = 0;
-			this.audio.volume = 1;
+			this.audio.volume = 0.5;
 			this.audio.play();
 		}
 	};
