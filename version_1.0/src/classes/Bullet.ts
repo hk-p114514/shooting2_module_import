@@ -22,11 +22,10 @@ class Bullet extends Character {
 					//敵の hp を減らす
 					enemy[i].hp -= player.power;
 
-					// 効果音を出す
-					this.makeSounds();
-
 					//もし敵の hp が０以下ならば、死亡判定をする
 					if (enemy[i].hp <= 0 && !(vars.gameClear || vars.gameOver)) {
+						// 効果音を出す
+						this.makeSounds();
 						enemy[i].kill = true;
 
 						vars.score += enemy[i].score;

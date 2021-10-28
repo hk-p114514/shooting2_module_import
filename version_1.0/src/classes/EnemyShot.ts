@@ -58,8 +58,6 @@ class EnemyShot extends Character {
 			checkHit(this.x, this.y, this.r, player.x, player.y, player.r)
 		) {
 			// ゲームが終了していない
-			// 効果音を出す
-			player.isAttackedSound();
 			isAttacked();
 		}
 
