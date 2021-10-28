@@ -2,6 +2,7 @@ import { enemyMoveBlue } from './enemyMoveBlue/enemyMoveBlue';
 import { enemyMoveBoss } from './enemyMoveBoss/enemyMoveBoss';
 import { enemyMoveChicken } from './enemyMoveChicken/enemyMoveChicken';
 import { enemyMoveEgg } from './enemyMoveEgg/enemyMoveEgg';
+import { enemyMoveFinger } from './enemyMoveFinger/enemyMoveFinger';
 import { enemyMoveKadai } from './enemyMoveKadai/enemyMoveKadai';
 import { enemyMoveLastBoss } from './enemyMoveLastBoss/enemyMoveLastBoss';
 import { enemyMovePink } from './enemyMovePink/enemyMovePink';
