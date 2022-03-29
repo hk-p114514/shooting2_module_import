@@ -16,6 +16,7 @@ import {
 import { gameStart } from './init/gameStart';
 
 (() => {
+  console.log("updated");
 	if (!DEBUG) {
 		// player.hp = 500;
 		// player.hp = 0;
